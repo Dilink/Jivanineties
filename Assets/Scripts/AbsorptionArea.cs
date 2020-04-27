@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class AbsorptionArea : MonoBehaviour
+public class AbsorptionArea : MonoBehaviour, IAbsorbable
 {
     public AbsorptionMaterialChange materials;
 
