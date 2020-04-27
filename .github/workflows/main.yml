@@ -1,8 +1,9 @@
 name: Build project
 on:
-  # Trigger the workflow on tag
-  tags:
-    - '*'
+  push:
+    # Trigger the workflow on tag creation
+    tags:
+      - '*'
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
