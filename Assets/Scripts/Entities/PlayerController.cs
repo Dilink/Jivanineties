@@ -42,7 +42,7 @@ public class PlayerController: MonoBehaviour
     {
         if(dodging == null && InputManager.Instance.ATTACK && attacking == null)
         {
-            StartCoroutine(Attack());
+            attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), standardAttack));
         }
     }
 
@@ -72,7 +72,7 @@ public class PlayerController: MonoBehaviour
     
     private void CheckDodge()
     {
-        if(InputManager.Instance.DODGE && dodging == null)
+        if(InputManager.Instance.DODGE && dodging == null && attacking == null)
         {
             dodging = StartCoroutine(Dodge());
         }
@@ -105,6 +105,35 @@ public class PlayerController: MonoBehaviour
         }
     }
 
+    IEnumerator Attack(Ray ray, Attack attack)
+    {
+        bool loop = true;
+        bool enemyHit = false;
+        float timer = 0f;
+        RaycastHit hit;
+        movement = Vector3.zero;
+        while(loop)
+        {
+            timer += Time.deltaTime;
+            if(timer >= attack.hitBoxDuration)
+            {
+                loop = false;
+            }
+            //bool hasHit = Physics.BoxCast(ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), ray.direction, out hit, visual.rotation, attack.rangeBox.z, 1 << LayerMask.NameToLayer("Enemy"))
+            Collider[] enemies = Physics.OverlapBox(ray.origin + ray.direction * attack.rangeBox.z / 2f, attack.rangeBox / 2f, visual.rotation, 1 << LayerMask.NameToLayer("Enemy"));
+            ExtDebug.DrawBoxCastBox(ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), visual.rotation, ray.direction, attack.rangeBox.z, Color.green);
+            if(!enemyHit && enemies.Length > 0)
+            {
+                // Damage Enemy
+                Debug.Log("Hit!");
+                enemyHit = true;
+            }
+            yield return null;
+        }
+        yield return new WaitForSeconds(attack.attackRecoveryDuration);
+        attacking = null;
+    }
+
     IEnumerator Dodge()
     {
         speedModifier = dodgeAmplitude;
@@ -114,4 +143,5 @@ public class PlayerController: MonoBehaviour
         yield return new WaitForSeconds(dodgeRecoveryDuration);
         dodging = null;
     }
+
 }

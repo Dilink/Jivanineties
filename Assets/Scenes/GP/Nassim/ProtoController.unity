@@ -608,6 +608,7 @@ MonoBehaviour:
   dodgeDuration: 0.2
   dodgeRecoveryDuration: 0.1
   collisionDetectionRange: 0.1
+  standardAttack: {fileID: 11400000, guid: 486b79489af08e949aee99d039191e10, type: 2}
   visual: {fileID: 498914466}
 --- !u!4 &1118132057
 Transform:
@@ -720,7 +721,7 @@ GameObject:
   - component: {fileID: 1749017325}
   - component: {fileID: 1749017324}
   - component: {fileID: 1749017323}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
