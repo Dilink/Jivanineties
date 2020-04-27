@@ -1,7 +1,8 @@
 name: Build project
 on:
-  pull_request: {}
-  push: { branches: [master] }
+  # Trigger the workflow on tag
+  tags:
+    - '*'
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -21,9 +22,13 @@ jobs:
           - StandaloneWindows64
           - WebGL
     steps:
+
+      # Checkout
       - uses: actions/checkout@v2
         with:
           lfs: true
+
+      # Cache
       - uses: actions/cache@v1.1.0
         with:
           path: ${{ matrix.projectPath }}/Library
@@ -31,11 +36,15 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
+
+      # Build
       - uses: webbertakken/unity-builder@v0.11
         with:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
+
+      # Output
       - uses: actions/upload-artifact@v1
         with:
           name: Build
