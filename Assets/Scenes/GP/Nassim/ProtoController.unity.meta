@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scenes/GP/Nassim/ProtoController.unity.meta
 guid: b47b0f2e60b1a884697f4ea6b17bd624
+=======
+guid: 5fa4f3c779f290046938aa05fe2c0fb5
+timeCreated: 1587991969
+licenseType: Store
+>>>>>>> 27d32c1848d6a8fb11990d0a883bb0d698ab1917:Assets/Plugins/Sirenix/Demos/Editor Windows.unitypackage.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

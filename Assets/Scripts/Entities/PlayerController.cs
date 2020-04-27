@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class PlayerController: MonoBehaviour
 {
-
+    [Header("Tweaking")]
     public float moveSpeed = 5f;
-    public float dodgeAmplitude = 1.01f;
-    public float dodgeDuration = 0.1f;
+    public float dodgeAmplitude = 5f;
+    public float dodgeDuration = 0.2f;
+    public float dodgeRecoveryDuration = 0.1f;
+    public float collisionDetectionRange = 1f;
+    public Attack standardAttack; 
+
+    [Header("References")]
+    public Transform visual;
 
     private Vector3 movement;
     private float speedModifier;
+    private float movementModifier;
     private Coroutine dodging;
+    private Coroutine attacking;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +31,24 @@ public class PlayerController: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckAttack();
         CheckMovement();
         CheckDodge();
+        CheckCollisions();
         Move();
+    }
+
+    private void CheckAttack()
+    {
+        if(dodging == null && InputManager.Instance.ATTACK && attacking == null)
+        {
+            StartCoroutine(Attack());
+        }
     }
 
     private void CheckMovement()
     {
-        if(dodging == null)
+        if(dodging == null && attacking == null)
         {
             movement = Vector3.zero;
             if(InputManager.Instance.UP)
@@ -60,9 +78,31 @@ public class PlayerController: MonoBehaviour
         }
     }
 
+    private void CheckCollisions()
+    {
+        Ray ray = new Ray(transform.position + Vector3.up, movement);
+        RaycastHit hit;
+        Debug.DrawRay(ray.origin, ray.direction);
+        if(Physics.Raycast(ray, out hit, 10, 1 << LayerMask.NameToLayer("Obstacle")))
+        {
+            movementModifier = Vector3.Distance(ray.origin, hit.point);
+            Debug.Log(movementModifier);
+            if(movementModifier < collisionDetectionRange)
+            {
+                movementModifier = 0;
+                return;
+            }
+        }
+        movementModifier = moveSpeed * speedModifier * Time.deltaTime;
+    }
+
     private void Move()
     {
-        transform.position += (movement * moveSpeed * speedModifier * Time.deltaTime);
+        transform.position += movement * movementModifier;
+        if(!movement.Equals(Vector3.zero))
+        {
+            visual.rotation = Quaternion.LookRotation(movement, Vector3.up);
+        }
     }
 
     IEnumerator Dodge()
@@ -70,6 +110,8 @@ public class PlayerController: MonoBehaviour
         speedModifier = dodgeAmplitude;
         yield return new WaitForSeconds(dodgeDuration);
         speedModifier = 1f;
+        movement = Vector3.zero;
+        yield return new WaitForSeconds(dodgeRecoveryDuration);
         dodging = null;
     }
 }

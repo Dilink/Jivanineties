@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugins/Sirenix/Odin Inspector/Config/Resources.meta
 guid: 22c3c310bb365564ca2f7ff7135ebf89
 folderAsset: yes
+=======
+guid: 7f1794afc30a2bf40868bb27bab3cb64
+timeCreated: 1472822336
+licenseType: Store
+>>>>>>> 27d32c1848d6a8fb11990d0a883bb0d698ab1917:Assets/Plugins/RainbowAssets/!Core/ReorderableList/LICENSE.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
