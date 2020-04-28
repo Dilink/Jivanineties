@@ -5,14 +5,12 @@ using UnityEngine;
 public class PlayerController: MonoBehaviour
 {
     [Header("Tweaking")]
-    [Range(1, 50)]
+    [Range(0, 50)]
     public float moveSpeed = 5f;
     public AnimationCurve dodgeCurve;
-    //public float dodgeAmplitude = 5f;
-    //public float dodgeDuration = 0.2f;
-    //public float dodgeRecoveryDuration = 0.1f;
     [Range(0, 5)]
     public float collisionDetectionRange = 1f;
+    public Vector3 collisionDetectionBox; 
     public Attack standardAttack; 
 
     [Header("References")]
@@ -83,20 +81,22 @@ public class PlayerController: MonoBehaviour
 
     private void CheckCollisions()
     {
-        Ray ray = new Ray(transform.position + Vector3.up, movement);
-        RaycastHit hit;
-        Debug.DrawRay(ray.origin, ray.direction);
-        if(Physics.Raycast(ray, out hit, 10, 1 << LayerMask.NameToLayer("Obstacle")))
+        if(movement != Vector3.zero)
         {
-            movementModifier = Vector3.Distance(ray.origin, hit.point);
-            Debug.Log(movementModifier);
-            if(movementModifier < collisionDetectionRange)
+            Ray ray = new Ray(transform.position + Vector3.up, movement);
+            RaycastHit hit;
+            ExtDebug.DrawBoxCastBox(ray.origin, collisionDetectionBox / 2f, visual.rotation, ray.direction, 5f, Color.blue);
+            if(Physics.BoxCast(ray.origin, new Vector3(collisionDetectionBox.x / 2f, collisionDetectionBox.y / 2f, 0), ray.direction, out hit, visual.rotation, 5f, 1 << LayerMask.NameToLayer("Obstacle")))
             {
-                movementModifier = 0;
-                return;
+                movementModifier = Vector3.Distance(ray.origin, hit.point);
+                if(movementModifier < collisionDetectionBox.z)
+                {
+                    movementModifier = 0;
+                    return;
+                }
             }
+            movementModifier = moveSpeed * speedModifier * Time.deltaTime;
         }
-        movementModifier = moveSpeed * speedModifier * Time.deltaTime;
     }
 
     private void Move()
@@ -113,7 +113,6 @@ public class PlayerController: MonoBehaviour
         bool loop = true;
         bool enemyHit = false;
         float timer = 0f;
-        RaycastHit hit;
         movement = Vector3.zero;
         while(loop)
         {
@@ -122,12 +121,11 @@ public class PlayerController: MonoBehaviour
             {
                 loop = false;
             }
-            //bool hasHit = Physics.BoxCast(ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), ray.direction, out hit, visual.rotation, attack.rangeBox.z, 1 << LayerMask.NameToLayer("Enemy"))
             Collider[] enemies = Physics.OverlapBox(ray.origin + ray.direction * attack.rangeBox.z / 2f, attack.rangeBox / 2f, visual.rotation, 1 << LayerMask.NameToLayer("Enemy"));
             ExtDebug.DrawBoxCastBox(ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), visual.rotation, ray.direction, attack.rangeBox.z, Color.green);
             if(!enemyHit && enemies.Length > 0)
             {
-                // Damage Enemy
+                enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage);
                 Debug.Log("Hit!");
                 enemyHit = true;
             }
@@ -150,14 +148,6 @@ public class PlayerController: MonoBehaviour
         speedModifier = 1f;
         movement = Vector3.zero;
         dodging = null;
-        /*
-        speedModifier = dodgeAmplitude;
-        yield return new WaitForSeconds(dodgeDuration);
-        speedModifier = 1f;
-        movement = Vector3.zero;
-        yield return new WaitForSeconds(dodgeRecoveryDuration);
-        dodging = null;
-        */
     }
 
 }
