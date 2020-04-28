@@ -6,21 +6,11 @@ using UnityEngine;
 public class IAStats : ScriptableObject
 {
     public LifePointType[] lifePointTypes;
-    public AttackStats[] Attack;
+    public Attack[] Attack;
 }
 
 public enum LifePointType
 {
     normal,
     specialAttack
-}
-
-[System.Serializable]
-public struct AttackStats
-{
-    public float prepDuration;
-    public float attackDuration;
-    public float coolDownAfterAttack;
-    public LifePointType attackTypes;
-    // public GameObject hitBox;
 }
