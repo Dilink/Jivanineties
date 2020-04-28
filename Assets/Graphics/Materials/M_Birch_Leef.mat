@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Birch_Leef
   m_Shader: {fileID: 4800000, guid: 92df914392d55674d9dbddb5ea16843d, type: 3}
-  m_ShaderKeywords: _DISAPEAR_ON
+  m_ShaderKeywords: _DISAPEAR_ON _VERTEX_ANIMATION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -78,6 +78,7 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _DRIED: 0
     - _DetailNormalMapScale: 1
     - _Disapear: 1
     - _DstBlend: 0
@@ -94,7 +95,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _Vertex_animation: 0
+    - _VERTEX_ANIM_POWER: 0.78
+    - _Vertex_animation: 1
     - _Vertex_color: 0
     - _ZWrite: 1
     - _Zone_Shadow: 0.14
