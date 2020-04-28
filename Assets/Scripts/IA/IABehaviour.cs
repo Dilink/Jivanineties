@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(IAAttackGestion))]
-public class IABehaviour : MonoBehaviour
+public class IABehaviour : MonoBehaviour, IDamageable
 {
 
     public IAFakePlayer player;
@@ -20,12 +20,28 @@ public class IABehaviour : MonoBehaviour
     private IAState currentIAState;
 
     private int specialAttackWaiting;
+    private int currentLife;
 
 
+    private void Awake()
+    {
+        currentLife = IAStats.lifePointTypes.Length - 1;
+        print(currentLife);
+
+    }
 
     void Start()
     {
         AIPursuit(player.transform);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(1);
+            // TakeDamage(2);
+        }
     }
 
     #region IA State
@@ -34,6 +50,11 @@ public class IABehaviour : MonoBehaviour
     {
         currentIAState = (IAState)stateIndex;
         ChangeMaterial(stateIndex);
+    }
+
+    public void IAChangeState()
+    {
+        ChangeMaterial((int)currentIAState);
     }
 
     public void ChangeMaterial(int index)
@@ -108,7 +129,7 @@ public class IABehaviour : MonoBehaviour
         {
             //print("A cote de la cible");
             navA.destination = transform.position;
-            IAAttack(1f, 2f, 2);
+            IAAttack(0);
         }
         else
         {
@@ -131,28 +152,52 @@ public class IABehaviour : MonoBehaviour
     #region IA Attack
 
 
-    public void IAAttack(float prepDuration, float AttackDuration, int attackRepetition = 1, int index = 0)
+    public void IAAttack(int attackIndex)
     {
-        int _index = index;
-        index++;
+
+        if (attackIndex < 0 || attackIndex > (IAStats.Attack.Length - 1))
+        {
+            print("BadIndex");
+            return;
+        }
+        float prepDuration = IAStats.Attack[attackIndex].prepDuration;
+        float attackDuration = IAStats.Attack[attackIndex].prepDuration;
+
+
+
         //Reortation 
         Vector3 directionToFace = player.transform.position;
         Vector3 targetPos = new Vector3(directionToFace.x, transform.position.y, directionToFace.z);
         transform.LookAt(targetPos);
-        print("Prep");
+
         IAChangeState(1);
-        StartCoroutine(attackDebugCooldown(prepDuration, AttackDuration, _index, attackRepetition));
+
+        StartCoroutine(attackDebugCooldown(prepDuration, attackDuration, IAStats.Attack[attackIndex].attackTypes));
+
+
     }
 
-    IEnumerator attackDebugCooldown(float prepDuration, float attackDuration, int index, int attackRepetition)
+    IEnumerator attackDebugCooldown(float prepDuration, float attackDuration, LifePointType attackType)
     {
         yield return new WaitForSeconds(prepDuration);
-        print("Attack");
-        ChangeMaterial(2);
-        yield return new WaitForSeconds(attackDuration);
-        if (attackRepetition > index)
+        switch (attackType)
         {
-            IAAttack(prepDuration, attackDuration, index, attackRepetition);
+            case LifePointType.normal:
+                currentIAState = IAState.attacking;
+                IAChangeState();
+                break;
+            case LifePointType.specialAttack:
+                print("Special Attack ");
+                specialAttackWaiting--;
+                currentIAState = IAState.specialAttack;
+                IAChangeState();
+                break;
+        }
+
+        yield return new WaitForSeconds(attackDuration);
+        if (specialAttackWaiting > 0)
+        {
+            IAAttack(1);
         }
         else
         {
@@ -167,7 +212,7 @@ public class IABehaviour : MonoBehaviour
 
     #endregion
 
-    
+
     #region EDITOR
     [ContextMenu("FindPlayer")]
     private void FindPlayer()
@@ -230,9 +275,44 @@ public class IABehaviour : MonoBehaviour
             print("M fail");
         }
     }
-
-
     #endregion
+
+
+    public void TakeDamage(int damageAmount)
+    {
+        int lastLife = currentLife;
+        //5
+        for (int i = 0; i < damageAmount; i++)
+        {
+            print(IAStats.lifePointTypes[currentLife - (1 + i)]);
+            if (IAStats.lifePointTypes[currentLife - (1 + i)] == LifePointType.specialAttack)
+            {
+                if (currentIAState != IAState.attacking || currentIAState != IAState.specialAttack || currentIAState != IAState.attackPrep)
+                {
+                    StopCoroutine("AIPursuit");
+                    StopCoroutine("pursuitCooldown");
+                    navA.isStopped = true;
+                    IAAttack(1);
+                }
+                else
+                {
+                    specialAttackWaiting++;
+                    print("Add new stack for Super Attack");
+                }
+            }
+        }
+        currentLife = lastLife - damageAmount;
+        if (currentLife < 0)
+        {
+            currentIAState = IAState.dead;
+            navA.destination = transform.position;
+            IAChangeState();
+            StopAllCoroutines();
+        }
+        print(currentLife);
+        //currentLife
+
+    }
 }
 
 public enum IAState
