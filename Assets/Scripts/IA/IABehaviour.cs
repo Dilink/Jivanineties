@@ -183,11 +183,14 @@ public class IABehaviour : MonoBehaviour, IDamageable
         switch (attackType)
         {
             case LifePointType.normal:
-                ChangeMaterial(2);
+                currentIAState = IAState.attacking;
+                IAChangeState();
                 break;
             case LifePointType.specialAttack:
                 print("Special Attack ");
-                ChangeMaterial(3);
+                specialAttackWaiting--;
+                currentIAState = IAState.specialAttack;
+                IAChangeState();
                 break;
         }
 
@@ -286,9 +289,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 if (currentIAState != IAState.attacking || currentIAState != IAState.specialAttack || currentIAState != IAState.attackPrep)
                 {
-                    navA.isStopped = true;
                     StopCoroutine("AIPursuit");
                     StopCoroutine("pursuitCooldown");
+                    navA.isStopped = true;
                     IAAttack(1);
                 }
                 else
@@ -298,7 +301,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
                 }
             }
         }
-        currentLife = damageAmount;
+        currentLife = lastLife - damageAmount;
         if (currentLife < 0)
         {
             currentIAState = IAState.dead;
