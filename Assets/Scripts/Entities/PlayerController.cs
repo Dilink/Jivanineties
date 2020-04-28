@@ -8,10 +8,11 @@ public class PlayerController: MonoBehaviour, IDamageable
     [Range(0, 50)]
     public float moveSpeed = 5f;
     public AnimationCurve dodgeCurve;
-    [Range(0, 5)]
-    public float collisionDetectionRange = 1f;
+    //[Range(0, 5)]
+    //public float collisionDetectionRange = 1f;
     //public Vector3 collisionDetectionBox;
-    public Attack standardAttack; 
+    public Attack standardAttack;
+    public Attack upgradedAttack;
 
     [Header("References")]
     public Transform visual;
@@ -22,6 +23,10 @@ public class PlayerController: MonoBehaviour, IDamageable
     private float movementModifier;
     private Coroutine dodging;
     private Coroutine attacking;
+
+    private float dodgeCooldown;
+    private float standardAttackCooldown;
+    private float upgradedAttackCooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +49,15 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         if(dodging == null && InputManager.Instance.ATTACK && attacking == null)
         {
-            attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), standardAttack));
+            if(InputManager.Instance.POWER_HOLD && absorption.TryAbsorption())
+            {
+                attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), upgradedAttack));
+                
+            }
+            else
+            {
+                attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), standardAttack));
+            }
         }
     }
 

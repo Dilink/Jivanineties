@@ -9,6 +9,8 @@ public class Attack : ScriptableObject
     public int damage;
     public float hitBoxDuration;
     public float attackRecoveryDuration;
+    public float attackCooldown;
+    public float stunDuration;
     public Vector3 rangeBox;
 
 }
