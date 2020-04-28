@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Fern
+  m_Name: M_Rocks
   m_Shader: {fileID: 4800000, guid: 92df914392d55674d9dbddb5ea16843d, type: 3}
-  m_ShaderKeywords: _DISAPEAR_ON _VERTEX_ANIMATION_ON
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: dc55acfc0dbc99e448f828c70e9cfd71, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0a54950a5730aed42b0417546534ad3e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -52,22 +52,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise_vertex_animation:
-        m_Texture: {fileID: 2800000, guid: 805af41b6e803c748bc9986722ba9df2, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Opacity:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample0:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -80,14 +72,13 @@ Material:
     - _Cutoff: 0.5
     - _DRIED: 0
     - _DetailNormalMapScale: 1
-    - _Disapear: 1
+    - _Disapear: 0
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _OPACITY: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Shininess: 0.1
@@ -95,12 +86,11 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VERTEX_ANIM_POWER: 0.31
-    - _Vertex_animation: 1
-    - _Vertex_color: 0
+    - _VERTEX_ANIM_POWER: 2.05
+    - _Vertex_animation: 0
     - _ZWrite: 1
     - _Zone_Shadow: 0.14
-    - __dirty: 0
+    - __dirty: 1
     m_Colors:
     - _Asset_color: {r: 1, g: 1, b: 1, a: 0.345098}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
