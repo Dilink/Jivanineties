@@ -120,6 +120,10 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public bool AIPursuit(Transform pos)
     {
+        if (navA.isStopped)
+        {
+            navA.isStopped = false;
+        }
 
         IAChangeState(0);
         float distance = Vector3.Distance(transform.position, pos.position);
@@ -143,7 +147,10 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         // print("Poursuite en cours");
         yield return new WaitForSeconds(duration);
-        AIPursuit(pos);
+        if (currentIAState == IAState.mooving)
+        {
+            AIPursuit(pos);
+        }
     }
 
 
@@ -197,6 +204,10 @@ public class IABehaviour : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(attackDuration);
         if (specialAttackWaiting > 0)
         {
+            StopCoroutine("AIPursuit");
+            StopCoroutine("pursuitCooldown");
+            navA.isStopped = true;
+            //IAAttack(1);
             IAAttack(1);
         }
         else
@@ -212,6 +223,42 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     #endregion
 
+    public void TakeDamage(int damageAmount)
+    {
+        int lastLife = currentLife;
+
+        currentLife -= damageAmount;
+        if (currentLife < 0)
+        {
+            currentIAState = IAState.dead;
+            navA.destination = transform.position;
+            IAChangeState();
+            StopAllCoroutines();
+            return;
+        }
+        print(currentLife);
+
+        for (int i = 0; i < damageAmount; i++)
+        {
+            print("PV type : " + IAStats.lifePointTypes[lastLife - (1 + i)]);
+            if (IAStats.lifePointTypes[lastLife - (1 + i)] == LifePointType.specialAttack)
+            {
+                if (currentIAState == IAState.mooving)
+                {
+                    StopCoroutine("AIPursuit");
+                    StopCoroutine("pursuitCooldown");
+                    navA.isStopped = true;
+                    IAAttack(1);
+                }
+                else
+                {
+                    specialAttackWaiting++;
+                    print("Add new stack for Super Attack");
+                }
+            }
+        }
+
+    }
 
     #region EDITOR
     [ContextMenu("FindPlayer")]
@@ -276,43 +323,6 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
     }
     #endregion
-
-
-    public void TakeDamage(int damageAmount)
-    {
-        int lastLife = currentLife;
-        //5
-        for (int i = 0; i < damageAmount; i++)
-        {
-            print(IAStats.lifePointTypes[currentLife - (1 + i)]);
-            if (IAStats.lifePointTypes[currentLife - (1 + i)] == LifePointType.specialAttack)
-            {
-                if (currentIAState != IAState.attacking || currentIAState != IAState.specialAttack || currentIAState != IAState.attackPrep)
-                {
-                    StopCoroutine("AIPursuit");
-                    StopCoroutine("pursuitCooldown");
-                    navA.isStopped = true;
-                    IAAttack(1);
-                }
-                else
-                {
-                    specialAttackWaiting++;
-                    print("Add new stack for Super Attack");
-                }
-            }
-        }
-        currentLife = lastLife - damageAmount;
-        if (currentLife < 0)
-        {
-            currentIAState = IAState.dead;
-            navA.destination = transform.position;
-            IAChangeState();
-            StopAllCoroutines();
-        }
-        print(currentLife);
-        //currentLife
-
-    }
 }
 
 public enum IAState
