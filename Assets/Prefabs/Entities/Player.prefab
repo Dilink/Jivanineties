@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2308094108566311391}
   - component: {fileID: 2308094108566311390}
   - component: {fileID: 2308094108566311388}
+  - component: {fileID: 3617632262605767277}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -89,9 +90,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   collisionDetectionRange: 0.1
-  collisionDetectionBox: {x: 0.75, y: 1, z: 0.5}
   standardAttack: {fileID: 11400000, guid: 486b79489af08e949aee99d039191e10, type: 2}
   visual: {fileID: 2308094108594354172}
+  absorption: {fileID: 0}
 --- !u!114 &2308094108566311388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +107,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSpeed: 10
   playerCamera: {fileID: 0}
+--- !u!114 &3617632262605767277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308094108566311377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781f0eb2a341370449dfc6790b7ed66a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTesting: 0
 --- !u!1 &2308094108594354175
 GameObject:
   m_ObjectHideFlags: 0
