@@ -12,7 +12,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     public NavMeshAgent navA;
     public MeshRenderer mR;
     public Material[] stateMaterials;
-    public DamageZone[] damageZones;
+    public Attack[] damageZones;
 
     public IAStats IAStats;
 
@@ -28,12 +28,6 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         currentLife = IAStats.lifePointTypes.Length - 1;
         print(currentLife);
-
-        for (int i = 0; i < damageZones.Length; i++)
-        {
-            damageZones[i].gameObject.SetActive(false);
-            damageZones[i].Init(this.gameObject);
-        }
 
     }
 
@@ -194,27 +188,26 @@ public class IABehaviour : MonoBehaviour, IDamageable
     IEnumerator attackDebugCooldown(float prepDuration, float attackDuration, LifePointType attackType)
     {
         yield return new WaitForSeconds(prepDuration);
+        Ray ray = new Ray(transform.position, transform.forward);
         switch (attackType)
         {
             case LifePointType.normal:
                 currentIAState = IAState.attacking;
-                damageZones[0].gameObject.SetActive(true);
+                //damageZones[0].gameObject.SetActive(true);
+                StartCoroutine(Attack(ray, damageZones[0]));
                 IAChangeState();
                 break;
             case LifePointType.specialAttack:
                 print("Special Attack ");
                 specialAttackWaiting--;
                 currentIAState = IAState.specialAttack;
-                damageZones[1].gameObject.SetActive(true);
+                //damageZones[1].gameObject.SetActive(true);
+                StartCoroutine(Attack(ray, damageZones[1] ));
                 IAChangeState();
                 break;
         }
 
         yield return new WaitForSeconds(attackDuration);
-        for (int i = 0; i < damageZones.Length; i++)
-        {
-            damageZones[i].gameObject.SetActive(false);
-        }
 
         if (specialAttackWaiting > 0)
         {
@@ -233,6 +226,30 @@ public class IABehaviour : MonoBehaviour, IDamageable
     }
 
 
+    IEnumerator Attack(Ray ray, Attack attack)
+    {
+        bool loop = true;
+        bool enemyHit = false;
+        float timer = 0f;
+        while (loop)
+        {
+            timer += Time.deltaTime;
+            if (timer >= attack.hitBoxDuration)
+            {
+                loop = false;
+            }
+            Collider[] enemies = Physics.OverlapBox(ray.origin + ray.direction * attack.rangeBox.z / 2f, attack.rangeBox / 2f, transform.rotation, 1 << LayerMask.NameToLayer("Player"));
+            ExtDebug.DrawBoxCastBox(ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), transform.rotation, ray.direction, attack.rangeBox.z, Color.green);
+            if (!enemyHit && enemies.Length > 0)
+            {
+                enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage);
+                Debug.Log("HIt heros");
+                enemyHit = true;
+            }
+            yield return null;
+        }
+        yield return new WaitForSeconds(attack.attackRecoveryDuration);
+    }
 
 
     #endregion
