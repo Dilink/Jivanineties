@@ -1966,7 +1966,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1761329581}
   - component: {fileID: 1761329584}
-  - component: {fileID: 1761329583}
   - component: {fileID: 1761329582}
   - component: {fileID: 1761329587}
   m_Layer: 10
@@ -2018,18 +2017,6 @@ MonoBehaviour:
   IAStats: {fileID: 11400000, guid: b17da1bb9c3da364fa6186d4872886af, type: 2}
   AIperceptionUpdate: 0.2
   "invicibilit\xE9Duration": 1
---- !u!114 &1761329583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761329580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d399280951a1d9744a72ee5b18bca0fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1761329584
 CapsuleCollider:
   m_ObjectHideFlags: 0

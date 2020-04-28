@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Sirenix.OdinInspector;
 
-[RequireComponent(typeof(IAAttackGestion))]
 public class IABehaviour : MonoBehaviour, IDamageable
 {
 
@@ -23,6 +22,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private int specialAttackWaiting;
     private float currentAttackCooldown;
     private bool attackInCooldown;
+    private bool attackCanceled;
     private int currentLife;
 
 
@@ -227,13 +227,12 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     }
 
-
     private void Attack(Ray ray, Attack attack)
     {
         bool loop = true;
         bool enemyHit = false;
         float timer = 0f;
-        while (loop)
+        while (loop && !attackCanceled)
         {
             timer += Time.deltaTime;
             if (timer >= attack.hitBoxDuration)
@@ -245,18 +244,17 @@ public class IABehaviour : MonoBehaviour, IDamageable
             if (!enemyHit && enemies.Length > 0)
             {
                 enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage);
-               // Debug.Log("HIt heros");
+                // Debug.Log("HIt heros");
                 enemyHit = true;
             }
         }
     }
-
     IEnumerator AttackCooldown()
     {
         attackInCooldown = true;
         yield return new WaitForSeconds(currentAttackCooldown);
         attackInCooldown = false;
-      //  print("no more cd on attack");
+        //  print("no more cd on attack");
     }
     IEnumerator InvicibilityDuration()
     {
@@ -289,24 +287,37 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
         //print(currentLife);
         StartCoroutine(InvicibilityDuration());
-        
+
 
         for (int i = 0; i < damageAmount; i++)
         {
-           // print("PV type : " + IAStats.lifePointTypes[lastLife - (1 + i)]);
+            // print("PV type : " + IAStats.lifePointTypes[lastLife - (1 + i)]);
             if (IAStats.lifePointTypes[lastLife - (1 + i)] == LifePointType.specialAttack)
             {
-                if (currentIAState == IAState.mooving)
+                switch (currentIAState)
                 {
-                    StopCoroutine("AIPursuit");
-                    StopCoroutine("pursuitCooldown");
-                    navA.isStopped = true;
-                    IAAttack(1);
-                }
-                else
-                {
-                    specialAttackWaiting++;
-                   // print("Add new stack for Super Attack");
+                    case IAState.mooving:
+                        StopCoroutine("AIPursuit");
+                        StopCoroutine("pursuitCooldown");
+                        navA.isStopped = true;
+                        IAAttack(1);
+
+                        break;
+                    case IAState.attackPrep:
+                        StopCoroutine("attackDebugCooldown");
+                        IAAttack(1);
+                        break;
+
+                    case IAState.attacking:
+                        StopCoroutine("attackDebugCooldown");
+                        attackCanceled = true;
+                        break;
+
+                    //case IAState.specialAttack:
+                    //    StopCoroutine("attackDebugCooldown");
+                    //    attackCanceled = true;
+                    //    break;
+
                 }
             }
         }
