@@ -10,12 +10,12 @@ public class PlayerController: MonoBehaviour
     public AnimationCurve dodgeCurve;
     [Range(0, 5)]
     public float collisionDetectionRange = 1f;
-    public Vector3 collisionDetectionBox; 
+    //public Vector3 collisionDetectionBox;
     public Attack standardAttack; 
 
     [Header("References")]
     public Transform visual;
-
+    
     private Vector3 movement;
     private float speedModifier;
     private float movementModifier;
@@ -35,7 +35,7 @@ public class PlayerController: MonoBehaviour
         CheckAttack();
         CheckMovement();
         CheckDodge();
-        CheckCollisions();
+        //CheckCollisions();
         Move();
     }
 
@@ -68,6 +68,7 @@ public class PlayerController: MonoBehaviour
             {
                 movement += new Vector3(-1, 0, 0);
             }
+            movement = movement.normalized;
         }
     }
     
@@ -79,6 +80,7 @@ public class PlayerController: MonoBehaviour
         }
     }
 
+    /*
     private void CheckCollisions()
     {
         if(movement != Vector3.zero)
@@ -98,9 +100,11 @@ public class PlayerController: MonoBehaviour
             movementModifier = moveSpeed * speedModifier * Time.deltaTime;
         }
     }
+    */
 
     private void Move()
     {
+        movementModifier = moveSpeed * speedModifier * Time.deltaTime;
         transform.position += movement * movementModifier;
         if(!movement.Equals(Vector3.zero))
         {
