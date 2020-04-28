@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Birch_Leef
+  m_Name: M_Birch_Leef 1
   m_Shader: {fileID: 4800000, guid: 92df914392d55674d9dbddb5ea16843d, type: 3}
   m_ShaderKeywords: _DISAPEAR_ON _VERTEX_ANIMATION_ON
   m_LightmapFlags: 4
