@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Test_principal
+  m_Name: M_Birch_01
   m_Shader: {fileID: 4800000, guid: 92df914392d55674d9dbddb5ea16843d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,11 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Albedo_dried:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5ba13bc53f7733c4c9b6853de928ca7f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -72,15 +68,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: 5ba13bc53f7733c4c9b6853de928ca7f, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _tkxiabyya_4K_Albedo:
-        m_Texture: {fileID: 2800000, guid: 44b4c2f4a91954b4d9a274c01dc1246c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -107,7 +99,6 @@ Material:
     m_Colors:
     - _Asset_color: {r: 1, g: 1, b: 1, a: 0.345098}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 1, g: 1, b: 1, a: 0.1686275}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}
     - _SpecularColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}
