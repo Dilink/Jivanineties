@@ -9,6 +9,7 @@ public class DamageZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print(other.gameObject);
         if (other.gameObject != _parent)
         {
            IDamageable target =   other.GetComponent<IDamageable>();
