@@ -9,6 +9,7 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
     [OnValueChanged("OnBoundariesChanged")]
     [ShowIf("isEditingBoundaries")]
     public Vector3[] boundaries;
+    public bool areaHasWater = false;
 
     [HideInInspector]
     public bool isEditingBoundaries;
@@ -21,29 +22,36 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        meshRenderer.material = materials.materialBefore;
+        UpdateMaterialBasedOnWater();
     }
 
     public bool OnAbsorption()
     {
-        if (meshRenderer.material == materials.materialAfter)
+        if (!areaHasWater)
         {
             return false;
         }
 
-        meshRenderer.material = materials.materialAfter;
+        areaHasWater = false;
+        UpdateMaterialBasedOnWater();
         return true;
     }
 
     public bool OnRestore()
     {
-        if (meshRenderer.material == materials.materialBefore)
+        if (areaHasWater)
         {
             return false;
         }
 
-        meshRenderer.material = materials.materialBefore;
+        areaHasWater = true;
+        UpdateMaterialBasedOnWater();
         return true;
+    }
+
+    private void UpdateMaterialBasedOnWater()
+    {
+        meshRenderer.material = areaHasWater ? materials.materialBefore : materials.materialAfter;
     }
 
 #if UNITY_EDITOR
