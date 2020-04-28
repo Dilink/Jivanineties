@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Saplin
+  m_Name: M_Bush
   m_Shader: {fileID: 4800000, guid: 92df914392d55674d9dbddb5ea16843d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
