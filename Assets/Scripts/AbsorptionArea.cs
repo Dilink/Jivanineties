@@ -12,8 +12,25 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
         meshRenderer.material = materials.materialBefore;
     }
 
-    public void OnAbsorption()
+    public bool OnAbsorption()
     {
+        if (meshRenderer.material == materials.materialAfter)
+        {
+            return false;
+        }
+
         meshRenderer.material = materials.materialAfter;
+        return true;
+    }
+
+    public bool OnRestore()
+    {
+        if (meshRenderer.material == materials.materialBefore)
+        {
+            return false;
+        }
+
+        meshRenderer.material = materials.materialBefore;
+        return true;
     }
 }
