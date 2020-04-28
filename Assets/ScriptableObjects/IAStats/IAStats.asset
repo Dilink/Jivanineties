@@ -14,11 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifePointTypes: 0000000001000000000000000100000000000000
   Attack:
-  - prepDuration: 1
-    attackDuration: 0.5
-    coolDownAfterAttack: 0
-    attackTypes: 0
-  - prepDuration: 2
-    attackDuration: 2
-    coolDownAfterAttack: 0
-    attackTypes: 1
+  - {fileID: 11400000, guid: f15790e6f368caa43b4c8b4d272b25d8, type: 2}
+  - {fileID: 11400000, guid: ccc4e109a8a3f404280eb1e91e878393, type: 2}

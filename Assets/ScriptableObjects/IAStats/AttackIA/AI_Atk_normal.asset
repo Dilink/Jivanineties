@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7d3271a03af30341836c65bc4fa2dce, type: 3}
-  m_Name: Attack01
+  m_Name: AI_Atk_normal
   m_EditorClassIdentifier: 
   damage: 1
   hitBoxDuration: 0.2
-  attackRecoveryDuration: 0.2
+  attackRecoveryDuration: 0.3
+  attackCoolDownDuration: 1.2
+  preparationDuration: 0.3
   rangeBox: {x: 1, y: 2, z: 2}
+  attackType: 0
