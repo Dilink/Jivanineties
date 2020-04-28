@@ -677,8 +677,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd69fdcdb7cd3b74b9517af58d4d2b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraSpeed: 0
   playerCamera: {fileID: 1201307500}
-  delay: 2
 --- !u!1 &1201307498
 GameObject:
   m_ObjectHideFlags: 0
