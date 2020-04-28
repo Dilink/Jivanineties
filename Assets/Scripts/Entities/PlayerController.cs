@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController: MonoBehaviour
+public class PlayerController: MonoBehaviour, IDamageable
 {
     [Header("Tweaking")]
     [Range(0, 50)]
@@ -15,6 +15,7 @@ public class PlayerController: MonoBehaviour
 
     [Header("References")]
     public Transform visual;
+    public AbsorptionController absorption;
     
     private Vector3 movement;
     private float speedModifier;
@@ -154,4 +155,12 @@ public class PlayerController: MonoBehaviour
         dodging = null;
     }
 
+    public void TakeDamage(int damageAmount)
+    {
+        if(!absorption.TryAbsorption())
+        {
+            Debug.Log("Aïe! J'ai mal!");
+        }
+
+    }
 }

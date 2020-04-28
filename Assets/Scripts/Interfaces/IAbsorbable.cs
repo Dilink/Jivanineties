@@ -1,4 +1,6 @@
 ﻿public interface IAbsorbable
 {
-    void OnAbsorption();
+    bool OnAbsorption();
+
+    bool OnRestore();
 }
