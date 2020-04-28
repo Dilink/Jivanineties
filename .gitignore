@@ -445,3 +445,7 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/unity,windows,visualstudio,visualstudiocode
+
+Assets/Scenes/GP/Nassim/ProtoController.unity
+
+Assets/Plugins/Sirenix/Demos.meta
