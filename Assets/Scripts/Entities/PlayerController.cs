@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerController: MonoBehaviour
 {
     [Header("Tweaking")]
+    [Range(1, 50)]
     public float moveSpeed = 5f;
-    public float dodgeAmplitude = 5f;
-    public float dodgeDuration = 0.2f;
-    public float dodgeRecoveryDuration = 0.1f;
+    public AnimationCurve dodgeCurve;
+    //public float dodgeAmplitude = 5f;
+    //public float dodgeDuration = 0.2f;
+    //public float dodgeRecoveryDuration = 0.1f;
+    [Range(0, 5)]
     public float collisionDetectionRange = 1f;
     public Attack standardAttack; 
 
@@ -136,12 +139,25 @@ public class PlayerController: MonoBehaviour
 
     IEnumerator Dodge()
     {
+        float timer = 0f;
+        do
+        {
+            speedModifier = dodgeCurve.Evaluate(timer);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        while(timer < dodgeCurve.keys[dodgeCurve.length - 1].time);
+        speedModifier = 1f;
+        movement = Vector3.zero;
+        dodging = null;
+        /*
         speedModifier = dodgeAmplitude;
         yield return new WaitForSeconds(dodgeDuration);
         speedModifier = 1f;
         movement = Vector3.zero;
         yield return new WaitForSeconds(dodgeRecoveryDuration);
         dodging = null;
+        */
     }
 
 }
