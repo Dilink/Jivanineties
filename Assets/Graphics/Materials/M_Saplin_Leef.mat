@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Birch_Leef
+  m_Name: M_Saplin_Leef
   m_Shader: {fileID: 4800000, guid: 92df914392d55674d9dbddb5ea16843d, type: 3}
   m_ShaderKeywords: _DISAPEAR_ON _VERTEX_ANIMATION_ON
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 1959e52e8f749e9409e8eaf9a74c77a6, type: 3}
+        m_Texture: {fileID: 2800000, guid: a80c3d28d3a3ac94ca49a39923b1757f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -95,7 +95,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VERTEX_ANIM_POWER: 0.78
+    - _VERTEX_ANIM_POWER: 0.55
     - _Vertex_animation: 1
     - _Vertex_color: 0
     - _ZWrite: 1
