@@ -582,7 +582,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: ODIN_INSPECTOR
+    1: ODIN_INSPECTOR;AMPLIFY_SHADER_EDITOR
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

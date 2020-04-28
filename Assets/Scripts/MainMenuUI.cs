@@ -87,7 +87,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetSceneByBuildIndex(1).name);
+        SceneManager.LoadScene(1);
     }
 
     public void CloseGame()
