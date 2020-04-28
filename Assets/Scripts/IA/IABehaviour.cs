@@ -8,7 +8,7 @@ using Sirenix.OdinInspector;
 public class IABehaviour : MonoBehaviour, IDamageable
 {
 
-    public IAFakePlayer player;
+    public PlayerController player;
     public NavMeshAgent navA;
     public MeshRenderer mR;
     public Material[] stateMaterials;
@@ -217,7 +217,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     [ContextMenu("FindPlayer")]
     private void FindPlayer()
     {
-        player = FindObjectOfType<IAFakePlayer>();
+        player = FindObjectOfType<PlayerController>();
         if (player != null)
         {
             print("success");
@@ -245,7 +245,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     [ContextMenu("QuickSetup")]
     private void QuickSetup()
     {
-        player = FindObjectOfType<IAFakePlayer>();
+        player = FindObjectOfType<PlayerController>();
         navA = GetComponent<NavMeshAgent>();
         mR = GetComponent<MeshRenderer>();
         if (player != null)
