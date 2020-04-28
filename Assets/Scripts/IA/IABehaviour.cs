@@ -11,9 +11,16 @@ public class IABehaviour : MonoBehaviour
     public IAFakePlayer player;
     public NavMeshAgent navA;
     public MeshRenderer mR;
+    public Material[] stateMaterials;
 
-    private Vector3 destiniation;
+    public IAStats IAStats;
+
     public float AIperceptionUpdate;
+    private Vector3 destiniation;
+    private IAState currentIAState;
+
+    private int specialAttackWaiting;
+
 
 
     void Start()
@@ -21,7 +28,20 @@ public class IABehaviour : MonoBehaviour
         AIPursuit(player.transform);
     }
 
+    #region IA State
 
+    public void IAChangeState(int stateIndex)
+    {
+        currentIAState = (IAState)stateIndex;
+        ChangeMaterial(stateIndex);
+    }
+
+    public void ChangeMaterial(int index)
+    {
+        mR.material = stateMaterials[index];
+    }
+
+    #endregion
 
     #region IA mouvement
     public bool AiMoveTo(Vector3 pos, bool continuePattern = false)
@@ -70,7 +90,7 @@ public class IABehaviour : MonoBehaviour
             }
         }
         Vector3 rotatedFroward = Quaternion.Euler(0, angleToAdd, 0) * transform.forward;
-        Debug.DrawRay(transform.position, rotatedFroward * 10, Color.green , 1f);
+        Debug.DrawRay(transform.position, rotatedFroward * 10, Color.green, 1f);
 
         print(angleToAdd);
         return angleToAdd;
@@ -80,6 +100,7 @@ public class IABehaviour : MonoBehaviour
     public bool AIPursuit(Transform pos)
     {
 
+        IAChangeState(0);
         float distance = Vector3.Distance(transform.position, pos.position);
         AiMoveTo(pos.position);
         //print(distance);
@@ -99,7 +120,7 @@ public class IABehaviour : MonoBehaviour
     }
     IEnumerator pursuitCooldown(Transform pos, float duration)
     {
-       // print("Poursuite en cours");
+        // print("Poursuite en cours");
         yield return new WaitForSeconds(duration);
         AIPursuit(pos);
     }
@@ -115,14 +136,11 @@ public class IABehaviour : MonoBehaviour
         int _index = index;
         index++;
         //Reortation 
-        //transform.forward = Quaternion.Euler(0f, GetRotationAngleFromPos(player.transform.position), 0) * transform.forward;
-        //transform.rotation = transform.LookAt(player.transform);
-        Vector3 directionToFace =player.transform.position;
+        Vector3 directionToFace = player.transform.position;
         Vector3 targetPos = new Vector3(directionToFace.x, transform.position.y, directionToFace.z);
         transform.LookAt(targetPos);
-
-
         print("Prep");
+        IAChangeState(1);
         StartCoroutine(attackDebugCooldown(prepDuration, AttackDuration, _index, attackRepetition));
     }
 
@@ -130,6 +148,7 @@ public class IABehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(prepDuration);
         print("Attack");
+        ChangeMaterial(2);
         yield return new WaitForSeconds(attackDuration);
         if (attackRepetition > index)
         {
@@ -144,8 +163,11 @@ public class IABehaviour : MonoBehaviour
     }
 
 
+
+
     #endregion
 
+    
     #region EDITOR
     [ContextMenu("FindPlayer")]
     private void FindPlayer()
@@ -211,4 +233,14 @@ public class IABehaviour : MonoBehaviour
 
 
     #endregion
+}
+
+public enum IAState
+{
+    mooving,
+    attackPrep,
+    attacking,
+    specialAttack,
+    stunned,
+    dead
 }
