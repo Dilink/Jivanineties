@@ -168,13 +168,14 @@ public class IABehaviour : MonoBehaviour, IDamageable
     public void IAAttack(int attackIndex)
     {
 
+        attackCanceled = false;
         if (attackIndex < 0 || attackIndex > (IAStats.Attack.Length - 1))
         {
             print("BadIndex");
             return;
         }
-        float prepDuration = IAStats.Attack[attackIndex].attackRecoveryDuration;
-        float attackDuration = IAStats.Attack[attackIndex].preparationDuration;
+        float prepDuration = IAStats.Attack[attackIndex].preparationDuration;
+        float attackDuration = IAStats.Attack[attackIndex].attackRecoveryDuration;
         currentAttackCooldown = IAStats.Attack[attackIndex].attackCoolDownDuration;
 
         //Reortation 
@@ -192,38 +193,52 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     IEnumerator attackDebugCooldown(float prepDuration, float attackDuration, LifePointType attackType)
     {
-        yield return new WaitForSeconds(prepDuration);
-        Ray ray = new Ray(transform.position, transform.forward);
-        switch (attackType)
+        if (attackCanceled)
         {
-            case LifePointType.normal:
-                currentIAState = IAState.attacking;
-                //damageZones[0].gameObject.SetActive(true);
-                Attack(ray, IAStats.Attack[0]);
-                IAChangeState();
-                break;
-            case LifePointType.specialAttack:
-                specialAttackWaiting--;
-                currentIAState = IAState.specialAttack;
-                Attack(ray, IAStats.Attack[1]);
-                IAChangeState();
-                break;
-        }
-        StartCoroutine(AttackCooldown());
-        yield return new WaitForSeconds(attackDuration);
-
-        if (specialAttackWaiting > 0)
-        {
-            StopCoroutine("AIPursuit");
-            StopCoroutine("pursuitCooldown");
-            navA.isStopped = true;
-            //IAAttack(1);
-            IAAttack(1);
+            yield return null;
         }
         else
         {
-            AIPursuit(player.transform);
+            yield return new WaitForSeconds(prepDuration);
+            Ray ray = new Ray(transform.position, transform.forward);
+            switch (attackType)
+            {
+                case LifePointType.normal:
+                    currentIAState = IAState.attacking;
+                    //damageZones[0].gameObject.SetActive(true);
+                    Attack(ray, IAStats.Attack[0]);
+                    IAChangeState();
+                    break;
+                case LifePointType.specialAttack:
+                    specialAttackWaiting--;
+                    currentIAState = IAState.specialAttack;
+                    Attack(ray, IAStats.Attack[1]);
+                    IAChangeState();
+                    break;
+            }
+            StartCoroutine(AttackCooldown());
+            yield return new WaitForSeconds(attackDuration);
+            if (attackCanceled)
+            {
+                yield return null;
+            }
+            else
+            {
+                AIPursuit(player.transform);
+            }
         }
+
+        //if (specialAttackWaiting > 0)
+        //{
+        //    StopCoroutine("AIPursuit");
+        //    StopCoroutine("pursuitCooldown");
+        //    navA.isStopped = true;
+        //    //IAAttack(1);
+        //    IAAttack(1);
+        //}
+
+
+       // AIPursuit(player.transform);
 
     }
 
@@ -306,17 +321,22 @@ public class IABehaviour : MonoBehaviour, IDamageable
                     case IAState.attackPrep:
                         StopCoroutine("attackDebugCooldown");
                         IAAttack(1);
+                        print("Prep Cancel");
                         break;
 
                     case IAState.attacking:
                         StopCoroutine("attackDebugCooldown");
+                        StopCoroutine("AttackCooldown");
+
+                        print("Attack  Cancel");
                         attackCanceled = true;
+                        IAAttack(1);
                         break;
 
-                    //case IAState.specialAttack:
-                    //    StopCoroutine("attackDebugCooldown");
-                    //    attackCanceled = true;
-                    //    break;
+                        //case IAState.specialAttack:
+                        //    StopCoroutine("attackDebugCooldown");
+                        //    attackCanceled = true;
+                        //    break;
 
                 }
             }
