@@ -919,6 +919,14 @@ MonoBehaviour:
   player: {fileID: 330837837}
   navA: {fileID: 1761329587}
   mR: {fileID: 1761329585}
+  stateMaterials:
+  - {fileID: 2100000, guid: d1cf4cc3d679bb64183b4b59176e5edf, type: 2}
+  - {fileID: 2100000, guid: 8efbb4ffccaa7944e88005a5e1013a0f, type: 2}
+  - {fileID: 2100000, guid: 84478f423e60cdf46ab667b7c8355d7c, type: 2}
+  - {fileID: 2100000, guid: 7873a1f9d160ac841834431a3a5508b3, type: 2}
+  - {fileID: 2100000, guid: 2b82c61a7cb7f4547988e0562145a36c, type: 2}
+  - {fileID: 2100000, guid: 1c8c9311cab85cf4ca14203427c5630d, type: 2}
+  IAStats: {fileID: 11400000, guid: b17da1bb9c3da364fa6186d4872886af, type: 2}
   AIperceptionUpdate: 0.2
 --- !u!114 &1761329583
 MonoBehaviour:
