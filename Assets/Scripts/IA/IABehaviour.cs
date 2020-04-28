@@ -5,23 +5,64 @@ using UnityEngine.AI;
 using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(IAAttackGestion))]
-public class IABehaviour : MonoBehaviour
+public class IABehaviour : MonoBehaviour, IDamageable
 {
 
-    public IAFakePlayer player;
+    public PlayerController player;
     public NavMeshAgent navA;
     public MeshRenderer mR;
+    public Material[] stateMaterials;
 
-    private Vector3 destiniation;
+    public IAStats IAStats;
+
     public float AIperceptionUpdate;
+    private Vector3 destiniation;
+    private IAState currentIAState;
 
+    private int specialAttackWaiting;
+    private int currentLife;
+
+
+    private void Awake()
+    {
+        currentLife = IAStats.lifePointTypes.Length - 1;
+        print(currentLife);
+
+    }
 
     void Start()
     {
         AIPursuit(player.transform);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(1);
+            // TakeDamage(2);
+        }
+    }
 
+    #region IA State
+
+    public void IAChangeState(int stateIndex)
+    {
+        currentIAState = (IAState)stateIndex;
+        ChangeMaterial(stateIndex);
+    }
+
+    public void IAChangeState()
+    {
+        ChangeMaterial((int)currentIAState);
+    }
+
+    public void ChangeMaterial(int index)
+    {
+        mR.material = stateMaterials[index];
+    }
+
+    #endregion
 
     #region IA mouvement
     public bool AiMoveTo(Vector3 pos, bool continuePattern = false)
@@ -70,7 +111,7 @@ public class IABehaviour : MonoBehaviour
             }
         }
         Vector3 rotatedFroward = Quaternion.Euler(0, angleToAdd, 0) * transform.forward;
-        Debug.DrawRay(transform.position, rotatedFroward * 10, Color.green , 1f);
+        Debug.DrawRay(transform.position, rotatedFroward * 10, Color.green, 1f);
 
         print(angleToAdd);
         return angleToAdd;
@@ -79,7 +120,12 @@ public class IABehaviour : MonoBehaviour
 
     public bool AIPursuit(Transform pos)
     {
+        if (navA.isStopped)
+        {
+            navA.isStopped = false;
+        }
 
+        IAChangeState(0);
         float distance = Vector3.Distance(transform.position, pos.position);
         AiMoveTo(pos.position);
         //print(distance);
@@ -87,7 +133,7 @@ public class IABehaviour : MonoBehaviour
         {
             //print("A cote de la cible");
             navA.destination = transform.position;
-            IAAttack(1f, 2f, 2);
+            IAAttack(0);
         }
         else
         {
@@ -99,9 +145,12 @@ public class IABehaviour : MonoBehaviour
     }
     IEnumerator pursuitCooldown(Transform pos, float duration)
     {
-       // print("Poursuite en cours");
+        // print("Poursuite en cours");
         yield return new WaitForSeconds(duration);
-        AIPursuit(pos);
+        if (currentIAState == IAState.mooving)
+        {
+            AIPursuit(pos);
+        }
     }
 
 
@@ -110,30 +159,56 @@ public class IABehaviour : MonoBehaviour
     #region IA Attack
 
 
-    public void IAAttack(float prepDuration, float AttackDuration, int attackRepetition = 1, int index = 0)
+    public void IAAttack(int attackIndex)
     {
-        int _index = index;
-        index++;
+
+        if (attackIndex < 0 || attackIndex > (IAStats.Attack.Length - 1))
+        {
+            print("BadIndex");
+            return;
+        }
+        float prepDuration = IAStats.Attack[attackIndex].prepDuration;
+        float attackDuration = IAStats.Attack[attackIndex].prepDuration;
+
+
+
         //Reortation 
-        //transform.forward = Quaternion.Euler(0f, GetRotationAngleFromPos(player.transform.position), 0) * transform.forward;
-        //transform.rotation = transform.LookAt(player.transform);
-        Vector3 directionToFace =player.transform.position;
+        Vector3 directionToFace = player.transform.position;
         Vector3 targetPos = new Vector3(directionToFace.x, transform.position.y, directionToFace.z);
         transform.LookAt(targetPos);
 
+        IAChangeState(1);
 
-        print("Prep");
-        StartCoroutine(attackDebugCooldown(prepDuration, AttackDuration, _index, attackRepetition));
+        StartCoroutine(attackDebugCooldown(prepDuration, attackDuration, IAStats.Attack[attackIndex].attackTypes));
+
+
     }
 
-    IEnumerator attackDebugCooldown(float prepDuration, float attackDuration, int index, int attackRepetition)
+    IEnumerator attackDebugCooldown(float prepDuration, float attackDuration, LifePointType attackType)
     {
         yield return new WaitForSeconds(prepDuration);
-        print("Attack");
-        yield return new WaitForSeconds(attackDuration);
-        if (attackRepetition > index)
+        switch (attackType)
         {
-            IAAttack(prepDuration, attackDuration, index, attackRepetition);
+            case LifePointType.normal:
+                currentIAState = IAState.attacking;
+                IAChangeState();
+                break;
+            case LifePointType.specialAttack:
+                print("Special Attack ");
+                specialAttackWaiting--;
+                currentIAState = IAState.specialAttack;
+                IAChangeState();
+                break;
+        }
+
+        yield return new WaitForSeconds(attackDuration);
+        if (specialAttackWaiting > 0)
+        {
+            StopCoroutine("AIPursuit");
+            StopCoroutine("pursuitCooldown");
+            navA.isStopped = true;
+            //IAAttack(1);
+            IAAttack(1);
         }
         else
         {
@@ -144,13 +219,52 @@ public class IABehaviour : MonoBehaviour
     }
 
 
+
+
     #endregion
+
+    public void TakeDamage(int damageAmount)
+    {
+        int lastLife = currentLife;
+
+        currentLife -= damageAmount;
+        if (currentLife < 0)
+        {
+            currentIAState = IAState.dead;
+            navA.destination = transform.position;
+            IAChangeState();
+            StopAllCoroutines();
+            return;
+        }
+        print(currentLife);
+
+        for (int i = 0; i < damageAmount; i++)
+        {
+            print("PV type : " + IAStats.lifePointTypes[lastLife - (1 + i)]);
+            if (IAStats.lifePointTypes[lastLife - (1 + i)] == LifePointType.specialAttack)
+            {
+                if (currentIAState == IAState.mooving)
+                {
+                    StopCoroutine("AIPursuit");
+                    StopCoroutine("pursuitCooldown");
+                    navA.isStopped = true;
+                    IAAttack(1);
+                }
+                else
+                {
+                    specialAttackWaiting++;
+                    print("Add new stack for Super Attack");
+                }
+            }
+        }
+
+    }
 
     #region EDITOR
     [ContextMenu("FindPlayer")]
     private void FindPlayer()
     {
-        player = FindObjectOfType<IAFakePlayer>();
+        player = FindObjectOfType<PlayerController>();
         if (player != null)
         {
             print("success");
@@ -178,7 +292,7 @@ public class IABehaviour : MonoBehaviour
     [ContextMenu("QuickSetup")]
     private void QuickSetup()
     {
-        player = FindObjectOfType<IAFakePlayer>();
+        player = FindObjectOfType<PlayerController>();
         navA = GetComponent<NavMeshAgent>();
         mR = GetComponent<MeshRenderer>();
         if (player != null)
@@ -208,7 +322,15 @@ public class IABehaviour : MonoBehaviour
             print("M fail");
         }
     }
-
-
     #endregion
+}
+
+public enum IAState
+{
+    mooving,
+    attackPrep,
+    attacking,
+    specialAttack,
+    stunned,
+    dead
 }
