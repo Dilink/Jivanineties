@@ -12,6 +12,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     public NavMeshAgent navA;
     public MeshRenderer mR;
     public Material[] stateMaterials;
+    public DamageZone[] damageZones;
 
     public IAStats IAStats;
 
@@ -27,6 +28,12 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         currentLife = IAStats.lifePointTypes.Length - 1;
         print(currentLife);
+
+        for (int i = 0; i < damageZones.Length; i++)
+        {
+            damageZones[i].gameObject.SetActive(false);
+            damageZones[i].Init(this.gameObject);
+        }
 
     }
 
@@ -191,17 +198,24 @@ public class IABehaviour : MonoBehaviour, IDamageable
         {
             case LifePointType.normal:
                 currentIAState = IAState.attacking;
+                damageZones[0].gameObject.SetActive(true);
                 IAChangeState();
                 break;
             case LifePointType.specialAttack:
                 print("Special Attack ");
                 specialAttackWaiting--;
                 currentIAState = IAState.specialAttack;
+                damageZones[1].gameObject.SetActive(true);
                 IAChangeState();
                 break;
         }
 
         yield return new WaitForSeconds(attackDuration);
+        for (int i = 0; i < damageZones.Length; i++)
+        {
+            damageZones[i].gameObject.SetActive(false);
+        }
+
         if (specialAttackWaiting > 0)
         {
             StopCoroutine("AIPursuit");
