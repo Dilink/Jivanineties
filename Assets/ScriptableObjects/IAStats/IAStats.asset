@@ -13,3 +13,12 @@ MonoBehaviour:
   m_Name: IAStats
   m_EditorClassIdentifier: 
   lifePointTypes: 0000000001000000000000000100000000000000
+  Attack:
+  - prepDuration: 1
+    attackDuration: 0.5
+    coolDownAfterAttack: 0
+    attackTypes: 0
+  - prepDuration: 2
+    attackDuration: 2
+    coolDownAfterAttack: 0
+    attackTypes: 1
