@@ -3,7 +3,17 @@ guid: 25f087b6a480fee40920c6d024dee63d
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Saplin_Bark
+    second: {fileID: 2100000, guid: 6035bfd171d28e54487aff4ffde0d029, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Saplin_Leaves
+    second: {fileID: 2100000, guid: 6d511bf8eabbd8b409fbd269b1d0b8e4, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
