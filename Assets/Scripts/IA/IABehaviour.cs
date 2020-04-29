@@ -7,7 +7,6 @@ using Sirenix.OdinInspector;
 public class IABehaviour : MonoBehaviour, IDamageable
 {
 
-    public PlayerController player;
     public NavMeshAgent navA;
     public MeshRenderer mR;
     public Material[] stateMaterials;
@@ -37,12 +36,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         currentLife = IAStats.lifePointTypes.Length - 1;
         print(currentLife);
-        // player to reference with Game manager
     }
 
     void Start()
     {
-        AIPursuit(player.transform);
+        AIPursuit(GameManager.Instance.player.transform);
     }
 
     private void Update()
@@ -189,7 +187,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         currentAttackCooldown = IAStats.Attack[indexToTake].attackCoolDownDuration;
 
         //Reortation 
-        Vector3 directionToFace = player.transform.position;
+        Vector3 directionToFace = GameManager.Instance.player.transform.position;
         Vector3 targetPos = new Vector3(directionToFace.x, transform.position.y, directionToFace.z);
         transform.LookAt(targetPos);
 
@@ -265,7 +263,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
         hitBoxVisualisation[(int)attack.attackType].SetActive(false);
         yield return new WaitForSeconds(attack.attackRecoveryDuration);
-        AIPursuit(player.transform);
+        AIPursuit(GameManager.Instance.player.transform);
 
     }
     IEnumerator AttackCooldown()
@@ -294,7 +292,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
         GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
         Tokendo tokendo = go.GetComponent<Tokendo>();
-        tokendo.MoveTo(player.transform);
+        tokendo.MoveTo(GameManager.Instance.player.transform);
     }
 
     public void TakeDamage(int damageAmount)
@@ -413,52 +411,21 @@ public class IABehaviour : MonoBehaviour, IDamageable
             yield return null;
         }
         stunnedDuration = 0;
-        AIPursuit(player.transform);    
+        AIPursuit(GameManager.Instance.player.transform);    
     }
 
     #region EDITOR
-    [ContextMenu("FindPlayer")]
-    private void FindPlayer()
-    {
-        player = FindObjectOfType<PlayerController>();
-        if (player != null)
-        {
-            print("success");
-        }
-        else
-        {
-            print("fail");
-        }
-    }
-
     [ContextMenu("GetNavMeshAgent")]
     private void GetNavMeshAgent()
     {
         navA = GetComponent<NavMeshAgent>();
-        if (player != null)
-        {
-            print("success");
-        }
-        else
-        {
-            print("fail");
-        }
     }
 
     [ContextMenu("QuickSetup")]
     private void QuickSetup()
     {
-        player = FindObjectOfType<PlayerController>();
         navA = GetComponent<NavMeshAgent>();
         mR = GetComponent<MeshRenderer>();
-        if (player != null)
-        {
-            print(" P success");
-        }
-        else
-        {
-            print(" P fail");
-        }
 
         if (navA != null)
         {
