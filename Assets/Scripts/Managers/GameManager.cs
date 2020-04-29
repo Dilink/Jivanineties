@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>
         get => _tokendoAmount;
         set
         {
+            _tokendoAmount = value;
             uiManager.UpdateTokendoCount(_tokendoAmount);
         }
     }
@@ -28,7 +29,7 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        _tokendoAmount = tokendoCount;
+        tokendoAmount = tokendoCount;
         player = FindObjectOfType<PlayerController>();
     }
 
