@@ -20,5 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
+    - _MaxDistance: 5
+    - _MinDistance: 4.5
     - __dirty: 0
     m_Colors: []

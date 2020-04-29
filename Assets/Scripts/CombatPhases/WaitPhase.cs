@@ -13,18 +13,19 @@ public class WaitPhase : ICombatPhase
 
 		while (remaining > 1.0f)
 		{
-			Debug.Log("Waiting " + remaining + "s");
+			Debug.Log(GameManager.Instance);
+			Debug.Log(GameManager.Instance.uiManager);
+			GameManager.Instance.uiManager.ShowAlertText("New combat in " + remaining + "s");
 			remaining -= 1.0f;
 			yield return new WaitForSeconds(1.0f);
 		}
 
 		if (remaining > 0.0f)
 		{
-			Debug.Log("Waiting " + remaining + "s");
+			GameManager.Instance.uiManager.ShowAlertText("New combat in " + remaining + "s");
 			yield return new WaitForSeconds(remaining);
 		}
 
-		Debug.Log("Waiting finished");
 		onEnd();
 	}
 }

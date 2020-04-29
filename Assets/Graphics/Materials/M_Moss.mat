@@ -78,6 +78,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
+    - _MinDistance: 1
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
@@ -90,7 +91,7 @@ Material:
     - _Vertex_animation: 0
     - _ZWrite: 1
     - _Zone_Shadow: 0.14
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _Asset_color: {r: 1, g: 1, b: 1, a: 0.345098}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
