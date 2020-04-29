@@ -32,6 +32,8 @@ public class BattlePhase : ICombatPhase
 
 	public IEnumerator Execute(Action onEnd, CombatPhaseData data)
 	{
+		GameManager.Instance.uiManager.ShowAlertText("Enemy spawned!");
+
 		foreach (var sp in spawnPoints)
 		{
 			for (int i = 0; i < sp.creationCount; i++)
