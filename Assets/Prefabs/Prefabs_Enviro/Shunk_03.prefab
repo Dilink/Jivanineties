@@ -203,6 +203,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9087769212992431001}
     m_Modifications:
+    - target: {fileID: -5516067635938623794, guid: e4783c16d36e8ff42bace3059e4ba980,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e4783c16d36e8ff42bace3059e4ba980,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -262,6 +267,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Rock_11 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: e4783c16d36e8ff42bace3059e4ba980,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560538380657328736, guid: e4783c16d36e8ff42bace3059e4ba980,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4783c16d36e8ff42bace3059e4ba980, type: 3}
@@ -722,6 +737,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Rock_09 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2fe3b5cf2b7996d4a91371388c0cbec8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 807732926495766308, guid: 2fe3b5cf2b7996d4a91371388c0cbec8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560538380657328736, guid: 2fe3b5cf2b7996d4a91371388c0cbec8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fe3b5cf2b7996d4a91371388c0cbec8, type: 3}
@@ -1303,10 +1333,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3748649616309044122, guid: 4ca4d973b68b9344fa45cdbcd76c9e26,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 4ca4d973b68b9344fa45cdbcd76c9e26,
         type: 3}
       propertyPath: m_Name
       value: SM_Rock_10
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4ca4d973b68b9344fa45cdbcd76c9e26,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560538380657328736, guid: 4ca4d973b68b9344fa45cdbcd76c9e26,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ca4d973b68b9344fa45cdbcd76c9e26, type: 3}
