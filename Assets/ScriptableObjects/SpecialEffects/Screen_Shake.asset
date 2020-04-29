@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13c64c928761c874396a797a248ef659, type: 3}
-  m_Name: ScreenShake
+  m_Name: Screen_Shake
   m_EditorClassIdentifier: 
   effectDuration: 2
   followPlayer: 1

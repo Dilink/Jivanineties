@@ -1807,7 +1807,7 @@ MonoBehaviour:
         spawnPoints:
         - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
     00000001:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      type: {class: , ns: , asm: }
     00000002:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
@@ -2904,6 +2904,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6468990145728530692, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: effects.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: ffc46bd3df403ed40b9258dfc412e81f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ec60b15c46821847b5cb1d0b00bc7ff, type: 3}
 --- !u!4 &2308094107536393863 stripped
