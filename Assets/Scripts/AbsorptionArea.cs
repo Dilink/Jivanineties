@@ -9,7 +9,7 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
     [OnValueChanged("OnBoundariesChanged")]
     [ShowIf("isEditingBoundaries")]
     public Vector3[] boundaries;
-    public bool areaHasWater = false;
+    public bool areaHasWater = true;
 
     [HideInInspector]
     public bool isEditingBoundaries;
