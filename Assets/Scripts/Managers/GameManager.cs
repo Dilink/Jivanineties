@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Sirenix.OdinInspector;
 
 public class GameManager : Singleton<GameManager>
@@ -27,15 +28,38 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector]
     public PlayerController player;
 
+    [HideInInspector]
+    public List<IABehaviour> remainingEnemies = new List<IABehaviour>();
+
     void Start()
     {
         tokendoAmount = tokendoCount;
         player = FindObjectOfType<PlayerController>();
+
+        IABehaviour.iaStateChangedDelegate += OnAIStateChanged;
+    }
+
+    new void OnDestroy()
+    {
+        base.OnDestroy();
+        IABehaviour.iaStateChangedDelegate -= OnAIStateChanged;
     }
 
     public void AddTokendo(int count)
     {
         tokendoAmount += count;
+    }
+
+    private void OnAIStateChanged(IABehaviour entity, IAState oldState, IAState newState)
+    {
+        if (oldState == IAState.justSpawned)
+        {
+            remainingEnemies.Add(entity);
+        }
+        else if (newState == IAState.dead)
+        {
+            remainingEnemies.Remove(entity);
+        }
     }
 
 #if UNITY_EDITOR
