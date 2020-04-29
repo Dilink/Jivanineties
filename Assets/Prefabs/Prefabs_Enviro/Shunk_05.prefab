@@ -132,6 +132,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6924083041344557133}
     m_Modifications:
+    - target: {fileID: -5185273085089247260, guid: 5cf375926e0a0a54a9b8e96b2877c564,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5cf375926e0a0a54a9b8e96b2877c564,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -206,6 +211,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Stele_01
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5cf375926e0a0a54a9b8e96b2877c564,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 599869257612533040, guid: 5cf375926e0a0a54a9b8e96b2877c564,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cf375926e0a0a54a9b8e96b2877c564, type: 3}
@@ -686,6 +701,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Birch_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 2e704ec0c741ddd4193fac5ca2505c12,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795596435457006739, guid: 2e704ec0c741ddd4193fac5ca2505c12,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533227911294135126, guid: 2e704ec0c741ddd4193fac5ca2505c12,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e704ec0c741ddd4193fac5ca2505c12, type: 3}
