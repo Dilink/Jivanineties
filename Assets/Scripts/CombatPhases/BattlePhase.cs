@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AI;
 
 [System.Serializable]
 public class BattlePhase : ICombatPhase
@@ -20,7 +21,13 @@ public class BattlePhase : ICombatPhase
 
 		float randX = center.x + radius * Mathf.Cos(angle);
 		float randZ = center.z + radius * Mathf.Sin(angle);
-		return new Vector3(randX, center.y, randZ);
+
+		Vector3 pos = new Vector3(randX, center.y, randZ);
+
+		NavMeshHit hit;
+		NavMesh.SamplePosition(pos, out hit, radius, NavMesh.GetAreaFromName("Walkable"));
+
+		return hit.position;
 	}
 
 	public IEnumerator Execute(Action onEnd, CombatPhaseData data)
