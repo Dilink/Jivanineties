@@ -3,4 +3,6 @@
     bool OnAbsorption();
 
     bool OnRestore();
+
+    bool CanRestore();
 }

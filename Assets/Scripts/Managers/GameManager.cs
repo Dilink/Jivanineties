@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     /// Gameplay only
     /// </summary>
     private int _tokendoAmount = 0;
-    private int tokendoAmount
+    public int tokendoAmount
     {
         get => _tokendoAmount;
         set
@@ -31,7 +31,6 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector]
     public PlayerController player;
 
-    [HideInInspector]
     public List<IABehaviour> remainingEnemies = new List<IABehaviour>();
 
     void Start()

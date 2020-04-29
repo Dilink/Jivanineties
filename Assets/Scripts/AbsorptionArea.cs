@@ -72,6 +72,11 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
         return true;
     }
 
+    public bool CanRestore()
+    {
+        return !areaHasWater;
+    }
+
     private void UpdateMaterialBasedOnWater()
     {
         float driedValue = areaHasWater ? 1.0f : 0.0f;

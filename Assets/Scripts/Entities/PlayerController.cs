@@ -13,6 +13,7 @@ public class PlayerController: MonoBehaviour, IDamageable
     public float upgradedDodgeDuration;
     public float upgradedDodgeRecoveryDuration;
     public float upgradedDodgeRange;
+    public float upgradedDodgeStunDuration;
     [Range(0, 10)]
     public float dodgeCooldownDuration;
     [Range(0, 5)]
@@ -67,7 +68,7 @@ public class PlayerController: MonoBehaviour, IDamageable
 
     private void CheckRestore()
     {
-        if(dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoCount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.combatController.currentPhase.ReturnType() == CombatPhaseType.WaitPhase)
+        if(dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoAmount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.combatController.currentPhase is WaitPhase)
         {
             restoring = StartCoroutine(Restore());
         }
@@ -77,7 +78,8 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         if (dodging == null && restoring == null && GameManager.Instance.inputManager.ATTACK && attacking == null)
         {
-            if(upgradedAttackCooldown <= 0 && GameManager.Instance.inputManager.POWER_HOLD && absorption.TryAbsorption())
+            IAbsorbable area = absorption.GetArea();
+            if(upgradedAttackCooldown <= 0 && GameManager.Instance.inputManager.POWER_HOLD && area.OnAbsorption())
             {
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), upgradedAttack));
                 upgradedAttackCooldown = upgradedAttack.attackCoolDownDuration;
@@ -112,14 +114,14 @@ public class PlayerController: MonoBehaviour, IDamageable
                 movement += new Vector3(-1, 0, 0);
             }
             movement = movement.normalized;
-            if(movement.magnitude > 0)
-            {
-                animator.SetBool("Run", true);
-            }
-            else
-            {
-                animator.SetBool("Run", false);
-            }
+        }
+        if(movement.magnitude > 0)
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
         }
     }
     
@@ -127,13 +129,14 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         if (dodgeCooldown <= 0 && GameManager.Instance.inputManager.DODGE && dodging == null && attacking == null && restoring == null)
         {
+            IAbsorbable area = absorption.GetArea();
             Collider[] enemies = Physics.OverlapSphere(transform.position, upgradedDodgeRange, 1 << LayerMask.NameToLayer("Enemy"));
-            if(enemies.Length > 0 && GameManager.Instance.inputManager.POWER_HOLD && absorption.TryAbsorption())
+            if(enemies.Length > 0 && GameManager.Instance.inputManager.POWER_HOLD && area.OnAbsorption())
             {
                 IABehaviour ia = enemies[0].GetComponent<IABehaviour>();
                 if (ia)
                 {
-                    ia.currentIAState = IAState.stunned;
+                    ia.GetStunned(upgradedDodgeStunDuration);
                 }
                 dodging = StartCoroutine(Dodge(enemies[0].transform));
             }
@@ -186,7 +189,7 @@ public class PlayerController: MonoBehaviour, IDamageable
                     IABehaviour ia = enemies[0].GetComponent<IABehaviour>();
                     if (ia)
                     {
-                        ia.currentIAState = IAState.stunned;
+                        ia.GetStunned(attack.stunDuration);
                     }
                 }
                 Debug.Log("Hit!");
@@ -239,20 +242,25 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         float timer = 0f;
         bool loop = true;
-        while(loop && GameManager.Instance.inputManager.POWER_HOLD)
+        IAbsorbable area = absorption.GetArea();
+        if(area != null && area.CanRestore())
         {
-            if(timer >= restoreDelay)
+            movement = Vector3.zero;
+            while(loop && GameManager.Instance.inputManager.POWER_HOLD)
             {
-                loop = false;
+                if(timer >= restoreDelay)
+                {
+                    loop = false;
+                }
+                timer += Time.unscaledDeltaTime;
+                yield return null;
             }
-            timer += Time.unscaledDeltaTime;
-            yield return null;
-        }
-        if(GameManager.Instance.inputManager.POWER_HOLD)
-        {
-            if(absorption.TryRestore())
+            if(GameManager.Instance.inputManager.POWER_HOLD)
             {
-                GameManager.Instance.tokendoCount--;
+                if(area.OnRestore())
+                {
+                    GameManager.Instance.tokendoAmount--;
+                }
             }
         }
         restoring = null;
@@ -260,7 +268,8 @@ public class PlayerController: MonoBehaviour, IDamageable
 
     public void TakeDamage(int damageAmount)
     {
-        if(!absorption.TryAbsorption())
+        IAbsorbable area = absorption.GetArea();
+        if(area != null && area.OnAbsorption())
         {
             Debug.Log("Aïe! J'ai mal!");
             hp -= damageAmount;

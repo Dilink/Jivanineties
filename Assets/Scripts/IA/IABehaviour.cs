@@ -17,6 +17,8 @@ public class IABehaviour : MonoBehaviour, IDamageable
     public GameObject dropItem;
     public bool isTesting = true;
 
+    public Animator animator;
+
     public float AIperceptionUpdate;
     private Vector3 destiniation;
 
@@ -71,8 +73,8 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public void ChangeMaterial(int index)
     {
-        if(index - 1 >= 0)
-        mR.material = stateMaterials[index-1];
+        //if(index - 1 >= 0)
+        //mR.material = stateMaterials[index-1];
     }
 
     #endregion
@@ -138,6 +140,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
 
         currentIAState = IAState.mooving;
+        animator.SetBool("Move", true);
         float distance = Vector3.Distance(transform.position, pos.position);
         AiMoveTo(pos.position);
         //print(distance);
@@ -173,7 +176,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         int indexToTake = attackIndex;
 
-        if (specialAttackWaiting > 0)
+        animator.SetBool("Move", false);
+
+        if(specialAttackWaiting > 0)
         {
             specialAttackWaiting--;
             indexToTake = 1;
@@ -212,6 +217,16 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
         else
         {
+            switch(attackType)
+            {
+                case LifePointType.normal:
+                    animator.SetTrigger("AttackFront");
+                    break;
+                case LifePointType.specialAttack:
+                    // specialAttackWaiting--;
+                    animator.SetTrigger("AttackWide");
+                    break;
+            }
             yield return new WaitForSeconds(prepDuration);
             Ray ray = new Ray(transform.position, transform.forward);
             switch (attackType)
@@ -348,6 +363,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
                         hitBoxVisualisation[0].SetActive(false);
                         print("Attack  Cancel");
                         attackCanceled = true;
+                        animator.SetTrigger("Cancel");
                         IAAttack(1);
                         break;
 
@@ -364,7 +380,14 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public void GetStunned(float duration)
     {
-        for (int i = 0; i < hitBoxVisualisation.Length; i++)
+        if(duration <= 0)
+        {
+            return;
+        }
+
+        animator.SetTrigger("Cancel");
+
+        for(int i = 0; i < hitBoxVisualisation.Length; i++)
         {
             hitBoxVisualisation[i].SetActive(false);
         } 
