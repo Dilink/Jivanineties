@@ -1,13 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerController: MonoBehaviour, IDamageable
 {
     [Header("Tweaking")]
+    public int hp = 1;
     [Range(0, 50)]
     public float moveSpeed = 5f;
     public AnimationCurve dodgeCurve;
+    public float upgradedDodgeDuration;
+    public float upgradedDodgeRecoveryDuration;
+    public float upgradedDodgeRange;
+    [Range(0,10)]
+    public float dodgeCooldownDuration;
     //[Range(0, 5)]
     //public float collisionDetectionRange = 1f;
     //public Vector3 collisionDetectionBox;
@@ -16,13 +23,15 @@ public class PlayerController: MonoBehaviour, IDamageable
 
     [Header("References")]
     public Transform visual;
-    public AbsorptionController absorption;
+    public AbsorptionController absorption;                         
     
     private Vector3 movement;
     private float speedModifier;
     private float movementModifier;
     private Coroutine dodging;
     private Coroutine attacking;
+
+    private MeshRenderer mesh;
 
     private float dodgeCooldown;
     private float standardAttackCooldown;
@@ -33,30 +42,39 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         movement = Vector3.zero;
         speedModifier = 1f;
+        mesh = visual.GetComponentInChildren<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateCooldowns();
         CheckAttack();
         CheckMovement();
         CheckDodge();
-        //CheckCollisions();
         Move();
+    }
+
+    private void UpdateCooldowns()
+    {
+        dodgeCooldown = Mathf.Max(0, dodgeCooldown - Time.deltaTime);
+        standardAttackCooldown = Mathf.Max(0, standardAttackCooldown - Time.deltaTime);
+        upgradedAttackCooldown = Mathf.Max(0, upgradedAttackCooldown - Time.deltaTime);
     }
 
     private void CheckAttack()
     {
         if(dodging == null && InputManager.Instance.ATTACK && attacking == null)
         {
-            if(InputManager.Instance.POWER_HOLD && absorption.TryAbsorption())
+            if(upgradedAttackCooldown <= 0 && InputManager.Instance.POWER_HOLD && absorption.TryAbsorption())
             {
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), upgradedAttack));
-                
+                upgradedAttackCooldown = upgradedAttack.attackCoolDownDuration;
             }
-            else
+            else if(standardAttackCooldown <= 0)
             {
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), standardAttack));
+                standardAttackCooldown = standardAttack.attackCoolDownDuration;
             }
         }
     }
@@ -88,38 +106,28 @@ public class PlayerController: MonoBehaviour, IDamageable
     
     private void CheckDodge()
     {
-        if(InputManager.Instance.DODGE && dodging == null && attacking == null)
+        if(dodgeCooldown <= 0 && InputManager.Instance.DODGE && dodging == null && attacking == null)
         {
-            dodging = StartCoroutine(Dodge());
-        }
-    }
-
-    /*
-    private void CheckCollisions()
-    {
-        if(movement != Vector3.zero)
-        {
-            Ray ray = new Ray(transform.position + Vector3.up, movement);
-            RaycastHit hit;
-            ExtDebug.DrawBoxCastBox(ray.origin, collisionDetectionBox / 2f, visual.rotation, ray.direction, 5f, Color.blue);
-            if(Physics.BoxCast(ray.origin, new Vector3(collisionDetectionBox.x / 2f, collisionDetectionBox.y / 2f, 0), ray.direction, out hit, visual.rotation, 5f, 1 << LayerMask.NameToLayer("Obstacle")))
+            Collider[] enemies = Physics.OverlapSphere(transform.position, upgradedDodgeRange, 1 << LayerMask.NameToLayer("Enemy"));
+            if(enemies.Length > 0 && InputManager.Instance.POWER_HOLD && absorption.TryAbsorption())
             {
-                movementModifier = Vector3.Distance(ray.origin, hit.point);
-                if(movementModifier < collisionDetectionBox.z)
-                {
-                    movementModifier = 0;
-                    return;
-                }
+                enemies[0].GetComponent<IABehaviour>()?.IAChangeState((int)IAState.stunned);
+                dodging = StartCoroutine(Dodge(enemies[0].transform));
             }
-            movementModifier = moveSpeed * speedModifier * Time.deltaTime;
+            else
+            {
+                dodging = StartCoroutine(Dodge(null));
+            }
+            dodgeCooldown = dodgeCooldownDuration;
         }
     }
-    */
 
     private void Move()
     {
         movementModifier = moveSpeed * speedModifier * Time.deltaTime;
-        transform.position += movement * movementModifier;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(transform.position + movement * movementModifier, out hit, 10f, 1 << NavMesh.GetAreaFromName("Walkable"));
+        transform.position = hit.position;
         if(!movement.Equals(Vector3.zero))
         {
             visual.rotation = Quaternion.LookRotation(movement, Vector3.up);
@@ -144,6 +152,10 @@ public class PlayerController: MonoBehaviour, IDamageable
             if(!enemyHit && enemies.Length > 0)
             {
                 enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage);
+                if(attack.stunDuration > 0)
+                {
+                    enemies[0].GetComponent<IABehaviour>()?.IAChangeState((int)IAState.stunned);
+                }
                 Debug.Log("Hit!");
                 enemyHit = true;
             }
@@ -153,18 +165,38 @@ public class PlayerController: MonoBehaviour, IDamageable
         attacking = null;
     }
 
-    IEnumerator Dodge()
+    IEnumerator Dodge(Transform destination)
     {
         float timer = 0f;
-        do
+        if(destination != null)
         {
-            speedModifier = dodgeCurve.Evaluate(timer);
-            timer += Time.deltaTime;
-            yield return null;
+            movement = Vector3.zero;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(destination.position + (destination.position - transform.position).normalized * 2, out hit, 10f, 1 << NavMesh.GetAreaFromName("Walkable"));
+            if(mesh != null)
+            {
+                mesh.enabled = false;
+            }
+            yield return new WaitForSeconds(upgradedDodgeDuration);
+            transform.position = hit.position;
+            if(mesh != null)
+            {
+                mesh.enabled = true;
+            }
+            yield return new WaitForSeconds(upgradedDodgeRecoveryDuration);
         }
-        while(timer < dodgeCurve.keys[dodgeCurve.length - 1].time);
-        speedModifier = 1f;
-        movement = Vector3.zero;
+        else
+        {
+            do
+            {
+                speedModifier = dodgeCurve.Evaluate(timer);
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            while(timer < dodgeCurve.keys[dodgeCurve.length - 1].time);
+            speedModifier = 1f;
+            movement = Vector3.zero;
+        }
         dodging = null;
     }
 
@@ -173,7 +205,22 @@ public class PlayerController: MonoBehaviour, IDamageable
         if(!absorption.TryAbsorption())
         {
             Debug.Log("Aïe! J'ai mal!");
+            hp -= damageAmount;
+            if(hp <= 0)
+            {
+                GameOver();
+            }
         }
+    }
 
+    private void GameOver()
+    {
+        Debug.Log("Je suis mort!");
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, upgradedDodgeRange);
     }
 }

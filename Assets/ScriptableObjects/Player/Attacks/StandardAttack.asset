@@ -15,4 +15,8 @@ MonoBehaviour:
   damage: 1
   hitBoxDuration: 0.25
   attackRecoveryDuration: 0.05
+  attackCoolDownDuration: 0.5
+  preparationDuration: 0
+  stunDuration: 0
   rangeBox: {x: 2, y: 1, z: 1}
+  attackType: 0
