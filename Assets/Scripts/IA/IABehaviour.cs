@@ -14,6 +14,8 @@ public class IABehaviour : MonoBehaviour, IDamageable
     //public Attack[] damageZones;
 
     public IAStats IAStats;
+    public GameObject dropItem;
+    public bool isTesting = true;
 
     public float AIperceptionUpdate;
     private Vector3 destiniation;
@@ -44,7 +46,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isTesting && Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(1);
             // TakeDamage(2);
@@ -282,6 +284,16 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     #endregion
 
+    private void OnDead()
+    {
+        currentIAState = IAState.dead;
+        navA.destination = transform.position;
+        IAChangeState();
+        StopAllCoroutines();
+
+        Instantiate(dropItem, transform.position, Quaternion.identity);
+    }
+
     public void TakeDamage(int damageAmount)
     {
         if (isInvincible)
@@ -294,10 +306,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         currentLife -= damageAmount;
         if (currentLife < 0)
         {
-            currentIAState = IAState.dead;
-            navA.destination = transform.position;
-            IAChangeState();
-            StopAllCoroutines();
+            OnDead();
             return;
         }
         //print(currentLife);
