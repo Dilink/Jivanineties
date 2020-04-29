@@ -111,7 +111,11 @@ public class PlayerController: MonoBehaviour, IDamageable
             Collider[] enemies = Physics.OverlapSphere(transform.position, upgradedDodgeRange, 1 << LayerMask.NameToLayer("Enemy"));
             if(enemies.Length > 0 && InputManager.Instance.POWER_HOLD && absorption.TryAbsorption())
             {
-                enemies[0].GetComponent<IABehaviour>()?.IAChangeState((int)IAState.stunned);
+                IABehaviour ia = enemies[0].GetComponent<IABehaviour>();
+                if (ia)
+                {
+                    ia.currentIAState = IAState.stunned;
+                }
                 dodging = StartCoroutine(Dodge(enemies[0].transform));
             }
             else
@@ -154,7 +158,11 @@ public class PlayerController: MonoBehaviour, IDamageable
                 enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage);
                 if(attack.stunDuration > 0)
                 {
-                    enemies[0].GetComponent<IABehaviour>()?.IAChangeState((int)IAState.stunned);
+                    IABehaviour ia = enemies[0].GetComponent<IABehaviour>();
+                    if (ia)
+                    {
+                        ia.currentIAState = IAState.stunned;
+                    }
                 }
                 Debug.Log("Hit!");
                 enemyHit = true;

@@ -25,9 +25,14 @@ public class BattlePhase : ICombatPhase
 		Vector3 pos = new Vector3(randX, center.y, randZ);
 
 		NavMeshHit hit;
-		NavMesh.SamplePosition(pos, out hit, radius, NavMesh.GetAreaFromName("Walkable"));
+		NavMesh.SamplePosition(pos, out hit, radius / 2.0f, NavMesh.GetAreaFromName("Walkable"));
 
-		return hit.position;
+		if (hit.position.x != Mathf.Infinity)
+		{
+			return hit.position;
+		}
+
+		return pos;
 	}
 
 	public IEnumerator Execute(Action onEnd, CombatPhaseData data)
