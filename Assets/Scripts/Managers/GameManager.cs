@@ -70,6 +70,7 @@ public class GameManager : Singleton<GameManager>
         else if (newState == IAState.dead)
         {
             remainingEnemies.Remove(entity);
+            Destroy(entity.gameObject);
         }
     }
 
