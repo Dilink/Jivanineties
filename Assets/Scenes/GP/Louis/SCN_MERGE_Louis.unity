@@ -603,7 +603,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dfac22fc1da6634418c60b88ff998d58, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1966,7 +1966,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1761329581}
   - component: {fileID: 1761329584}
-  - component: {fileID: 1761329583}
   - component: {fileID: 1761329582}
   - component: {fileID: 1761329587}
   m_Layer: 10
@@ -2015,23 +2014,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7873a1f9d160ac841834431a3a5508b3, type: 2}
   - {fileID: 2100000, guid: 2b82c61a7cb7f4547988e0562145a36c, type: 2}
   - {fileID: 2100000, guid: 1c8c9311cab85cf4ca14203427c5630d, type: 2}
-  damageZones:
-  - {fileID: 11400000, guid: f15790e6f368caa43b4c8b4d272b25d8, type: 2}
-  - {fileID: 11400000, guid: ccc4e109a8a3f404280eb1e91e878393, type: 2}
   IAStats: {fileID: 11400000, guid: b17da1bb9c3da364fa6186d4872886af, type: 2}
+  dropItem: {fileID: 0}
+  isTesting: 1
   AIperceptionUpdate: 0.2
---- !u!114 &1761329583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761329580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d399280951a1d9744a72ee5b18bca0fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  "invicibilit\xE9Duration": 1
 --- !u!136 &1761329584
 CapsuleCollider:
   m_ObjectHideFlags: 0

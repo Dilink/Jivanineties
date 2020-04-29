@@ -4,8 +4,11 @@ using UnityEditor;
 [CustomEditor(typeof(SpawnPoint))]
 public class SpawnPointEditor : Editor
 {
+    private SpawnPoint sp;
+
     void OnEnable()
     {
+        sp = target as SpawnPoint;
         SceneView.duringSceneGui += OnSceneGUI;
     }
 
@@ -16,8 +19,6 @@ public class SpawnPointEditor : Editor
 
     void OnSceneGUI(SceneView sceneView)
     {
-        SpawnPoint sp = (SpawnPoint)target;
-
         EditorGUI.BeginChangeCheck();
         Vector3 newPosition = Handles.PositionHandle(sp.location, Quaternion.identity);
 
