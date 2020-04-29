@@ -6384,6 +6384,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &411307806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2308094108566311388, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 2308094107536393862}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411307801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd69fdcdb7cd3b74b9517af58d4d2b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &415754743 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1719094309363242572, guid: da890f046bf52054780d1605926fa9f4,
@@ -7434,6 +7446,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 6644953543441268827, guid: 796f20c270d257349b5e91d04689eb18,
+        type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 411307806}
     - target: {fileID: 7117395324102259302, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: combatController
