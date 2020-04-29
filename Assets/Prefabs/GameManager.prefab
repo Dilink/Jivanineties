@@ -96,6 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7622959825166770690}
   - component: {fileID: 7117395324102259302}
+  - component: {fileID: 5730781452694321852}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -132,6 +133,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tokendoCount: 0
   uiManager: {fileID: 6644953543441268827}
+  inputManager: {fileID: 5730781452694321852}
+  player: {fileID: 0}
+  remainingEnemies: []
+--- !u!114 &5730781452694321852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3522146111231909753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6a064a5aa1d9347b0cd60f8013b0d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3540033600902942200
 GameObject:
   m_ObjectHideFlags: 0

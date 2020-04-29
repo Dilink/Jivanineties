@@ -293,7 +293,10 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
         GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
         Tokendo tokendo = go.GetComponent<Tokendo>();
-        tokendo.MoveTo(GameManager.Instance.player.transform);
+        if (!tokendo.moveToPlayerAtStart)
+        {
+            tokendo.MoveToPlayer();
+        }
     }
 
     public void TakeDamage(int damageAmount)
