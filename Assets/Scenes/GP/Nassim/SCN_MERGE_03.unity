@@ -214,6 +214,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5956128189207677612, guid: 1e1364c7475632f49b27cb243eb9c33a,
         type: 3}
       propertyPath: m_Name
@@ -223,6 +233,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579758180138403640, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1364c7475632f49b27cb243eb9c33a, type: 3}
@@ -432,6 +447,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5956128189207677612, guid: 1e1364c7475632f49b27cb243eb9c33a,
         type: 3}
       propertyPath: m_Name
@@ -441,6 +466,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579758180138403640, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1364c7475632f49b27cb243eb9c33a, type: 3}
@@ -789,6 +819,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5956128189207677612, guid: 1e1364c7475632f49b27cb243eb9c33a,
         type: 3}
       propertyPath: m_Name
@@ -798,6 +838,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579758180138403640, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1364c7475632f49b27cb243eb9c33a, type: 3}
@@ -929,6 +974,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5956128189207677612, guid: 1e1364c7475632f49b27cb243eb9c33a,
         type: 3}
       propertyPath: m_Name
@@ -938,6 +993,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579758180138403640, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1364c7475632f49b27cb243eb9c33a, type: 3}
@@ -1097,6 +1157,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5956128189207677612, guid: 1e1364c7475632f49b27cb243eb9c33a,
         type: 3}
       propertyPath: m_Name
@@ -1106,6 +1176,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579758180138403640, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1364c7475632f49b27cb243eb9c33a, type: 3}
@@ -1348,6 +1423,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5956128189207677612, guid: 1e1364c7475632f49b27cb243eb9c33a,
         type: 3}
       propertyPath: m_Name
@@ -1357,6 +1442,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579758180138403640, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1364c7475632f49b27cb243eb9c33a, type: 3}
@@ -1428,6 +1518,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5956128189207677612, guid: 1e1364c7475632f49b27cb243eb9c33a,
         type: 3}
       propertyPath: m_Name
@@ -1437,6 +1537,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579758180138403640, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1364c7475632f49b27cb243eb9c33a, type: 3}
@@ -1932,6 +2037,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5956128189207677612, guid: 1e1364c7475632f49b27cb243eb9c33a,
         type: 3}
       propertyPath: m_Name
@@ -1941,6 +2056,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579758180138403640, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1364c7475632f49b27cb243eb9c33a, type: 3}
@@ -2203,6 +2323,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5956128189207677600, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5956128189207677612, guid: 1e1364c7475632f49b27cb243eb9c33a,
         type: 3}
       propertyPath: m_Name
@@ -2212,6 +2342,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579758180138403640, guid: 1e1364c7475632f49b27cb243eb9c33a,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e1364c7475632f49b27cb243eb9c33a, type: 3}
