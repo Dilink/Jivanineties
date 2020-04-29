@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb60615be39c5045b0754f1524bf54c, type: 3}
   m_Name: AbsorptionMaterialChange
   m_EditorClassIdentifier: 
-  materialBefore: {fileID: 2100000, guid: b8174a698de4f4643b31592c83704c42, type: 2}
+  materialBefore: {fileID: 2100000, guid: 41b6f72ef14063e4bb2b7117d931ee39, type: 2}
   materialAfter: {fileID: 2100000, guid: c18c95dab19279540a19041d1b9b1836, type: 2}
