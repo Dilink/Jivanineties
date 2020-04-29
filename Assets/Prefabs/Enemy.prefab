@@ -291,7 +291,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2b82c61a7cb7f4547988e0562145a36c, type: 2}
   - {fileID: 2100000, guid: 1c8c9311cab85cf4ca14203427c5630d, type: 2}
   IAStats: {fileID: 11400000, guid: b17da1bb9c3da364fa6186d4872886af, type: 2}
-  dropItem: {fileID: 0}
+  dropItem: {fileID: 3557613207583748172, guid: f235ba71ee75b5446afbffad505c009c,
+    type: 3}
   isTesting: 1
   AIperceptionUpdate: 0.2
   "invicibilit\xE9Duration": 1
