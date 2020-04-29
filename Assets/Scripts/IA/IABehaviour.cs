@@ -71,7 +71,8 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public void ChangeMaterial(int index)
     {
-        mR.material = stateMaterials[index];
+        if(index - 1 >= 0)
+        mR.material = stateMaterials[index-1];
     }
 
     #endregion

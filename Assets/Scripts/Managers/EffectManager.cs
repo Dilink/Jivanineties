@@ -38,7 +38,7 @@ public class EffectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(triggerDebug)
+        if(triggerDebug || Input.GetKeyDown(KeyCode.G))
         {
             triggerDebug = false;
             TriggerEffect(debugIndex);
@@ -67,23 +67,24 @@ public class EffectManager : MonoBehaviour
             Vector3 newRotation = cameraRotation.eulerAngles;
             if(effect.followPlayer)
             {
-                cameraPosition = cameraController.playerCamera.transform.position;
+                cameraPosition = cameraController.CameraPosition;
             }
+            Vector3 newPosition = cameraPosition;
             if(effect.timeScale.length > 0 && timer <= effect.timeScale[effect.timeScale.length - 1].time)
             {
                 Time.timeScale = effect.timeScale.Evaluate(timer);
             }
             if(effect.camPositionX.length > 0 && timer <= effect.camPositionX[effect.camPositionX.length - 1].time)
             {
-                cameraController.playerCamera.transform.position = cameraPosition + new Vector3(effect.camPositionX.Evaluate(timer), 0, 0);
+                newPosition += new Vector3(effect.camPositionX.Evaluate(timer), 0, 0);
             }
             if(effect.camPositionY.length > 0 && timer <= effect.camPositionY[effect.camPositionY.length - 1].time)
             {
-                cameraController.playerCamera.transform.position = cameraPosition + new Vector3(0, effect.camPositionY.Evaluate(timer), 0);
+                newPosition += new Vector3(0, effect.camPositionY.Evaluate(timer), 0);
             }
             if(effect.camPositionZ.length > 0 && timer <= effect.camPositionZ[effect.camPositionZ.length - 1].time)
             {
-                cameraController.playerCamera.transform.position = cameraPosition + new Vector3(0, 0, effect.camPositionZ.Evaluate(timer));
+                newPosition += new Vector3(0, 0, effect.camPositionZ.Evaluate(timer));
             }
             if(effect.camRotationX.length > 0 && timer <= effect.camRotationX[effect.camRotationX.length - 1].time)
             {
@@ -106,6 +107,7 @@ public class EffectManager : MonoBehaviour
                 cameraController.PerformEffect = false;
             }
             cameraController.playerCamera.transform.rotation = Quaternion.Euler(newRotation);
+            cameraController.playerCamera.transform.position = newPosition;
             timer += Time.unscaledDeltaTime;
             yield return null;
         }
