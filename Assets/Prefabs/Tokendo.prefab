@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3542536891795320460}
   - component: {fileID: 3534505191853075086}
   - component: {fileID: 3515518784894403048}
+  - component: {fileID: 3221060809937744020}
   m_Layer: 0
   m_Name: Tokendo
   m_TagString: Untagged
@@ -104,3 +105,17 @@ MonoBehaviour:
   endScale: {x: 1.5, y: 1.5, z: 1.5}
   scaleSpeed: 2
   scaleRate: 1.5
+--- !u!114 &3221060809937744020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557613207583748172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92aa8d5de0ab6724d8f60771c8ac2509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objective: {fileID: 0}
+  movementSpeed: 1

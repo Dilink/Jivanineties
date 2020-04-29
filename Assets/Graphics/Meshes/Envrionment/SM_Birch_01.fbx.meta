@@ -3,7 +3,17 @@ guid: 2e704ec0c741ddd4193fac5ca2505c12
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_OldBirch_Bark
+    second: {fileID: 2100000, guid: 97a3662f5056238468b49cb7736dd0c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_OldBirch_Leaves
+    second: {fileID: 2100000, guid: 9121c614803d4ca4989b2eed8013335b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
