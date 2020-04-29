@@ -1843,7 +1843,7 @@ MonoBehaviour:
         spawnPoints:
         - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
     00000001:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      type: {class: , ns: , asm: }
     00000002:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
@@ -2894,6 +2894,11 @@ PrefabInstance:
         type: 3}
       propertyPath: restoreDelay
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dodgeCurve.m_Curve.Array.data[3].time
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}

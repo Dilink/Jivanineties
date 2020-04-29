@@ -23,7 +23,8 @@ public class PlayerController: MonoBehaviour, IDamageable
 
     [Header("References")]
     public Transform visual;
-    public AbsorptionController absorption;                         
+    public AbsorptionController absorption;
+    public Animator animator;
     
     private Vector3 movement;
     private float speedModifier;
@@ -111,6 +112,14 @@ public class PlayerController: MonoBehaviour, IDamageable
                 movement += new Vector3(-1, 0, 0);
             }
             movement = movement.normalized;
+            if(movement.magnitude > 0)
+            {
+                animator.SetBool("Run", true);
+            }
+            else
+            {
+                animator.SetBool("Run", false);
+            }
         }
     }
     
@@ -159,6 +168,7 @@ public class PlayerController: MonoBehaviour, IDamageable
         bool enemyHit = false;
         float timer = 0f;
         movement = Vector3.zero;
+        animator.SetTrigger("Attack");
         while(loop)
         {
             timer += Time.deltaTime;
@@ -210,6 +220,8 @@ public class PlayerController: MonoBehaviour, IDamageable
         }
         else
         {
+            animator.SetTrigger("Dash");
+            movement = visual.forward;
             do
             {
                 speedModifier = dodgeCurve.Evaluate(timer);
