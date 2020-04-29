@@ -4,30 +4,42 @@ Shader "S_Test_DistanceDissolve"
 {
 	Properties
 	{
+		_MinDistance("MinDistance", Range( 0 , 100)) = 1
+		_MaxDistance("MaxDistance", Range( 0 , 100)) = 1
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Transparent"  "Queue" = "Geometry+0" }
+		Tags{ "RenderType" = "Transparent"  "Queue" = "Transparent+0" "IgnoreProjector" = "True" }
 		Cull Back
 		CGINCLUDE
+		#include "UnityShaderVariables.cginc"
 		#include "UnityPBSLighting.cginc"
 		#include "Lighting.cginc"
 		#pragma target 3.0
 		struct Input
 		{
-			half filler;
+			float3 worldPos;
 		};
 
-		void surf( Input i , inout SurfaceOutputStandard o )
+		uniform float _MinDistance;
+		uniform float _MaxDistance;
+
+		inline half4 LightingUnlit( SurfaceOutput s, half3 lightDir, half atten )
 		{
-			o.Alpha = saturate( 0.0 );
+			return half4 ( 0, 0, 0, s.Alpha );
+		}
+
+		void surf( Input i , inout SurfaceOutput o )
+		{
+			float3 ase_worldPos = i.worldPos;
+			o.Alpha = saturate( ( ( distance( _WorldSpaceCameraPos , ase_worldPos ) - _MinDistance ) / _MaxDistance ) );
 		}
 
 		ENDCG
 		CGPROGRAM
-		#pragma surface surf Standard keepalpha fullforwardshadows 
+		#pragma surface surf Unlit alpha:fade keepalpha fullforwardshadows 
 
 		ENDCG
 		Pass
@@ -81,8 +93,9 @@ Shader "S_Test_DistanceDissolve"
 				UNITY_INITIALIZE_OUTPUT( Input, surfIN );
 				float3 worldPos = IN.worldPos;
 				half3 worldViewDir = normalize( UnityWorldSpaceViewDir( worldPos ) );
-				SurfaceOutputStandard o;
-				UNITY_INITIALIZE_OUTPUT( SurfaceOutputStandard, o )
+				surfIN.worldPos = worldPos;
+				SurfaceOutput o;
+				UNITY_INITIALIZE_OUTPUT( SurfaceOutput, o )
 				surf( surfIN, o );
 				#if defined( CAN_SKIP_VPOS )
 				float2 vpos = IN.pos;
@@ -99,14 +112,23 @@ Shader "S_Test_DistanceDissolve"
 }
 /*ASEBEGIN
 Version=18000
-0;0;1920;1019;1293.594;295.1447;1.193338;True;True
+2314;-6;1920;1019;728.4169;222.1575;1;True;True
 Node;AmplifyShaderEditor.WorldSpaceCameraPos;5;-610.4235,-132.4866;Inherit;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.WorldPosInputsNode;4;-576.0315,38.09796;Inherit;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
 Node;AmplifyShaderEditor.DistanceOpNode;6;-251.4974,-12.90207;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SaturateNode;7;97.46077,-22.20795;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.StandardSurfaceOutputNode;3;333.5791,-68.91113;Float;False;True;-1;2;ASEMaterialInspector;0;0;Standard;S_Test_DistanceDissolve;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;False;-1;0;False;-1;False;0;False;-1;0;False;-1;False;0;Custom;0.5;True;True;0;False;Transparent;;Geometry;All;14;all;True;True;True;True;0;False;-1;False;0;False;-1;255;False;-1;255;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;False;2;15;10;25;False;0.5;True;0;0;False;-1;0;False;-1;0;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;0;-1;-1;-1;0;False;0;0;False;-1;-1;0;False;-1;0;0;0;False;0.1;False;-1;0;False;-1;16;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
+Node;AmplifyShaderEditor.RangedFloatNode;9;-404.0271,190.0591;Inherit;False;Property;_MinDistance;MinDistance;0;0;Create;True;0;0;False;0;1;1;0;100;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleSubtractOpNode;8;-82.0271,-6.940948;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;10;-344.0271,292.0591;Inherit;False;Property;_MaxDistance;MaxDistance;1;0;Create;True;0;0;False;0;1;0.5;0;100;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleDivideOpNode;11;184.545,-16.37007;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SaturateNode;7;339.9655,-2.313567;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.StandardSurfaceOutputNode;3;580.4373,-110.0542;Float;False;True;-1;2;ASEMaterialInspector;0;0;Unlit;S_Test_DistanceDissolve;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;False;False;False;False;False;False;Back;0;False;-1;0;False;-1;False;0;False;-1;0;False;-1;False;0;Transparent;0.5;True;True;0;False;Transparent;;Transparent;All;14;all;True;True;True;True;0;False;-1;False;0;False;-1;255;False;-1;255;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;False;2;15;10;25;False;0.5;True;2;5;False;-1;10;False;-1;0;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;-1;-1;-1;-1;0;False;0;0;False;-1;-1;0;False;-1;0;0;0;False;0.1;False;-1;0;False;-1;15;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 WireConnection;6;0;5;0
 WireConnection;6;1;4;0
+WireConnection;8;0;6;0
+WireConnection;8;1;9;0
+WireConnection;11;0;8;0
+WireConnection;11;1;10;0
+WireConnection;7;0;11;0
 WireConnection;3;9;7;0
 ASEEND*/
-//CHKSM=88D6E501AF59B800DDF1450C26738FAEB2CD5950
+//CHKSM=6822E8924F5175EEE968AAB32353C2E8D4A6366D
