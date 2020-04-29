@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
         IABehaviour.iaStateChangedDelegate += OnAIStateChanged;
 
         StartCoroutine(OnFirstFrame());
+        
     }
 
     new void OnDestroy()
@@ -58,6 +59,7 @@ public class GameManager : Singleton<GameManager>
     {
         IABehaviour[] allAI = GameObject.FindObjectsOfType<IABehaviour>();
         remainingEnemies.AddRange(allAI);
+        combatController.MoveToNextPhase();
         yield return null;
     }
 

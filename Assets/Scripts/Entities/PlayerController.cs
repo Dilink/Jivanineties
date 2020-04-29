@@ -79,8 +79,12 @@ public class PlayerController: MonoBehaviour, IDamageable
         if (dodging == null && restoring == null && GameManager.Instance.inputManager.ATTACK && attacking == null)
         {
             IAbsorbable area = absorption.GetArea();
-            if(upgradedAttackCooldown <= 0 && GameManager.Instance.inputManager.POWER_HOLD && area.OnAbsorption())
+            if(upgradedAttackCooldown <= 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || area.OnAbsorption()))
             {
+                if(GameManager.Instance.tokendoAmount > 0)
+                {
+                    GameManager.Instance.tokendoAmount--;
+                }
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), upgradedAttack));
                 upgradedAttackCooldown = upgradedAttack.attackCoolDownDuration;
             }
@@ -131,8 +135,12 @@ public class PlayerController: MonoBehaviour, IDamageable
         {
             IAbsorbable area = absorption.GetArea();
             Collider[] enemies = Physics.OverlapSphere(transform.position, upgradedDodgeRange, 1 << LayerMask.NameToLayer("Enemy"));
-            if(enemies.Length > 0 && GameManager.Instance.inputManager.POWER_HOLD && area.OnAbsorption())
+            if(enemies.Length > 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || area.OnAbsorption()))
             {
+                if(GameManager.Instance.tokendoAmount > 0)
+                {
+                    GameManager.Instance.tokendoAmount--;
+                }
                 IABehaviour ia = enemies[0].GetComponent<IABehaviour>();
                 if (ia)
                 {
