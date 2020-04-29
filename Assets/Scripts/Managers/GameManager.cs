@@ -23,9 +23,13 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    [HideInInspector]
+    public PlayerController player;
+
     void Start()
     {
         _tokendoAmount = tokendoCount;
+        player = FindObjectOfType<PlayerController>();
     }
 
     public void AddTokendo(int count)
