@@ -7,11 +7,10 @@ using Sirenix.OdinInspector;
 public class IABehaviour : MonoBehaviour, IDamageable
 {
 
-    public PlayerController player;
     public NavMeshAgent navA;
     public MeshRenderer mR;
     public Material[] stateMaterials;
-    //public Attack[] damageZones;
+    public GameObject[] hitBoxVisualisation;
 
     public IAStats IAStats;
     public GameObject dropItem;
@@ -26,6 +25,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private bool attackInCooldown;
     private bool attackCanceled;
     private int currentLife;
+    private float stunnedDuration;
 
 
     public bool isInvincible { get; private set; }
@@ -36,12 +36,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         currentLife = IAStats.lifePointTypes.Length - 1;
         print(currentLife);
-
     }
 
     void Start()
     {
-        AIPursuit(player.transform);
+        AIPursuit(GameManager.Instance.player.transform);
     }
 
     private void Update()
@@ -165,34 +164,41 @@ public class IABehaviour : MonoBehaviour, IDamageable
     #endregion
 
     #region IA Attack
-
-
     public void IAAttack(int attackIndex)
     {
+        int indexToTake = attackIndex;
+
+        if (specialAttackWaiting > 0)
+        {
+            specialAttackWaiting--;
+            indexToTake = 1;
+            print("Force special Attack");
+        }
 
         attackCanceled = false;
-        if (attackIndex < 0 || attackIndex > (IAStats.Attack.Length - 1))
+        if (indexToTake < 0 || indexToTake > (IAStats.Attack.Length - 1))
         {
             print("BadIndex");
             return;
         }
-        float prepDuration = IAStats.Attack[attackIndex].preparationDuration;
-        float attackDuration = IAStats.Attack[attackIndex].attackRecoveryDuration;
-        currentAttackCooldown = IAStats.Attack[attackIndex].attackCoolDownDuration;
+
+        float prepDuration = IAStats.Attack[indexToTake].preparationDuration;
+        float attackDuration = IAStats.Attack[indexToTake].attackRecoveryDuration;
+        currentAttackCooldown = IAStats.Attack[indexToTake].attackCoolDownDuration;
 
         //Reortation 
-        Vector3 directionToFace = player.transform.position;
+        Vector3 directionToFace = GameManager.Instance.player.transform.position;
         Vector3 targetPos = new Vector3(directionToFace.x, transform.position.y, directionToFace.z);
         transform.LookAt(targetPos);
 
         //PREP
         IAChangeState(1);
 
-        StartCoroutine(attackDebugCooldown(prepDuration, attackDuration, IAStats.Attack[attackIndex].attackType));
+        hitBoxVisualisation[indexToTake].SetActive(true);
+        StartCoroutine(attackDebugCooldown(prepDuration, attackDuration, IAStats.Attack[indexToTake].attackType));
 
 
     }
-
     IEnumerator attackDebugCooldown(float prepDuration, float attackDuration, LifePointType attackType)
     {
         if (attackCanceled)
@@ -206,28 +212,18 @@ public class IABehaviour : MonoBehaviour, IDamageable
             switch (attackType)
             {
                 case LifePointType.normal:
-                    currentIAState = IAState.attacking;
-                    //damageZones[0].gameObject.SetActive(true);
-                    Attack(ray, IAStats.Attack[0]);
+                    currentIAState = IAState.attacking;                 
+                    StartCoroutine(Attack(ray, IAStats.Attack[0]));
                     IAChangeState();
                     break;
                 case LifePointType.specialAttack:
-                    specialAttackWaiting--;
+                    // specialAttackWaiting--;
                     currentIAState = IAState.specialAttack;
-                    Attack(ray, IAStats.Attack[1]);
+                    StartCoroutine(Attack(ray, IAStats.Attack[1]));
                     IAChangeState();
                     break;
             }
             StartCoroutine(AttackCooldown());
-            yield return new WaitForSeconds(attackDuration);
-            if (attackCanceled)
-            {
-                yield return null;
-            }
-            else
-            {
-                AIPursuit(player.transform);
-            }
         }
 
         //if (specialAttackWaiting > 0)
@@ -240,11 +236,10 @@ public class IABehaviour : MonoBehaviour, IDamageable
         //}
 
 
-       // AIPursuit(player.transform);
+        // AIPursuit(player.transform);
 
     }
-
-    private void Attack(Ray ray, Attack attack)
+    IEnumerator Attack(Ray ray, Attack attack)
     {
         bool loop = true;
         bool enemyHit = false;
@@ -264,7 +259,12 @@ public class IABehaviour : MonoBehaviour, IDamageable
                 // Debug.Log("HIt heros");
                 enemyHit = true;
             }
+            yield return null;
         }
+        hitBoxVisualisation[(int)attack.attackType].SetActive(false);
+        yield return new WaitForSeconds(attack.attackRecoveryDuration);
+        AIPursuit(GameManager.Instance.player.transform);
+
     }
     IEnumerator AttackCooldown()
     {
@@ -281,7 +281,6 @@ public class IABehaviour : MonoBehaviour, IDamageable
         print("no more  Invincible");
     }
 
-
     #endregion
 
     private void OnDead()
@@ -291,7 +290,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
         IAChangeState();
         StopAllCoroutines();
 
-        Instantiate(dropItem, transform.position, Quaternion.identity);
+        GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+        Tokendo tokendo = go.GetComponent<Tokendo>();
+        tokendo.MoveTo(GameManager.Instance.player.transform);
     }
 
     public void TakeDamage(int damageAmount)
@@ -330,13 +331,16 @@ public class IABehaviour : MonoBehaviour, IDamageable
                     case IAState.attackPrep:
                         StopCoroutine("attackDebugCooldown");
                         IAAttack(1);
+                        hitBoxVisualisation[0].SetActive(false);
                         print("Prep Cancel");
                         break;
 
                     case IAState.attacking:
                         StopCoroutine("attackDebugCooldown");
                         StopCoroutine("AttackCooldown");
+                        StopCoroutine("Attack");
 
+                        hitBoxVisualisation[0].SetActive(false);
                         print("Attack  Cancel");
                         attackCanceled = true;
                         IAAttack(1);
@@ -353,49 +357,75 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     }
 
-    #region EDITOR
-    [ContextMenu("FindPlayer")]
-    private void FindPlayer()
+    public void GetStunned(float duration)
     {
-        player = FindObjectOfType<PlayerController>();
-        if (player != null)
+        for (int i = 0; i < hitBoxVisualisation.Length; i++)
         {
-            print("success");
-        }
-        else
+            hitBoxVisualisation[i].SetActive(false);
+        } 
+        
+        switch (currentIAState)
         {
-            print("fail");
+            case IAState.mooving:
+                StopCoroutine("AIPursuit");
+                StopCoroutine("pursuitCooldown");
+                navA.isStopped = true;
+
+                break;
+            case IAState.attackPrep:
+                StopCoroutine("attackDebugCooldown");
+                break;
+
+            case IAState.attacking:
+                StopCoroutine("attackDebugCooldown");
+                StopCoroutine("AttackCooldown");
+                attackCanceled = true;
+                break;
+
+            case IAState.specialAttack:
+                StopCoroutine("attackDebugCooldown");
+                StopCoroutine("AttackCooldown");
+                specialAttackWaiting++;
+                attackCanceled = true;
+                break;
+
+            case IAState.stunned:
+                stunnedDuration += duration;
+                return;
         }
+        StunnedTimer(duration);
+
     }
 
+    IEnumerator StunnedTimer(float duration)
+    {
+        bool loop = true;
+        stunnedDuration += duration;
+        while (loop)
+        {
+            stunnedDuration -= Time.deltaTime;
+            if (0 >= stunnedDuration)
+            {
+                loop = false;
+            }
+            yield return null;
+        }
+        stunnedDuration = 0;
+        AIPursuit(GameManager.Instance.player.transform);    
+    }
+
+    #region EDITOR
     [ContextMenu("GetNavMeshAgent")]
     private void GetNavMeshAgent()
     {
         navA = GetComponent<NavMeshAgent>();
-        if (player != null)
-        {
-            print("success");
-        }
-        else
-        {
-            print("fail");
-        }
     }
 
     [ContextMenu("QuickSetup")]
     private void QuickSetup()
     {
-        player = FindObjectOfType<PlayerController>();
         navA = GetComponent<NavMeshAgent>();
         mR = GetComponent<MeshRenderer>();
-        if (player != null)
-        {
-            print(" P success");
-        }
-        else
-        {
-            print(" P fail");
-        }
 
         if (navA != null)
         {
