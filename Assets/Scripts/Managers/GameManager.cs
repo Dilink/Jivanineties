@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
@@ -37,6 +38,8 @@ public class GameManager : Singleton<GameManager>
         player = FindObjectOfType<PlayerController>();
 
         IABehaviour.iaStateChangedDelegate += OnAIStateChanged;
+
+        StartCoroutine(OnFirstFrame());
     }
 
     new void OnDestroy()
@@ -48,6 +51,13 @@ public class GameManager : Singleton<GameManager>
     public void AddTokendo(int count)
     {
         tokendoAmount += count;
+    }
+
+    private IEnumerator OnFirstFrame()
+    {
+        IABehaviour[] allAI = GameObject.FindObjectsOfType<IABehaviour>();
+        remainingEnemies.AddRange(allAI);
+        yield return null;
     }
 
     private void OnAIStateChanged(IABehaviour entity, IAState oldState, IAState newState)
