@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -7,7 +8,7 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public int tokendoCount;
 
-    private UIManager uiManager;
+    public UIManager uiManager;
 
     /// <summary>
     /// Gameplay only
@@ -25,11 +26,19 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         _tokendoAmount = tokendoCount;
-        uiManager = GetComponent<UIManager>();
     }
 
     public void AddTokendo(int count)
     {
         tokendoAmount += count;
     }
+
+#if UNITY_EDITOR
+    [Button(ButtonSizes.Medium), GUIColor(0.89f, 0.14f, 0.14f)]
+    private void Populate()
+    {
+        uiManager = transform.GetComponentInChildren<UIManager>();
+        uiManager.Populate();
+    }
+#endif
 }
