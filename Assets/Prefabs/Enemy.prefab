@@ -88,17 +88,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 112932313392324125}
-  - component: {fileID: 112932313392324112}
   - component: {fileID: 112932313392324127}
   - component: {fileID: 112932313392324126}
-  - component: {fileID: 112932313392324113}
   m_Layer: 11
   m_Name: Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &112932313392324125
 Transform:
   m_ObjectHideFlags: 0
@@ -113,19 +111,6 @@ Transform:
   m_Father: {fileID: 112932313837551036}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &112932313392324112
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112932313392324124}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &112932313392324127
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -173,19 +158,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112932313392324124}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &112932313392324113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112932313392324124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f28eb8d8e53692d4c8d071ce5b1e8522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageDealed: 1
 --- !u!1 &112932313837551035
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,12 +168,12 @@ GameObject:
   m_Component:
   - component: {fileID: 112932313837551036}
   m_Layer: 10
-  m_Name: Attack_HITBOX
+  m_Name: Attack_HITBOX_VISUAL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &112932313837551036
 Transform:
   m_ObjectHideFlags: 0
@@ -290,6 +262,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7873a1f9d160ac841834431a3a5508b3, type: 2}
   - {fileID: 2100000, guid: 2b82c61a7cb7f4547988e0562145a36c, type: 2}
   - {fileID: 2100000, guid: 1c8c9311cab85cf4ca14203427c5630d, type: 2}
+  hitBoxVisualisation:
+  - {fileID: 112932313392324124}
+  - {fileID: 112932314384233550}
   IAStats: {fileID: 11400000, guid: b17da1bb9c3da364fa6186d4872886af, type: 2}
   dropItem: {fileID: 3557613207583748172, guid: f235ba71ee75b5446afbffad505c009c,
     type: 3}
@@ -421,17 +396,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 112932314384233551}
-  - component: {fileID: 112932314384233538}
   - component: {fileID: 112932314384233537}
   - component: {fileID: 112932314384233536}
-  - component: {fileID: 112932314384233539}
   m_Layer: 11
   m_Name: Special
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &112932314384233551
 Transform:
   m_ObjectHideFlags: 0
@@ -446,19 +419,6 @@ Transform:
   m_Father: {fileID: 112932313837551036}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &112932314384233538
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112932314384233550}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &112932314384233537
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -506,16 +466,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112932314384233550}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &112932314384233539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112932314384233550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f28eb8d8e53692d4c8d071ce5b1e8522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageDealed: 1
