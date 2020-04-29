@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     public int tokendoCount;
 
     public UIManager uiManager;
+    public InputManager inputManager;
 
     /// <summary>
     /// Gameplay only
@@ -78,6 +79,8 @@ public class GameManager : Singleton<GameManager>
     {
         uiManager = transform.GetComponentInChildren<UIManager>();
         uiManager.Populate();
+
+        inputManager = transform.GetComponentInChildren<InputManager>();
     }
 #endif
 }
