@@ -921,7 +921,7 @@ Transform:
   m_GameObject: {fileID: 935112424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children:
   - {fileID: 1626435155}
   - {fileID: 870940478}
@@ -1107,7 +1107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201307498}
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 17.82, z: -5.75}
+  m_LocalPosition: {x: 0, y: 10.5, z: -5.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1663,7 +1663,7 @@ Transform:
   m_GameObject: {fileID: 1665867636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children:
   - {fileID: 2102055759}
   m_Father: {fileID: 0}
@@ -2658,7 +2658,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102055755}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2669,7 +2669,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52f63c60a7765ad4398d90d3ae48aca8, type: 2}
+  - {fileID: 2100000, guid: c18c95dab19279540a19041d1b9b1836, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2706,7 +2706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102055755}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: -0, y: -0.51, z: -0.1}
   m_LocalScale: {x: 32, y: 0.5, z: 32}
   m_Children: []
   m_Father: {fileID: 1665867637}
@@ -2748,17 +2748,17 @@ PrefabInstance:
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.4
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.57
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
