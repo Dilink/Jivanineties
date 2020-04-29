@@ -64,9 +64,10 @@ public class PlayerController: MonoBehaviour, IDamageable
 
     private void CheckAttack()
     {
-        if(dodging == null && InputManager.Instance.ATTACK && attacking == null)
+        InputManager inputManager = GameManager.Instance.inputManager;
+        if (dodging == null && inputManager.ATTACK && attacking == null)
         {
-            if(upgradedAttackCooldown <= 0 && InputManager.Instance.POWER_HOLD && absorption.TryAbsorption())
+            if(upgradedAttackCooldown <= 0 && inputManager.POWER_HOLD && absorption.TryAbsorption())
             {
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), upgradedAttack));
                 upgradedAttackCooldown = upgradedAttack.attackCoolDownDuration;
@@ -83,20 +84,21 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         if(dodging == null && attacking == null)
         {
+            InputManager inputManager = GameManager.Instance.inputManager;
             movement = Vector3.zero;
-            if(InputManager.Instance.UP)
+            if(inputManager.UP)
             {
                 movement += new Vector3(0, 0, 1);
             }
-            else if(InputManager.Instance.DOWN)
+            else if(inputManager.DOWN)
             {
                 movement += new Vector3(0, 0, -1);
             }
-            if(InputManager.Instance.RIGHT)
+            if(inputManager.RIGHT)
             {
                 movement += new Vector3(1, 0, 0);
             }
-            else if(InputManager.Instance.LEFT)
+            else if(inputManager.LEFT)
             {
                 movement += new Vector3(-1, 0, 0);
             }
@@ -106,12 +108,17 @@ public class PlayerController: MonoBehaviour, IDamageable
     
     private void CheckDodge()
     {
-        if(dodgeCooldown <= 0 && InputManager.Instance.DODGE && dodging == null && attacking == null)
+        InputManager inputManager = GameManager.Instance.inputManager;
+        if (dodgeCooldown <= 0 && inputManager.DODGE && dodging == null && attacking == null)
         {
             Collider[] enemies = Physics.OverlapSphere(transform.position, upgradedDodgeRange, 1 << LayerMask.NameToLayer("Enemy"));
-            if(enemies.Length > 0 && InputManager.Instance.POWER_HOLD && absorption.TryAbsorption())
+            if(enemies.Length > 0 && inputManager.POWER_HOLD && absorption.TryAbsorption())
             {
-                enemies[0].GetComponent<IABehaviour>()?.IAChangeState((int)IAState.stunned);
+                IABehaviour ia = enemies[0].GetComponent<IABehaviour>();
+                if (ia)
+                {
+                    ia.currentIAState = IAState.stunned;
+                }
                 dodging = StartCoroutine(Dodge(enemies[0].transform));
             }
             else
@@ -127,7 +134,12 @@ public class PlayerController: MonoBehaviour, IDamageable
         movementModifier = moveSpeed * speedModifier * Time.deltaTime;
         NavMeshHit hit;
         NavMesh.SamplePosition(transform.position + movement * movementModifier, out hit, 10f, 1 << NavMesh.GetAreaFromName("Walkable"));
-        transform.position = hit.position;
+
+        if (hit.position.x != Mathf.Infinity)
+        {
+            transform.position = hit.position;
+        }
+
         if(!movement.Equals(Vector3.zero))
         {
             visual.rotation = Quaternion.LookRotation(movement, Vector3.up);
@@ -154,7 +166,11 @@ public class PlayerController: MonoBehaviour, IDamageable
                 enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage);
                 if(attack.stunDuration > 0)
                 {
-                    enemies[0].GetComponent<IABehaviour>()?.IAChangeState((int)IAState.stunned);
+                    IABehaviour ia = enemies[0].GetComponent<IABehaviour>();
+                    if (ia)
+                    {
+                        ia.currentIAState = IAState.stunned;
+                    }
                 }
                 Debug.Log("Hit!");
                 enemyHit = true;

@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Rocks
-  m_Shader: {fileID: 4800000, guid: cbcbcbd727123a940b2d6f23bdf27102, type: 3}
+  m_Name: M_Floor
+  m_Shader: {fileID: 4800000, guid: 61fa7ded8cc4a7c4c94cdb997c93dcaf, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,7 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: 0a54950a5730aed42b0417546534ad3e, type: 3}
+        m_Texture: {fileID: 2800000, guid: d319753a7a8c3b44eb2ce0098fcc38be, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Albedo_Dried:
+        m_Texture: {fileID: 2800000, guid: da13deb5249729741a3fe31664ac92a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -51,9 +55,9 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Noise_vertex_animation:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: 805af41b6e803c748bc9986722ba9df2, type: 3}
+        m_Scale: {x: 0.2, y: 0.2}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -72,23 +76,25 @@ Material:
     - _Cutoff: 0.5
     - _DRIED: 0
     - _DetailNormalMapScale: 1
-    - _Disapear: 0
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _MinDistance: 1
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PixelX: 25
+    - _PixelX1: 25
+    - _PixelY: 17
+    - _PixelY1: 25
     - _Shininess: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Switchratio43alamano: 1
+    - _Switchratio43alamano1: 0
     - _UVSec: 0
-    - _VERTEX_ANIM_POWER: 2.05
-    - _Vertex_animation: 0
     - _ZWrite: 1
     - _Zone_Shadow: 0.14
     - __dirty: 0
@@ -96,5 +102,5 @@ Material:
     - _Asset_color: {r: 1, g: 1, b: 1, a: 0.345098}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}
     - _SpecularColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}

@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 
 public class IABehaviour : MonoBehaviour, IDamageable
 {
+    public delegate void OnIAStateChangedDelegate(IABehaviour entity, IAState oldState, IAState newState);
 
     public NavMeshAgent navA;
     public MeshRenderer mR;
@@ -18,7 +19,21 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public float AIperceptionUpdate;
     private Vector3 destiniation;
-    private IAState currentIAState;
+
+    public static OnIAStateChangedDelegate iaStateChangedDelegate;
+
+    private IAState _currentIAState;
+    public IAState currentIAState
+    {
+        get => _currentIAState;
+        set
+        {
+            IAState before = _currentIAState;
+            _currentIAState = value;
+            ChangeMaterial((int)currentIAState);
+            iaStateChangedDelegate(this, before, value);
+        }
+    }
 
     private int specialAttackWaiting;
     private float currentAttackCooldown;
@@ -53,17 +68,6 @@ public class IABehaviour : MonoBehaviour, IDamageable
     }
 
     #region IA State
-
-    public void IAChangeState(int stateIndex)
-    {
-        currentIAState = (IAState)stateIndex;
-        ChangeMaterial(stateIndex);
-    }
-
-    public void IAChangeState()
-    {
-        ChangeMaterial((int)currentIAState);
-    }
 
     public void ChangeMaterial(int index)
     {
@@ -132,7 +136,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
             navA.isStopped = false;
         }
 
-        IAChangeState(0);
+        currentIAState = IAState.mooving;
         float distance = Vector3.Distance(transform.position, pos.position);
         AiMoveTo(pos.position);
         //print(distance);
@@ -192,7 +196,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         transform.LookAt(targetPos);
 
         //PREP
-        IAChangeState(1);
+        currentIAState = IAState.attackPrep;
 
         hitBoxVisualisation[indexToTake].SetActive(true);
         StartCoroutine(attackDebugCooldown(prepDuration, attackDuration, IAStats.Attack[indexToTake].attackType));
@@ -214,13 +218,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
                 case LifePointType.normal:
                     currentIAState = IAState.attacking;                 
                     StartCoroutine(Attack(ray, IAStats.Attack[0]));
-                    IAChangeState();
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
                     currentIAState = IAState.specialAttack;
                     StartCoroutine(Attack(ray, IAStats.Attack[1]));
-                    IAChangeState();
                     break;
             }
             StartCoroutine(AttackCooldown());
@@ -287,12 +289,14 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         currentIAState = IAState.dead;
         navA.destination = transform.position;
-        IAChangeState();
         StopAllCoroutines();
 
         GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
         Tokendo tokendo = go.GetComponent<Tokendo>();
-        tokendo.MoveTo(GameManager.Instance.player.transform);
+        if (!tokendo.moveToPlayerAtStart)
+        {
+            tokendo.MoveToPlayer();
+        }
     }
 
     public void TakeDamage(int damageAmount)
@@ -450,6 +454,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
 public enum IAState
 {
+    justSpawned,
     mooving,
     attackPrep,
     attacking,
