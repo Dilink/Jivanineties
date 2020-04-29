@@ -4,6 +4,9 @@ using System.Collections;
 [System.Serializable]
 public class WaitForAllEnemiesDeath : ICombatPhase
 {
+
+    public int fix;
+
     public IEnumerator Execute(Action onEnd, CombatPhaseData data)
     {
         yield return null;
