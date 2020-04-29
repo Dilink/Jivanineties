@@ -291,7 +291,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
         IAChangeState();
         StopAllCoroutines();
 
-        Instantiate(dropItem, transform.position, Quaternion.identity);
+        GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+        Tokendo tokendo = go.GetComponent<Tokendo>();
+        tokendo.MoveTo(player.transform);
     }
 
     public void TakeDamage(int damageAmount)
