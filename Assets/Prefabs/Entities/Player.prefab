@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2308094108566311390}
   - component: {fileID: 2308094108566311388}
   - component: {fileID: 3617632262605767277}
+  - component: {fileID: 6468990145728530692}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51d2ff801485f241978dde5237ed474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 1
   moveSpeed: 5
   dodgeCurve:
     serializedVersion: 2
@@ -89,8 +91,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  collisionDetectionRange: 0.1
+  upgradedDodgeDuration: 0
+  upgradedDodgeRecoveryDuration: 0
+  upgradedDodgeRange: 0
+  dodgeCooldownDuration: 0
   standardAttack: {fileID: 11400000, guid: 486b79489af08e949aee99d039191e10, type: 2}
+  upgradedAttack: {fileID: 0}
   visual: {fileID: 2308094108594354172}
   absorption: {fileID: 0}
 --- !u!114 &2308094108566311388
@@ -120,6 +126,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTesting: 0
+--- !u!114 &6468990145728530692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308094108566311377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f7af4b7219bed4388fdcc288b6c9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effects:
+  - {fileID: 11400000, guid: 44bab9e0630ede3439a69ad5a9bf6cb4, type: 2}
+  - {fileID: 11400000, guid: ceb4c4111b00f8b4eb68262b47739d89, type: 2}
+  - {fileID: 11400000, guid: 1923f890898f1be499ff7d122b7b5708, type: 2}
+  - {fileID: 11400000, guid: c2e931155b2919d47a28997f1c6b2997, type: 2}
+  debugIndex: 0
+  triggerDebug: 0
+  cameraController: {fileID: 2308094108566311388}
 --- !u!1 &2308094108594354175
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,25 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public bool PerformEffect 
+    { 
+        get 
+        { 
+            return _performEffect; 
+        } 
+        
+        set 
+        { 
+            if(!value) 
+            { 
+                _followPlayer = true; 
+            } 
+            _performEffect = value;
+        }
+    }
+    public bool FollowPlayer { get { return _followPlayer; } set { _followPlayer = value; } }
+    public Vector3 CameraDistance { get { return _cameraDistance; } set { _cameraDistance = value; } }
+
     [Header("Tweaking")]
     [Range(0, 100)]
     public float cameraSpeed;
@@ -11,22 +30,26 @@ public class CameraController : MonoBehaviour
     [Header("References")]
     public Camera playerCamera;
 
-    private Vector3 cameraDistance;
-
-    private void Awake()
-    {
-        cameraDistance = playerCamera.transform.position;
-    }
+    private Vector3 _cameraDistance;
+    private bool _performEffect;
+    private bool _followPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _cameraDistance = playerCamera.transform.position;
+        _performEffect = false;
+        _followPlayer = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraDistance, cameraSpeed * Time.deltaTime);
+        if(_followPlayer)
+        {
+            playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + _cameraDistance, cameraSpeed * Time.unscaledDeltaTime);
+        }
     }
+
+
 }
