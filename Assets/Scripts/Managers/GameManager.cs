@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
 
     public UIManager uiManager;
     public InputManager inputManager;
+    public CombatController combatController;
 
     /// <summary>
     /// Gameplay only
@@ -81,6 +82,7 @@ public class GameManager : Singleton<GameManager>
         uiManager.Populate();
 
         inputManager = transform.GetComponentInChildren<InputManager>();
+        combatController = transform.GetComponentInChildren<CombatController>();
     }
 #endif
 }

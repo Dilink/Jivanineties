@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   hitBoxDuration: 0.25
-  attackRecoveryDuration: 0.05
+  attackRecoveryDuration: 0.15
   attackCoolDownDuration: 0.5
   preparationDuration: 0
   stunDuration: 0

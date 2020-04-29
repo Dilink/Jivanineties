@@ -58,18 +58,13 @@ public class EffectManager : MonoBehaviour
     {
         float timer = 0f;
         cameraController.PerformEffect = true;
-        cameraController.FollowPlayer = effect.followPlayer;
-        Vector3 cameraPosition = cameraController.playerCamera.transform.position;
-        Quaternion cameraRotation = cameraController.playerCamera.transform.rotation;
+        Quaternion cameraRotation = cameraController.playerCamera.transform.localRotation;
         float cameraFOV = cameraController.playerCamera.fieldOfView;
-        while(cameraController.PerformEffect)
+        bool next = false;
+        while(cameraController.PerformEffect && !next)
         {
             Vector3 newRotation = cameraRotation.eulerAngles;
-            if(effect.followPlayer)
-            {
-                cameraPosition = cameraController.CameraPosition;
-            }
-            Vector3 newPosition = cameraPosition;
+            Vector3 newPosition = Vector3.zero;
             if(effect.timeScale.length > 0 && timer <= effect.timeScale[effect.timeScale.length - 1].time)
             {
                 Time.timeScale = effect.timeScale.Evaluate(timer);
@@ -104,17 +99,27 @@ public class EffectManager : MonoBehaviour
             }
             if(timer >= effect.effectDuration)
             {
-                cameraController.PerformEffect = false;
+                if(effect.nextEffect != null)
+                {
+                    next = true;
+                }
+                else
+                {
+                    cameraController.PerformEffect = false;
+                }
             }
-            cameraController.playerCamera.transform.rotation = Quaternion.Euler(newRotation);
-            cameraController.playerCamera.transform.position = newPosition;
+            cameraController.playerCamera.transform.localRotation = Quaternion.Euler(newRotation);
+            cameraController.playerCamera.transform.localPosition = newPosition;
             timer += Time.unscaledDeltaTime;
             yield return null;
         }
-        cameraController.playerCamera.transform.position = cameraPosition;
-        cameraController.playerCamera.transform.rotation = cameraRotation;
+        cameraController.playerCamera.transform.localPosition = Vector3.zero;
+        cameraController.playerCamera.transform.localRotation = cameraRotation;
         cameraController.playerCamera.fieldOfView = cameraFOV;
         Time.timeScale = 1f;
-
+        if(next)
+        {
+            StartCoroutine(Evaluate(effect.nextEffect));
+        }
     }
 }

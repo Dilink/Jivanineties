@@ -28,4 +28,9 @@ public class WaitPhase : ICombatPhase
 
 		onEnd();
 	}
+
+	public CombatPhaseType ReturnType()
+	{
+		return CombatPhaseType.WaitPhase;
+	}
 }

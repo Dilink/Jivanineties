@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
+using DG.Tweening;
 
 public class AbsorptionArea : MonoBehaviour, IAbsorbable
 {
@@ -11,17 +12,39 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
     public Vector3[] boundaries;
     public bool areaHasWater = true;
 
+    public float transitionSpeed = 0.5f;
+
     [HideInInspector]
     public bool isEditingBoundaries;
 
+    [SerializeField]
     private int lastBoundariesLength = 0;
+
+    [SerializeField]
     private MeshRenderer meshRenderer;
+
+    [ShowInInspector]
+    [SerializeField]
+    [ReadOnly]
+    private MeshRenderer[] natureMeshRenderers;
 
     private static readonly System.Random random = new System.Random();
 
+    [Button]
+    private void ToggleDriedState()
+    {
+        if (areaHasWater)
+        {
+            OnAbsorption();
+        }
+        else
+        {
+            OnRestore();
+        }
+    }
+
     private void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
         UpdateMaterialBasedOnWater();
     }
 
@@ -51,7 +74,14 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
 
     private void UpdateMaterialBasedOnWater()
     {
-        meshRenderer.material = areaHasWater ? materials.materialBefore : materials.materialAfter;
+        float driedValue = areaHasWater ? 1.0f : 0.0f;
+        DOTween.To(() => driedValue, x => driedValue = x, (areaHasWater ? 0.0f : 1.0f), transitionSpeed).OnUpdate(() =>
+        {
+            foreach (var nature in natureMeshRenderers)
+            {
+                nature.materials[0].SetFloat("_DRIED", driedValue);
+            }
+        });
     }
 
 #if UNITY_EDITOR
@@ -141,6 +171,13 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
     public void CancelBakeBoundaries()
     {
         isEditingBoundaries = false;
+    }
+
+    [Button(ButtonSizes.Medium), GUIColor(0.89f, 0.14f, 0.14f)]
+    public void Populate()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        natureMeshRenderers = transform.GetComponentsInChildren<MeshRenderer>();
     }
 #endif
 }
