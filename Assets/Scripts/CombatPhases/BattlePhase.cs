@@ -51,4 +51,8 @@ public class BattlePhase : ICombatPhase
 		onEnd();
 		yield return null;
 	}
+	public CombatPhaseType ReturnType()
+	{
+		return CombatPhaseType.BattlePhase;
+	}
 }

@@ -11,4 +11,8 @@ public class TextPhase : ICombatPhase
         GameManager.Instance.uiManager.ShowAlertText(text);
         yield return null;
     }
+    public CombatPhaseType ReturnType()
+    {
+        return CombatPhaseType.BattlePhase;
+    }
 }

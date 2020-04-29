@@ -6,7 +6,6 @@ using UnityEngine;
 public class SpecialEffect : ScriptableObject
 {
     public float effectDuration;
-    public bool followPlayer;
 
     [Header("Camera Rotation")]
     [Curve(0, -50f, 10f, 100f, true)]
@@ -29,4 +28,6 @@ public class SpecialEffect : ScriptableObject
     public AnimationCurve camZoom;
     [Curve(0, 0.1f, 10f, 1.9f, true)]
     public AnimationCurve timeScale;
+    public SpecialEffect nextEffect;
+
 }

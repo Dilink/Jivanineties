@@ -11,4 +11,9 @@ public class WaitForAllEnemiesDeath : ICombatPhase
             yield return null;
         }
     }
+
+    public CombatPhaseType ReturnType()
+    {
+        return CombatPhaseType.BattlePhase;
+    }
 }
