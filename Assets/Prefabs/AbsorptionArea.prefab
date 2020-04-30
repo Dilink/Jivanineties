@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b8174a698de4f4643b31592c83704c42, type: 2}
+  - {fileID: 2100000, guid: 41b6f72ef14063e4bb2b7117d931ee39, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,5 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materials: {fileID: 11400000, guid: b9c97a4a1102f9d45b417d016dc269ed, type: 2}
   boundaries: []
-  areaHasWater: 0
+  areaHasWater: 1
+  transitionSpeed: 0.5
   isEditingBoundaries: 0
+  lastBoundariesLength: 0
+  meshRenderer: {fileID: 0}
+  natureMeshRenderers: []
