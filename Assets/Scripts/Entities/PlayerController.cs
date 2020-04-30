@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoAmount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.combatController.currentPhase is WaitPhase)
         {
             restoring = StartCoroutine(Restore());
+            playerFeedback.inRecover = true;
         }
     }
 

@@ -82,11 +82,10 @@ public class PlayerFeedback : MonoBehaviour
         {
             for (int i = 0; i < Recover.Length; i++)
             {
-
                 Recover[i].Play();
             }
-            inRecover = false;
         }
+        inRecover = false;
 
     }
 
