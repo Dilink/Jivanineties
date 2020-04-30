@@ -14,6 +14,7 @@ public enum PlayerActionType
 public class WaitForPlayerActionPhase : ICombatPhase
 {
     public PlayerActionType actionType;
+    public bool triggerOnSpecialAction;
 
     private PlayerController player;
     private Action onPhaseEnd;
@@ -50,14 +51,30 @@ public class WaitForPlayerActionPhase : ICombatPhase
 
     private void OnAttack(bool isPoweredAttack)
     {
-        player.onAttackDelegate -= OnAttack;
-        onPhaseEnd();
+        if (triggerOnSpecialAction && isPoweredAttack)
+        {
+            player.onAttackDelegate -= OnAttack;
+            onPhaseEnd();
+        }
+        else if (!triggerOnSpecialAction && !isPoweredAttack)
+        {
+            player.onAttackDelegate -= OnAttack;
+            onPhaseEnd();
+        }
     }
 
     private void OnDash(Transform destination)
     {
-        player.onDashDelegate -= OnDash;
-        onPhaseEnd();
+        if (triggerOnSpecialAction && destination != null)
+        {
+            player.onDashDelegate -= OnDash;
+            onPhaseEnd();
+        }
+        else if (!triggerOnSpecialAction && destination == null)
+        {
+            player.onDashDelegate -= OnDash;
+            onPhaseEnd();
+        }
     }
 
     public CombatPhaseType ReturnType()
