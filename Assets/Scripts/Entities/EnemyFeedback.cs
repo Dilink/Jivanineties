@@ -8,16 +8,18 @@ public class EnemyFeedback : MonoBehaviour
 
     public ParticleSystem StunFX;
 
-    public bool isStun;
-    public bool isInvicible;
-
-    
+    public bool IsStun { get; set; }
+    public bool isInvicible { get; set; }
 
     public void feedBackInvicibility()
     {
-        if (isStun)
+        if (IsStun)
         {
             feedBackStunInvisibility();
+        }
+        else
+        {
+            stateAnim.Play("Anim_Invincibility_2");
         }
 
     }
@@ -28,25 +30,38 @@ public class EnemyFeedback : MonoBehaviour
         {
             feedBackStunInvisibility();
         }
-        //animWaterShield.Play("WaterShield_Absorption");
+        else
+        {
+            stateAnim.Play("Anim_Stunned");
+        }
     }
 
     public void feedBackStunInvisibility()
     {
-        if (isInvicible)
-        {
-
-        }
-        //animWaterShield.Play("WaterShield_Absorption");
+        stateAnim.Play("Anim_Stunned_Invincibility");
     }
 
     public void endStun()
     {
-
+        if (isInvicible)
+        {
+            stateAnim.Play("Anim_Invincibility_2");
+        }
+        else
+        {
+            stateAnim.Play("Anim_Stunned");
+        }
     }
 
     public void endInvincibility()
     {
-
+        if (IsStun)
+        {
+            stateAnim.Play("Anim_Stunned");
+        }
+        else
+        {
+            stateAnim.Play("Anim_Stunned");
+        }
     }
 }
