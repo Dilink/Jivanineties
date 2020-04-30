@@ -497,6 +497,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
         animator.SetBool("Move", false);
         StopAllCoroutines();
+        isInvincible = false;
+        enemyFeedback.endInvincibility();
+        enemyFeedback.isInvicible = false;
         StartCoroutine(StunnedTimer(duration));
 
     }
