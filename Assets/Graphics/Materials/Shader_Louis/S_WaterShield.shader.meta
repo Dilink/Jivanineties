@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 2e0c89a91f107db429d1616c346eafdb
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _Perlin: {fileID: 2800000, guid: 805af41b6e803c748bc9986722ba9df2, type: 3}
+  - _RAmp: {fileID: 2800000, guid: 4edf59f9699caef46970d85e32231dd6, type: 3}
+  - _WaterShieldTexture: {fileID: 2800000, guid: 3a7849761157ff743ad92b91c31820f9,
+      type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

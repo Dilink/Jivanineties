@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ced20e6f1b598540b97abf4e740f5b1, type: 3}
   m_Name: SpawnPoint1
   m_EditorClassIdentifier: 
-  location: {x: 6, y: 0, z: -6}
+  location: {x: -12.431393, y: 0, z: -7.4690886}
   radius: 4
-  prefab: {fileID: 5956692909601790317, guid: e7237c8b20e781d4f9522a47ab91c4f7, type: 3}
+  prefab: {fileID: 112932313886882948, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2, type: 3}
+  creationCount: 1

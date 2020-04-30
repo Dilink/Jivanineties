@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c64c928761c874396a797a248ef659, type: 3}
   m_Name: BulletTimeZoomIn
   m_EditorClassIdentifier: 
-  effectDuration: 2
+  effectDuration: 1.2
   followPlayer: 1
   camRotationX:
     serializedVersion: 2
@@ -218,30 +218,39 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -66.43835
-      outSlope: -66.43835
+      inSlope: -146.89859
+      outSlope: -146.89859
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.071428575
+      outWeight: 0.09778959
     - serializedVersion: 3
-      time: 1
-      value: -25
-      inSlope: 0.06802082
-      outSlope: 0.06802082
-      tangentMode: 34
+      time: 0.1
+      value: -8
+      inSlope: -8
+      outSlope: -8
+      tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.9984802
-      value: 0.097839355
-      inSlope: 47.92986
-      outSlope: 47.92986
+      time: 1
+      value: -10
+      inSlope: -0.2896033
+      outSlope: -0.2896033
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.06849316
+      inWeight: 0.045989092
       outWeight: 0
+    - serializedVersion: 3
+      time: 1.2
+      value: -10
+      inSlope: 0.08845327
+      outSlope: 18.64812
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.25216484
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -258,23 +267,23 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.071428575
     - serializedVersion: 3
-      time: 1
-      value: 0.25
-      inSlope: 0.0020406246
-      outSlope: 0.0020406246
-      tangentMode: 34
+      time: 0.5
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.9984802
-      value: 1.0029352
-      inSlope: 1.4378958
-      outSlope: 1.4378958
-      tangentMode: 0
+      time: 1.2
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
       weightedMode: 0
-      inWeight: 0.06849316
-      outWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

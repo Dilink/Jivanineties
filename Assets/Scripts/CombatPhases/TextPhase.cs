@@ -9,6 +9,11 @@ public class TextPhase : ICombatPhase
     public IEnumerator Execute(Action onEnd, CombatPhaseData data)
     {
         GameManager.Instance.uiManager.ShowAlertText(text);
+        onEnd();
         yield return null;
+    }
+    public CombatPhaseType ReturnType()
+    {
+        return CombatPhaseType.BattlePhase;
     }
 }
