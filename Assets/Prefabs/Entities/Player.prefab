@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3617632262605767277}
   - component: {fileID: 6468990145728530692}
   - component: {fileID: 6965727191136098438}
+  - component: {fileID: 411307805}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -49,13 +50,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  moveSpeed: 5
+  moveSpeed: 4
   dodgeCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 5
+      value: 3
       inSlope: 7.1218405
       outSlope: 0
       tangentMode: 1
@@ -64,9 +65,9 @@ MonoBehaviour:
       outWeight: 0.15228787
     - serializedVersion: 3
       time: 0.15
-      value: 5
+      value: 3
       inSlope: 0
-      outSlope: -500.0005
+      outSlope: -300.00027
       tangentMode: 65
       weightedMode: 0
       inWeight: 0
@@ -74,14 +75,14 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.16
       value: 0
-      inSlope: -500.0005
+      inSlope: -300.00027
       outSlope: 0
       tangentMode: 5
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.25
+      time: 0.4
       value: 0
       inSlope: 0
       outSlope: 0
@@ -92,14 +93,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  upgradedDodgeDuration: 0
-  upgradedDodgeRecoveryDuration: 0
-  upgradedDodgeRange: 0
-  upgradedDodgeStunDuration: 0
-  dodgeCooldownDuration: 0
-  restoreDelay: 0
+  upgradedDodgeDuration: 0.2
+  upgradedDodgeRecoveryDuration: 0.25
+  upgradedDodgeRange: 2
+  upgradedDodgeStunDuration: 2
+  dodgeCooldownDuration: 0.5
+  restoreDelay: 1
   standardAttack: {fileID: 11400000, guid: 486b79489af08e949aee99d039191e10, type: 2}
-  upgradedAttack: {fileID: 0}
+  upgradedAttack: {fileID: 11400000, guid: 64cfd3a05f270a34a8a48464489071bf, type: 2}
   visual: {fileID: 2308094108594354172}
   absorption: {fileID: 3617632262605767277}
   animator: {fileID: 6892776228416887051}
@@ -165,6 +166,28 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &411307805
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308094108566311377}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2308094108594354175
 GameObject:
   m_ObjectHideFlags: 0
