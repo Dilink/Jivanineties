@@ -4,15 +4,49 @@ using UnityEngine;
 
 public class EnemyFeedback : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Animator stateAnim;
+
+    public ParticleSystem StunFX;
+
+    public bool isStun;
+    public bool isInvicible;
+
+    
+
+    public void feedBackInvicibility()
     {
-        
+        if (isStun)
+        {
+            feedBackStunInvisibility();
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void feedBackStun()
     {
-        
+        if (isInvicible)
+        {
+            feedBackStunInvisibility();
+        }
+        //animWaterShield.Play("WaterShield_Absorption");
+    }
+
+    public void feedBackStunInvisibility()
+    {
+        if (isInvicible)
+        {
+
+        }
+        //animWaterShield.Play("WaterShield_Absorption");
+    }
+
+    public void endStun()
+    {
+
+    }
+
+    public void endInvincibility()
+    {
+
     }
 }
