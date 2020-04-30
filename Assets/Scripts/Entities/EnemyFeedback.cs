@@ -23,7 +23,6 @@ public class EnemyFeedback : MonoBehaviour
         }
 
     }
-
     public void feedBackStun()
     {
         if (isInvicible)
@@ -49,7 +48,7 @@ public class EnemyFeedback : MonoBehaviour
         }
         else
         {
-            stateAnim.Play("Anim_Stunned");
+            stateAnim.Play("New State");
         }
     }
 
@@ -61,7 +60,7 @@ public class EnemyFeedback : MonoBehaviour
         }
         else
         {
-            stateAnim.Play("Anim_Stunned");
+            stateAnim.Play("New State");
         }
     }
 }
