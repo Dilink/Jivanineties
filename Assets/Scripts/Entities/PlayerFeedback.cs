@@ -54,7 +54,7 @@ public class PlayerFeedback : MonoBehaviour
         {
             for (int i = 0; i < dash_Up.Length; i++)
             {
-               GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_Dash_Up , transform.position);
+                GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_Dash_Up, transform.position);
                 dash_Up[i].Play();
             }
         }
@@ -101,5 +101,17 @@ public class PlayerFeedback : MonoBehaviour
     {
         GameManager.Instance.sM.PlaySoundPositioned(GameSound.WaterIn, transform.position);
         animWaterAbsorption.Play("WaterShield_Absorption");
+    }
+
+    public void playAttackSound()
+    {
+        if (SpecialAttack)
+        {
+            GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_Attack_Up, transform.position);
+        }
+        else
+        {
+            GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_Attack, transform.position);
+        }
     }
 }

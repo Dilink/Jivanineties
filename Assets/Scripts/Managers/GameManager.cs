@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
         {
             _tokendoAmount = value;
             uiManager.UpdateTokendoCount(_tokendoAmount);
-            sM.PlaySound(GameSound.Enemy_stun);
+            sM.PlaySound(GameSound.Pickup_Tokkendo);
         }
     }
 
