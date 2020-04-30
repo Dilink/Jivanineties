@@ -6,6 +6,7 @@ using UnityEngine;
 public class WaitPhase : ICombatPhase
 {
 	public float time;
+	public bool isTextVisible = true;
 
 	public IEnumerator Execute(Action onEnd, CombatPhaseData data)
 	{
@@ -13,16 +14,22 @@ public class WaitPhase : ICombatPhase
 
 		while (remaining > 1.0f)
 		{
-			Debug.Log(GameManager.Instance);
-			Debug.Log(GameManager.Instance.uiManager);
-			GameManager.Instance.uiManager.ShowAlertText("New combat in " + remaining + "s");
+			if (isTextVisible)
+			{
+				GameManager.Instance.uiManager.ShowAlertText("New combat in " + remaining + "s");
+			}
+
 			remaining -= 1.0f;
 			yield return new WaitForSeconds(1.0f);
 		}
 
 		if (remaining > 0.0f)
 		{
-			GameManager.Instance.uiManager.ShowAlertText("New combat in " + remaining + "s");
+			if (isTextVisible)
+			{
+				GameManager.Instance.uiManager.ShowAlertText("New combat in " + remaining + "s");
+			}
+
 			yield return new WaitForSeconds(remaining);
 		}
 
