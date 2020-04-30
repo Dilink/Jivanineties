@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
+    public delegate void OnAttackDelegate(bool isPoweredAttack);
+    public delegate void OnDashDelegate(Transform destination);
+
+    public OnAttackDelegate onAttackDelegate;
+    public OnDashDelegate onDashDelegate;
+
     [Header("Tweaking")]
     public int hp = 1;
     [Range(0, 50)]
@@ -104,11 +110,13 @@ public class PlayerController : MonoBehaviour, IDamageable
                 }
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), upgradedAttack));
                 upgradedAttackCooldown = upgradedAttack.attackCoolDownDuration;
+                onAttackDelegate(true);
             }
             else if (standardAttackCooldown <= 0)
             {
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), standardAttack));
                 standardAttackCooldown = standardAttack.attackCoolDownDuration;
+                onAttackDelegate(false);
             }
         }
     }
@@ -170,10 +178,12 @@ public class PlayerController : MonoBehaviour, IDamageable
                 }
                 playerFeedback.SpecialDash = true;
                 dodging = StartCoroutine(Dodge(enemies[0].transform));
+                onDashDelegate(enemies[0].transform);
             }
             else
             {
                 dodging = StartCoroutine(Dodge(null));
+                onDashDelegate(null);
             }
             dodgeCooldown = dodgeCooldownDuration;
         }
@@ -243,7 +253,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(attack.attackRecoveryDuration);
         attacking = null;
     }
-
+    
     IEnumerator Dodge(Transform destination)
     {
         float timer = 0f;
@@ -290,6 +300,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (area != null && area.CanRestore())
         {
             movement = Vector3.zero;
+            animator.SetBool("Run", false);
+            animator.SetTrigger("Restore");
             while (loop && GameManager.Instance.inputManager.POWER_HOLD)
             {
                 if (timer >= restoreDelay)
@@ -306,6 +318,8 @@ public class PlayerController : MonoBehaviour, IDamageable
                     GameManager.Instance.tokendoAmount--;
                 }
             }
+            animator.SetTrigger("Recover");
+            yield return new WaitForSeconds(0.2f);
         }
         restoring = null;
     }
@@ -364,7 +378,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
         while (timer < dbzKnockBackCurve.keys[dbzKnockBackCurve.length - 1].time);
         animator.SetTrigger("Recover");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         speedModifier = 1f;
         movement = Vector3.zero;
         knocked = null;
