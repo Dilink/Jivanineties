@@ -18,5 +18,5 @@ MonoBehaviour:
   attackCoolDownDuration: 0
   preparationDuration: 0.7
   stunDuration: 0
-  rangeBox: {x: 1, y: 2, z: 3}
+  rangeBox: {x: 1, y: 2, z: 4}
   attackType: 0

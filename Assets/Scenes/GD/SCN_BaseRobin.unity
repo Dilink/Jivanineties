@@ -6344,53 +6344,13 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 305199971}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &411307801 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2308094108566311377, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-    type: 3}
-  m_PrefabInstance: {fileID: 2308094107536393862}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &411307804 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3617632262605767277, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-    type: 3}
-  m_PrefabInstance: {fileID: 2308094107536393862}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411307801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 781f0eb2a341370449dfc6790b7ed66a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!195 &411307805
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411307801}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &411307806 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2308094108566311388, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
     type: 3}
   m_PrefabInstance: {fileID: 2308094107536393862}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411307801}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd69fdcdb7cd3b74b9517af58d4d2b49, type: 3}
@@ -7441,26 +7401,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5640445854362335041, guid: 796f20c270d257349b5e91d04689eb18,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 6644953543441268827, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 411307806}
-    - target: {fileID: 7117395324102259302, guid: 796f20c270d257349b5e91d04689eb18,
-        type: 3}
-      propertyPath: combatController
-      value: 
-      objectReference: {fileID: 1740806525}
-    - target: {fileID: 7117395324102259302, guid: 796f20c270d257349b5e91d04689eb18,
-        type: 3}
-      propertyPath: tokendoCount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7622959825166770690, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10263,71 +10208,6 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 305199971}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1740806524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3522146111231909753, guid: 796f20c270d257349b5e91d04689eb18,
-    type: 3}
-  m_PrefabInstance: {fileID: 788584809}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1740806525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740806524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ea618a61192b24cb9a82eac2a4b973, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phases:
-  - id: 0
-  - id: 1
-  - id: 2
-  - id: 3
-  - id: 4
-  - id: 5
-  - id: 6
-  currentPhase:
-    id: 7
-  references:
-    version: 1
-    00000000:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 10
-    00000001:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000002:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000003:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 10
-    00000004:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000005:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000006:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
-      data:
-        text: Victoire!
-    00000007:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
 --- !u!23 &1747562414 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1319140133759732117, guid: da890f046bf52054780d1605926fa9f4,
@@ -11604,72 +11484,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311377, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311388, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: playerCamera
-      value: 
-      objectReference: {fileID: 1201307500}
     - target: {fileID: 2308094108566311388, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: cameraman
       value: 
       objectReference: {fileID: 546651806}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+    - target: {fileID: 2308094108566311388, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
-      propertyPath: upgradedAttack
+      propertyPath: playerCamera
       value: 
-      objectReference: {fileID: 11400000, guid: 64cfd3a05f270a34a8a48464489071bf,
-        type: 2}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: absorption
-      value: 
-      objectReference: {fileID: 411307804}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: upgradedDodgeDuration
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: upgradedDodgeRecoveryDuration
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: upgradedDodgeRange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: dodgeCooldownDuration
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: visual
-      value: 
-      objectReference: {fileID: 2308094107536393863}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: restoreDelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: dodgeCurve.m_Curve.Array.data[3].time
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: upgradedDodgeStunDuration
-      value: 2
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1201307500}
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11727,9 +11551,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ec60b15c46821847b5cb1d0b00bc7ff, type: 3}
---- !u!4 &2308094107536393863 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2308094108594354172, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-    type: 3}
-  m_PrefabInstance: {fileID: 2308094107536393862}
-  m_PrefabAsset: {fileID: 0}
