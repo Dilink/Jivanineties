@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ced20e6f1b598540b97abf4e740f5b1, type: 3}
-  m_Name: SpawnPoint_5
+  m_Name: SpawnPoint_6
   m_EditorClassIdentifier: 
-  location: {x: 14.696799, y: 0, z: 1.2899504}
+  location: {x: -8.3803, y: 0, z: -14.989697}
   radius: 4
   prefab: {fileID: 112932313886882948, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2, type: 3}
   creationCount: 1

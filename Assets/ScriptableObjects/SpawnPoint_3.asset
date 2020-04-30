@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   location: {x: 13.212632, y: 0, z: -12.690276}
   radius: 4
-  prefab: {fileID: 112932313886882948, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2, type: 3}
+  prefab: {fileID: 7710674430112167491, guid: 8a1c36511da05174ab9c89187f6cd13b, type: 3}
   creationCount: 1
