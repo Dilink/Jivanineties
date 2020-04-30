@@ -27,6 +27,10 @@ public class GameManager : Singleton<GameManager>
         set
         {
             _tokendoAmount = value;
+            if (_tokendoAmount < 0)
+            {
+                _tokendoAmount = 0;
+            }
             uiManager.UpdateTokendoCount(_tokendoAmount);
             sM.PlaySound(GameSound.Pickup_Tokkendo);
         }
