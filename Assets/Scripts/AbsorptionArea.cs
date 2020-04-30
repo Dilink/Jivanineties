@@ -84,7 +84,13 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
         {
             foreach (var nature in natureMeshRenderers)
             {
-                nature.materials[0].SetFloat("_DRIED", driedValue);
+                foreach (var mat in nature.materials)
+                {
+                    if (mat.HasProperty("_DRIED"))
+                    {
+                        mat.SetFloat("_DRIED", driedValue);
+                    }
+                }
             }
         });
     }
