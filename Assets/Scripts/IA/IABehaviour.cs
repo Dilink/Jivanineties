@@ -18,6 +18,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public IAStats IAStats;
     public GameObject dropItem;
+    public int dropCount = 1;
   //  public EnemyFeedback enemyFeedback;
     public bool isTesting = true;
 
@@ -236,7 +237,6 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 case LifePointType.normal:
                     animator.SetTrigger("AttackFront");
-
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
@@ -294,6 +294,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         loop = true;
         timer = 0f;
         yield return new WaitForSeconds(attack.dodgeWindowDuration);
+        animator.SetTrigger("Release");
         Ray ray = new Ray(transform.position, transform.forward);
         while(loop && !attackCanceled)
         {
@@ -341,11 +342,17 @@ public class IABehaviour : MonoBehaviour, IDamageable
         navA.destination = transform.position;
         StopAllCoroutines();
 
-        GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
-        Tokendo tokendo = go.GetComponent<Tokendo>();
-        if (!tokendo.moveToPlayerAtStart)
+        if (dropCount > 0)
         {
-            tokendo.MoveToPlayer();
+            for (int i = 0; i < dropCount; i++)
+            {
+                GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+                Tokendo tokendo = go.GetComponent<Tokendo>();
+                if (!tokendo.moveToPlayerAtStart)
+                {
+                    tokendo.MoveToPlayer();
+                }
+            }
         }
     }
 
@@ -371,7 +378,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         for (int i = 0; i < damageAmount; i++)
         {
             // print("PV type : " + IAStats.lifePointTypes[lastLife - (1 + i)]);
-            if (IAStats.lifePointTypes[lastLife - (1 + i)] == LifePointType.specialAttack)
+            /*if (IAStats.lifePointTypes[lastLife - (1 + i)] == LifePointType.specialAttack)
             {
                 switch (currentIAState)
                 {
@@ -408,7 +415,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
                         //    break;
 
                 }
-            }
+            }*/
+
+            specialAttackWaiting = 1;
         }
 
     }
@@ -427,9 +436,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
         for(int i = 0; i < hitBoxVisualisation.Length; i++)
         {
             hitBoxVisualisation[i].SetActive(false);
-        } 
-        
-        switch (currentIAState)
+        }
+
+        /*switch (currentIAState)
         {
             case IAState.mooving:
                 StopCoroutine("AIPursuit");
@@ -458,8 +467,15 @@ public class IABehaviour : MonoBehaviour, IDamageable
             case IAState.stunned:
                 stunnedDuration += duration;
                 return;
+        }*/
+        if(currentIAState == IAState.stunned)
+        {
+            stunnedDuration += duration;
+            return;
         }
-        StunnedTimer(duration);
+        animator.SetBool("Move", false);
+        StopAllCoroutines();
+        StartCoroutine(StunnedTimer(duration));
 
     }
 
@@ -479,6 +495,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
         stunnedDuration = 0;
         stunned = false;
+        navA.isStopped = false;
         AIPursuit(GameManager.Instance.player.transform);    
     }
 

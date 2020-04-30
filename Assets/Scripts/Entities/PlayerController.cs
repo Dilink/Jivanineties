@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController: MonoBehaviour, IDamageable
+public class PlayerController : MonoBehaviour, IDamageable
 {
     [Header("Tweaking")]
     public int hp = 1;
     [Range(0, 50)]
     public float moveSpeed = 5f;
     public AnimationCurve dodgeCurve;
-    [Curve(0,0,0.75f,10f,true)]
+    [Curve(0, 0, 0.75f, 10f, true)]
     public AnimationCurve dbzKnockBackCurve;
     public float upgradedDodgeDuration;
     public float upgradedDodgeRecoveryDuration;
@@ -56,7 +56,7 @@ public class PlayerController: MonoBehaviour, IDamageable
     void Update()
     {
         UpdateCooldowns();
-        if(knocked == null)
+        if (knocked == null)
         {
             CheckRestore();
             CheckAttack();
@@ -75,7 +75,7 @@ public class PlayerController: MonoBehaviour, IDamageable
 
     private void CheckRestore()
     {
-        if(dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoAmount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.combatController.currentPhase is WaitPhase)
+        if (dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoAmount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.combatController.currentPhase is WaitPhase)
         {
             restoring = StartCoroutine(Restore());
         }
@@ -86,16 +86,20 @@ public class PlayerController: MonoBehaviour, IDamageable
         if (dodging == null && restoring == null && GameManager.Instance.inputManager.ATTACK && attacking == null)
         {
             IAbsorbable area = absorption.GetArea();
-            if(upgradedAttackCooldown <= 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || area.OnAbsorption()))
+            if (upgradedAttackCooldown <= 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || (area != null && area.OnAbsorption())))
             {
-                if(GameManager.Instance.tokendoAmount > 0)
+                if (GameManager.Instance.tokendoAmount <= 0)
+                {
+                    playerFeedback.PlayWaterAbsorption();
+                }
+                if (GameManager.Instance.tokendoAmount > 0)
                 {
                     GameManager.Instance.tokendoAmount--;
                 }
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), upgradedAttack));
                 upgradedAttackCooldown = upgradedAttack.attackCoolDownDuration;
             }
-            else if(standardAttackCooldown <= 0)
+            else if (standardAttackCooldown <= 0)
             {
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), standardAttack));
                 standardAttackCooldown = standardAttack.attackCoolDownDuration;
@@ -105,28 +109,28 @@ public class PlayerController: MonoBehaviour, IDamageable
 
     private void CheckMovement()
     {
-        if(dodging == null && attacking == null && restoring == null)
+        if (dodging == null && attacking == null && restoring == null)
         {
             movement = Vector3.zero;
-            if(GameManager.Instance.inputManager.UP)
+            if (GameManager.Instance.inputManager.UP)
             {
                 movement += new Vector3(0, 0, 1);
             }
-            else if(GameManager.Instance.inputManager.DOWN)
+            else if (GameManager.Instance.inputManager.DOWN)
             {
                 movement += new Vector3(0, 0, -1);
             }
-            if(GameManager.Instance.inputManager.RIGHT)
+            if (GameManager.Instance.inputManager.RIGHT)
             {
                 movement += new Vector3(1, 0, 0);
             }
-            else if(GameManager.Instance.inputManager.LEFT)
+            else if (GameManager.Instance.inputManager.LEFT)
             {
                 movement += new Vector3(-1, 0, 0);
             }
             movement = movement.normalized;
         }
-        if(movement.magnitude > 0)
+        if (movement.magnitude > 0)
         {
             animator.SetBool("Run", true);
         }
@@ -135,7 +139,7 @@ public class PlayerController: MonoBehaviour, IDamageable
             animator.SetBool("Run", false);
         }
     }
-    
+
     private void CheckDodge()
     {
         playerFeedback.SpecialDash = false;
@@ -143,10 +147,13 @@ public class PlayerController: MonoBehaviour, IDamageable
         {
             IAbsorbable area = absorption.GetArea();
             Collider[] enemies = Physics.OverlapSphere(transform.position, upgradedDodgeRange, 1 << LayerMask.NameToLayer("Enemy"));
-            if(enemies.Length > 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || area.OnAbsorption()))
+            if (enemies.Length > 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || (area !=null && area.OnAbsorption())))
             {
-                
-                if(GameManager.Instance.tokendoAmount > 0)
+                if (GameManager.Instance.tokendoAmount <= 0)
+                {
+                    playerFeedback.PlayWaterAbsorption();
+                }
+                if (GameManager.Instance.tokendoAmount > 0)
                 {
                     GameManager.Instance.tokendoAmount--;
                 }
@@ -177,9 +184,9 @@ public class PlayerController: MonoBehaviour, IDamageable
             transform.position = hit.position;
         }
 
-        if(!movement.Equals(Vector3.zero))
+        if (!movement.Equals(Vector3.zero))
         {
-            if(knocked != null)
+            if (knocked != null)
             {
                 visual.rotation = Quaternion.LookRotation(-movement, Vector3.up);
 
@@ -200,19 +207,19 @@ public class PlayerController: MonoBehaviour, IDamageable
         float timer = 0f;
         movement = Vector3.zero;
         animator.SetTrigger("Attack");
-        while(loop)
+        while (loop)
         {
             timer += Time.deltaTime;
-            if(timer >= attack.hitBoxDuration)
+            if (timer >= attack.hitBoxDuration)
             {
                 loop = false;
             }
             Collider[] enemies = Physics.OverlapBox(ray.origin + ray.direction * attack.rangeBox.z / 2f, attack.rangeBox / 2f, visual.rotation, 1 << LayerMask.NameToLayer("Enemy"));
             ExtDebug.DrawBoxCastBox(ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), visual.rotation, ray.direction, attack.rangeBox.z, Color.green);
-            if(!enemyHit && enemies.Length > 0)
+            if (!enemyHit && enemies.Length > 0)
             {
                 enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage, transform);
-                if(attack.stunDuration > 0)
+                if (attack.stunDuration > 0)
                 {
                     IABehaviour ia = enemies[0].GetComponent<IABehaviour>();
                     if (ia)
@@ -234,19 +241,19 @@ public class PlayerController: MonoBehaviour, IDamageable
     IEnumerator Dodge(Transform destination)
     {
         float timer = 0f;
-        if(destination != null)
+        if (destination != null)
         {
             playerFeedback.dashFeedback();
             movement = Vector3.zero;
             NavMeshHit hit;
             NavMesh.SamplePosition(destination.position + (destination.position - transform.position).normalized * 2, out hit, 10f, 1 << NavMesh.GetAreaFromName("Walkable"));
-            if(mesh != null)
+            if (mesh != null)
             {
                 mesh.enabled = false;
             }
             yield return new WaitForSeconds(upgradedDodgeDuration);
             transform.position = hit.position;
-            if(mesh != null)
+            if (mesh != null)
             {
                 mesh.enabled = true;
             }
@@ -262,7 +269,7 @@ public class PlayerController: MonoBehaviour, IDamageable
                 timer += Time.deltaTime;
                 yield return null;
             }
-            while(timer < dodgeCurve.keys[dodgeCurve.length - 1].time);
+            while (timer < dodgeCurve.keys[dodgeCurve.length - 1].time);
             speedModifier = 1f;
             movement = Vector3.zero;
         }
@@ -274,21 +281,21 @@ public class PlayerController: MonoBehaviour, IDamageable
         float timer = 0f;
         bool loop = true;
         IAbsorbable area = absorption.GetArea();
-        if(area != null && area.CanRestore())
+        if (area != null && area.CanRestore())
         {
             movement = Vector3.zero;
-            while(loop && GameManager.Instance.inputManager.POWER_HOLD)
+            while (loop && GameManager.Instance.inputManager.POWER_HOLD)
             {
-                if(timer >= restoreDelay)
+                if (timer >= restoreDelay)
                 {
                     loop = false;
                 }
                 timer += Time.unscaledDeltaTime;
                 yield return null;
             }
-            if(GameManager.Instance.inputManager.POWER_HOLD)
+            if (GameManager.Instance.inputManager.POWER_HOLD)
             {
-                if(area.OnRestore())
+                if (area.OnRestore())
                 {
                     GameManager.Instance.tokendoAmount--;
                 }
@@ -301,19 +308,38 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         playerFeedback.FeedBackTakeDamage();
         IAbsorbable area = absorption.GetArea();
-        if(area == null || !area.OnAbsorption())
+        if (area == null || !area.OnAbsorption())
         {
             Debug.Log("Aïe! J'ai mal!");
             hp -= damageAmount;
-            if(hp <= 0)
+            if (hp <= 0)
             {
                 GameOver();
             }
         }
-        else if(source != null)
+        else if (source != null)
         {
             playerFeedback.PlayWaterShield();
-            StopAllCoroutines();
+            if (dodging != null)
+            {
+                StopCoroutine(dodging);
+                dodging = null;
+            }
+            if (attacking != null)
+            {
+                StopCoroutine(attacking);
+                attacking = null;
+            }
+            if (restoring != null)
+            {
+                StopCoroutine(restoring);
+                restoring = null;
+            }
+            if (knocked != null)
+            {
+                StopCoroutine(knocked);
+                knocked = null;
+            }
             knocked = StartCoroutine(DBZKnockBack(source.forward));
         }
     }
@@ -322,7 +348,7 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         float timer = 0f;
         movement = direction;
-        animator.SetBool("Run",false);
+        animator.SetBool("Run", false);
         //animator.SetTrigger("Hit");
         do
         {
@@ -330,7 +356,7 @@ public class PlayerController: MonoBehaviour, IDamageable
             timer += Time.deltaTime;
             yield return null;
         }
-        while(timer < dbzKnockBackCurve.keys[dbzKnockBackCurve.length - 1].time);
+        while (timer < dbzKnockBackCurve.keys[dbzKnockBackCurve.length - 1].time);
         speedModifier = 1f;
         movement = Vector3.zero;
         knocked = null;
