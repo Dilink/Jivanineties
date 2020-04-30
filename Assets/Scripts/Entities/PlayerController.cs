@@ -110,13 +110,17 @@ public class PlayerController : MonoBehaviour, IDamageable
                 }
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), upgradedAttack));
                 upgradedAttackCooldown = upgradedAttack.attackCoolDownDuration;
-                onAttackDelegate(true);
+
+                if (onAttackDelegate != null)
+                    onAttackDelegate(true);
             }
             else if (standardAttackCooldown <= 0)
             {
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), standardAttack));
                 standardAttackCooldown = standardAttack.attackCoolDownDuration;
-                onAttackDelegate(false);
+
+                if (onAttackDelegate != null)
+                    onAttackDelegate(false);
             }
         }
     }
@@ -178,12 +182,16 @@ public class PlayerController : MonoBehaviour, IDamageable
                 }
                 playerFeedback.SpecialDash = true;
                 dodging = StartCoroutine(Dodge(enemies[0].transform));
-                onDashDelegate(enemies[0].transform);
+
+                if (onDashDelegate != null)
+                    onDashDelegate(enemies[0].transform);
             }
             else
             {
                 dodging = StartCoroutine(Dodge(null));
-                onDashDelegate(null);
+
+                if (onDashDelegate != null)
+                    onDashDelegate(null);
             }
             dodgeCooldown = dodgeCooldownDuration;
         }

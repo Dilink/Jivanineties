@@ -38,7 +38,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
             IAState before = _currentIAState;
             _currentIAState = value;
             ChangeMaterial((int)currentIAState);
-            iaStateChangedDelegate(this, before, value);
+
+            if (iaStateChangedDelegate != null)
+                iaStateChangedDelegate(this, before, value);
         }
     }
 
