@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -36,6 +38,8 @@ public class PlayerController : MonoBehaviour, IDamageable
     public Animator animator;
     public PlayerFeedback playerFeedback;
     public EffectManager effectManager;
+    public RawImage gameOverScreen;
+    public RawImage gameOverText;
 
     private Vector3 movement;
     private float speedModifier;
@@ -60,6 +64,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         speedModifier = 1f;
         mesh = visual.GetComponentInChildren<MeshRenderer>();
         dead = false;
+        GameOver();
     }
 
     // Update is called once per frame
@@ -414,6 +419,25 @@ public class PlayerController : MonoBehaviour, IDamageable
         knocked = null;
     }
 
+    IEnumerator GameOverScreen()
+    {
+        yield return new WaitForSeconds(1f);
+        while(gameOverScreen.color.a < 1)
+        {
+            gameOverScreen.color += new Color(0, 0, 0, Time.deltaTime * 0.5f);
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        while(gameOverText.color.a < 1)
+        {
+            gameOverText.color += new Color(0, 0, 0, Time.deltaTime * 0.5f);
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(0);
+
+    }
+
     private void GameOver()
     {
         animator.SetBool("Run", false);
@@ -423,6 +447,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             effectManager.TriggerEffect(4);
         }
+        StartCoroutine(GameOverScreen());
         Debug.Log("Je suis mort!");
 
     }
