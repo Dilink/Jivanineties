@@ -5076,30 +5076,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 3
-  dbzKnockBackCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.99804085
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   navA: {fileID: 112932313886882971}
   mR: {fileID: 0}
   stateMaterials:
@@ -5120,6 +5096,7 @@ MonoBehaviour:
   isTesting: 0
   animator: {fileID: 9063717976478642280}
   AIperceptionUpdate: 0.2
+  isAIDisabled: 0
   "invicibilit\xE9Duration": 1
 --- !u!195 &112932313886882971
 NavMeshAgent:
@@ -5368,7 +5345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6552984825541750025
 Transform:
   m_ObjectHideFlags: 0
@@ -5481,7 +5458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7119632120194577806
 Transform:
   m_ObjectHideFlags: 0
