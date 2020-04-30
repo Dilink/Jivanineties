@@ -28,6 +28,7 @@ MonoBehaviour:
   - id: 12
   - id: 13
   - id: 14
+  - id: 15
   references:
     version: 1
     00000000:
@@ -42,7 +43,7 @@ MonoBehaviour:
     00000002:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 5
+        time: 15
         isTextVisible: 1
     00000003:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
@@ -57,7 +58,7 @@ MonoBehaviour:
     00000005:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 8
+        time: 15
         isTextVisible: 1
     00000006:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
@@ -71,7 +72,7 @@ MonoBehaviour:
     00000008:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 5
+        time: 10
         isTextVisible: 1
     00000009:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
@@ -87,7 +88,7 @@ MonoBehaviour:
     0000000B:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 8
+        time: 15
         isTextVisible: 1
     0000000C:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
@@ -101,4 +102,9 @@ MonoBehaviour:
     0000000E:
       type: {class: TextPhase, ns: , asm: Assembly-CSharp}
       data:
-        text: Victoire!
+        text: VICTORY!
+    0000000F:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 60
+        isTextVisible: 0
