@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoAmount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.combatController.currentPhase is WaitPhase)
         {
             restoring = StartCoroutine(Restore());
+            playerFeedback.inRecover = true;
         }
     }
 
@@ -368,6 +369,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                 StopCoroutine(knocked);
                 knocked = null;
             }
+            source.GetComponent<IABehaviour>()?.GetStunned(0.5f);
             knocked = StartCoroutine(DBZKnockBack(source.forward));
         }
     }

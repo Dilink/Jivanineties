@@ -50,7 +50,6 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private bool attackCanceled;
     private int currentLife;
     private float stunnedDuration;
-    private bool stunned;
     
     public bool isAIDisabled = false;
 
@@ -310,6 +309,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(attack.dodgeWindowDuration);
         animator.SetTrigger("Release");
         Ray ray = new Ray(transform.position, transform.forward);
+        yield return new WaitForSeconds(0.05f);
         while (loop && !attackCanceled)
         {
             timer += Time.deltaTime;
@@ -359,6 +359,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
         currentIAState = IAState.dead;
         // navA.destination = transform.position;
         navA.isStopped = true;
+        navA.destination = transform.position;
+        animator.SetBool("Move", false);
+        animator.SetTrigger("Death");
         StopAllCoroutines();
 
         if (dropCount > 0)
@@ -450,7 +453,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
         navA.isStopped = true;
 
-        animator.SetTrigger("Cancel");
+        animator.SetTrigger("Stun");
 
         for (int i = 0; i < hitBoxVisualisation.Length; i++)
         {
@@ -501,11 +504,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
     IEnumerator StunnedTimer(float duration)
     {
         bool loop = true;
-        stunned = true;
         enemyFeedback.feedBackStun();
         enemyFeedback.StunFX.Play();
         enemyFeedback.IsStun = true;
         stunnedDuration += duration;
+        animator.SetTrigger("Stun");
         while (loop)
         {
             stunnedDuration -= Time.deltaTime;
@@ -516,11 +519,12 @@ public class IABehaviour : MonoBehaviour, IDamageable
             yield return null;
         }
         stunnedDuration = 0;
-        stunned = false;
         navA.isStopped = false;
         enemyFeedback.StunFX.Stop();
         enemyFeedback.endStun();
         enemyFeedback.IsStun = false;
+        animator.SetTrigger("Recover");
+        yield return new WaitForSeconds(0.8f);
         AIPursuit(GameManager.Instance.player.transform);
     }
 
