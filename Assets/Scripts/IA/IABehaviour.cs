@@ -170,6 +170,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public bool AIPursuit(Transform pos)
     {
+        if (GameManager.Instance.player.Dead)
+        {
+            isAIDisabled = true;
+        }
+
         if (!isAIDisabled)
         {
             if (!isTesting)

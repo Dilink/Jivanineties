@@ -57,19 +57,21 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private bool dead;
 
+    public bool Dead { get => dead; set => dead = value; }
+
     // Start is called before the first frame update
     void Start()
     {
         movement = Vector3.zero;
         speedModifier = 1f;
         mesh = visual.GetComponentInChildren<MeshRenderer>();
-        dead = false;
+        Dead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!dead)
+        if(!Dead)
         {
             UpdateCooldowns();
             if(knocked == null)
@@ -361,7 +363,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             Debug.Log("Aïe! J'ai mal!");
             hp -= damageAmount;
-            if (hp <= 0 && !dead)
+            if (hp <= 0 && !Dead)
             {
                 GameOver();
             }
@@ -441,7 +443,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         animator.SetBool("Run", false);
         animator.SetTrigger("Death");
-        dead = true;
+        Dead = true;
         if(effectManager != null)
         {
             effectManager.TriggerEffect(4);
