@@ -57,10 +57,9 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator OnFirstFrame()
     {
-        IABehaviour[] allAI = GameObject.FindObjectsOfType<IABehaviour>();
-        remainingEnemies.AddRange(allAI);
-        combatController.MoveToNextPhase();
         yield return null;
+
+        combatController.MoveToNextPhase();
     }
 
     private void OnAIStateChanged(IABehaviour entity, IAState oldState, IAState newState)
@@ -68,10 +67,12 @@ public class GameManager : Singleton<GameManager>
         if (oldState == IAState.justSpawned)
         {
             remainingEnemies.Add(entity);
+            uiManager.OnEnemySpawned(entity);
         }
         else if (newState == IAState.dead)
         {
             remainingEnemies.Remove(entity);
+            uiManager.OnEnemyDied(entity);
             Destroy(entity.gameObject);
         }
     }
