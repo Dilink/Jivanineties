@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public AbsorptionController absorption;
     public Animator animator;
     public PlayerFeedback playerFeedback;
+    public EffectManager effectManager;
 
     private Vector3 movement;
     private float speedModifier;
@@ -250,7 +251,18 @@ public class PlayerController : MonoBehaviour, IDamageable
                     if (ia)
                     {
                         ia.GetStunned(attack.stunDuration);
+                        if(effectManager != null)
+                        {
+                            effectManager.TriggerEffect(2);
+                        }
                         playerFeedback.SpecialAttack = true;
+                    }
+                }
+                else
+                {
+                    if(effectManager != null)
+                    {
+                        effectManager.TriggerEffect(0);
                     }
                 }
                 Debug.Log("Hit!");
@@ -275,6 +287,10 @@ public class PlayerController : MonoBehaviour, IDamageable
             if (mesh != null)
             {
                 mesh.enabled = false;
+            }
+            if(effectManager != null)
+            {
+                effectManager.TriggerEffect(3);
             }
             yield return new WaitForSeconds(upgradedDodgeDuration);
             transform.position = hit.position;
@@ -380,6 +396,10 @@ public class PlayerController : MonoBehaviour, IDamageable
         movement = direction;
         animator.SetBool("Run", false);
         animator.SetTrigger("Hit");
+        if(effectManager != null)
+        {
+            effectManager.TriggerEffect(1);
+        }
         do
         {
             speedModifier = dbzKnockBackCurve.Evaluate(timer);
@@ -399,6 +419,10 @@ public class PlayerController : MonoBehaviour, IDamageable
         animator.SetBool("Run", false);
         animator.SetTrigger("Death");
         dead = true;
+        if(effectManager != null)
+        {
+            effectManager.TriggerEffect(4);
+        }
         Debug.Log("Je suis mort!");
 
     }
