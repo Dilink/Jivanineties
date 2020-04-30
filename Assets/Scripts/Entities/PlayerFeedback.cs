@@ -12,6 +12,7 @@ public class PlayerFeedback : MonoBehaviour
     public ParticleSystem[] dash_Up;
 
     public Animator animWaterShield;
+    public Animator animWaterAbsorption;
 
 
     public bool SpecialAttack { get; set; }
@@ -75,5 +76,10 @@ public class PlayerFeedback : MonoBehaviour
     public void PlayWaterShield()
     {
         animWaterShield.Play("WaterShield_Absorption");
+    }
+
+    public void PlayWaterAbsorption()
+    {
+        animWaterAbsorption.Play("WaterShield_Absorption");
     }
 }
