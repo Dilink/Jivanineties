@@ -151,15 +151,15 @@ MonoBehaviour:
           vous t\xE9l\xE9porter derri\xE8re lui et l'\xE9tourdir (Absorbe l'eau de
           la zone) ! Etourdissez votre ennemi et \xE9liminez le !"
     00000015:
-      type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
-      data:
-        actionType: 1
-        triggerOnSpecialAction: 1
-    00000016:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawners:
         - {fileID: 11400000, guid: 00af71ba92250f64ca0e54b61d94c1aa, type: 2}
+    00000016:
+      type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
+      data:
+        actionType: 1
+        triggerOnSpecialAction: 1
     00000017:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
