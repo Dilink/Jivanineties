@@ -236,7 +236,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
             switch(attackType)
             {
                 case LifePointType.normal:
-                    animator.SetTrigger("AttackFront");
+                    animator.SetTrigger("AttackWide");
 
                     break;
                 case LifePointType.specialAttack:
@@ -249,12 +249,12 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 case LifePointType.normal:
                     currentIAState = IAState.attacking;                 
-                    StartCoroutine(Attack(IAStats.Attack[0], 0));
+                    StartCoroutine(Attack(IAStats.Attack[1], 1));
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
                     currentIAState = IAState.specialAttack;
-                    StartCoroutine(Attack(IAStats.Attack[1], 1));
+                    StartCoroutine(Attack(IAStats.Attack[0], 0));
                     break;
             }
             StartCoroutine(AttackCooldown());
@@ -295,6 +295,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         loop = true;
         timer = 0f;
         yield return new WaitForSeconds(attack.dodgeWindowDuration);
+        animator.SetTrigger("Release");
         Ray ray = new Ray(transform.position, transform.forward);
         while(loop && !attackCanceled)
         {

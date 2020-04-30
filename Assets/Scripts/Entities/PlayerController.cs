@@ -314,7 +314,26 @@ public class PlayerController: MonoBehaviour, IDamageable
         else if(source != null)
         {
             playerFeedback.PlayWaterShield();
-            StopAllCoroutines();
+            if(dodging != null)
+            {
+                StopCoroutine(dodging);
+                dodging = null;
+            }
+            if(attacking != null)
+            {
+                StopCoroutine(attacking);
+                attacking = null;
+            }
+            if(restoring != null)
+            {
+                StopCoroutine(restoring);
+                restoring = null; 
+            }
+            if(knocked != null)
+            {
+                StopCoroutine(knocked);
+                knocked = null;
+            }
             knocked = StartCoroutine(DBZKnockBack(source.forward));
         }
     }
