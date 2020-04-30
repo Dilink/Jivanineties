@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GP/MainMenu.unity
     guid: fb76e56a2ceb35a41b4c7b0b6356dfca
   - enabled: 1
-    path: Assets/Scenes/SCN_Base.unity
-    guid: 4287a49609ab40d48a37bdac066a18fd
+    path: Assets/Scenes/SCN_Main.unity
+    guid: 816d180d762bb3440a0a1c7c6a287f3f
+  - enabled: 1
+    path: Assets/Scenes/GP/Flo/ProtoTutorial.unity
+    guid: 15e55503f1e11ac4698c71cb12a2ee91
   m_configObjects: {}
