@@ -11,6 +11,8 @@ public class PlayerFeedback : MonoBehaviour
     public ParticleSystem[] dash;
     public ParticleSystem[] dash_Up;
 
+    public ParticleSystem[] Recover;
+
     public Animator animWaterShield;
     public Animator animWaterAbsorption;
 
@@ -18,6 +20,7 @@ public class PlayerFeedback : MonoBehaviour
     public bool SpecialAttack { get; set; }
     public bool SpecialDash { get; set; }
     public bool AttackTouch { get; set; }
+    public bool inRecover { get; set; }
 
     public void attackFeedback()
     {
@@ -69,6 +72,20 @@ public class PlayerFeedback : MonoBehaviour
         {
 
             EnemyHit[i].Play();
+        }
+
+    }
+
+    public void RecoverFeedBack()
+    {
+        if (inRecover)
+        {
+            for (int i = 0; i < Recover.Length; i++)
+            {
+
+                Recover[i].Play();
+            }
+            inRecover = false;
         }
 
     }
