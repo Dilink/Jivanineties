@@ -18,6 +18,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public IAStats IAStats;
     public GameObject dropItem;
+    public int dropCount = 1;
   //  public EnemyFeedback enemyFeedback;
     public bool isTesting = true;
 
@@ -235,7 +236,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
             switch(attackType)
             {
                 case LifePointType.normal:
-                    animator.SetTrigger("AttackFront");
+                    animator.SetTrigger("AttackWide");
 
                     break;
                 case LifePointType.specialAttack:
@@ -248,12 +249,12 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 case LifePointType.normal:
                     currentIAState = IAState.attacking;                 
-                    StartCoroutine(Attack(IAStats.Attack[0], 0));
+                    StartCoroutine(Attack(IAStats.Attack[1], 1));
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
                     currentIAState = IAState.specialAttack;
-                    StartCoroutine(Attack(IAStats.Attack[1], 1));
+                    StartCoroutine(Attack(IAStats.Attack[0], 0));
                     break;
             }
             StartCoroutine(AttackCooldown());
@@ -294,6 +295,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         loop = true;
         timer = 0f;
         yield return new WaitForSeconds(attack.dodgeWindowDuration);
+        animator.SetTrigger("Release");
         Ray ray = new Ray(transform.position, transform.forward);
         while(loop && !attackCanceled)
         {
@@ -341,11 +343,17 @@ public class IABehaviour : MonoBehaviour, IDamageable
         navA.destination = transform.position;
         StopAllCoroutines();
 
-        GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
-        Tokendo tokendo = go.GetComponent<Tokendo>();
-        if (!tokendo.moveToPlayerAtStart)
+        if (dropCount > 0)
         {
-            tokendo.MoveToPlayer();
+            for (int i = 0; i < dropCount; i++)
+            {
+                GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+                Tokendo tokendo = go.GetComponent<Tokendo>();
+                if (!tokendo.moveToPlayerAtStart)
+                {
+                    tokendo.MoveToPlayer();
+                }
+            }
         }
     }
 

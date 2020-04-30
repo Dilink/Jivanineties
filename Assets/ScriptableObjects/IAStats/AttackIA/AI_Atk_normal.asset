@@ -16,8 +16,8 @@ MonoBehaviour:
   hitBoxDuration: 0.2
   attackRecoveryDuration: 0.5
   attackCoolDownDuration: 0
-  preparationDuration: 0.7
-  dodgeWindowDuration: 0.3
+  preparationDuration: 0.5
+  dodgeWindowDuration: 0.2
   stunDuration: 0
   rangeBox: {x: 1, y: 2, z: 4}
   offset: {x: 0, y: 0, z: 0}

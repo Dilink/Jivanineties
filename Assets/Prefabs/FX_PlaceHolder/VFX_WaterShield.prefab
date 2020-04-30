@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 24966c69b0326ec46a92300bc38acbf8,
         type: 3}
       propertyPath: m_Name
-      value: FX_Absorption
+      value: FX_WaterAbsorption
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24966c69b0326ec46a92300bc38acbf8, type: 3}
@@ -162,7 +162,7 @@ PrefabInstance:
     - target: {fileID: 6414539463585863622, guid: ecb75d645a3ce2c42951b08cdae2897e,
         type: 3}
       propertyPath: m_Name
-      value: FX_Shield
+      value: FX_waterShield
       objectReference: {fileID: 0}
     - target: {fileID: 8024953225940854229, guid: ecb75d645a3ce2c42951b08cdae2897e,
         type: 3}
