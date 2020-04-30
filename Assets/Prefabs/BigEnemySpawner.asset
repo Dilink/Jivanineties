@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ced20e6f1b598540b97abf4e740f5b1, type: 3}
-  m_Name: SpawnPoint_1
+  m_Script: {fileID: 11500000, guid: 78da49de2340a184ebcab67f032c9adc, type: 3}
+  m_Name: BigEnemySpawner
   m_EditorClassIdentifier: 
-  location: {x: -15.961129, y: 0, z: -1.5371819}
-  radius: 4
+  spawnPoint: {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
   prefab: {fileID: 112932313886882948, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2, type: 3}
-  creationCount: 1
+  creationCount: 2
