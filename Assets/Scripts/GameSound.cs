@@ -19,10 +19,10 @@ public enum GameSound
     WaterIn,//
     WaterOut,//
 
-    Pickup_Tokkendo,
+    Pickup_Tokkendo,//
 
     EnemyAttack,//
-    EnemyAttack_up,
+    EnemyAttack_up,//
     Enemy_stun,//
     Enemy_noise,//
     Enemy_takeDamage,//
