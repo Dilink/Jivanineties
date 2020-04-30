@@ -19,6 +19,6 @@ MonoBehaviour:
   preparationDuration: 0
   dodgeWindowDuration: 0
   stunDuration: 2
-  rangeBox: {x: 1, y: 1, z: 2}
+  rangeBox: {x: 1.5, y: 1.5, z: 2}
   offset: {x: 0, y: 0, z: 0}
   attackType: 1

@@ -67,4 +67,12 @@ public class EnemyFeedback : MonoBehaviour
             stateAnim.Play("New State");
         }
     }
+
+    public void SmokeDeath()
+    {
+        GameObject newSmoke = Instantiate(GameManager.Instance.VFXSmoke, transform.position + new Vector3(0, 0, 1), Quaternion.identity, transform);
+        newSmoke.transform.localScale = transform.parent.transform.localScale * 2;
+        newSmoke.GetComponent<ParticleSystem>().Play();
+        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Death_Smoke, transform.position);
+    }
 }

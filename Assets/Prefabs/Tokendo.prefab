@@ -98,13 +98,13 @@ MonoBehaviour:
   isFloating: 1
   isScaling: 0
   rotationAngle: {x: 0, y: 0, z: 20}
-  rotationSpeed: 10
+  rotationSpeed: 0
   floatSpeed: 0.01
   floatRate: 0.4
-  startScale: {x: 1, y: 1, z: 1}
-  endScale: {x: 1.5, y: 1.5, z: 1.5}
+  startScale: {x: 2, y: 2, z: 2}
+  endScale: {x: 1, y: 1, z: 1}
   scaleSpeed: 2
-  scaleRate: 1.5
+  scaleRate: 1
 --- !u!114 &3221060809937744020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,5 +117,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92aa8d5de0ab6724d8f60771c8ac2509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 0.5
   moveToPlayerAtStart: 1
