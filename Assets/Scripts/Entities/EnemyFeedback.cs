@@ -70,8 +70,8 @@ public class EnemyFeedback : MonoBehaviour
 
     public void SmokeDeath()
     {
-        GameObject newSmoke = Instantiate(GameManager.Instance.VFXSmoke, transform.position + new Vector3(0, 0, 1), Quaternion.identity, transform);
-        newSmoke.transform.localScale = transform.parent.transform.localScale * 2;
+        GameObject newSmoke = Instantiate(GameManager.Instance.VFXSmoke, transform.position + -transform.forward*2f, Quaternion.identity, transform);
+       // newSmoke.transform.localScale = transform.parent.transform.localScale * 2;
         newSmoke.GetComponent<ParticleSystem>().Play();
         GameManager.Instance.sM.PlaySoundPositioned(GameSound.Death_Smoke, transform.position);
     }
