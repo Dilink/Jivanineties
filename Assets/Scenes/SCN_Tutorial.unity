@@ -17233,7 +17233,7 @@ PrefabInstance:
     - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: dbzKnockBackCurve.m_Curve.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
@@ -17274,37 +17274,57 @@ PrefabInstance:
     - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].inSlope
-      value: -0.23339313
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].outSlope
-      value: -0.23339313
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].time
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
-        type: 3}
-      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].time
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].value
+      value: 4.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
       propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].outWeight
-      value: 0.15608466
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].value
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].time
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[2].time
+      value: 0.40000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[2].inSlope
+      value: -205.49321
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[2].outSlope
+      value: -205.49321
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[2].inWeight
+      value: 0.1466566
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}

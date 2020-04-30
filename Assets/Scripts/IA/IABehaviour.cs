@@ -282,13 +282,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 case LifePointType.normal:
                     animator.SetTrigger("AttackFront");
-                    GameManager.Instance.sM.PlaySoundPositioned(GameSound.EnemyAttack, transform.position);
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
                     // enemyFeedback.SpecialAttack = true;
                     animator.SetTrigger("AttackWide");
-                    GameManager.Instance.sM.PlaySoundPositioned(GameSound.EnemyAttack_up, transform.position);
                     break;
             }
             switch (attackType)
@@ -342,6 +340,17 @@ public class IABehaviour : MonoBehaviour, IDamageable
         timer = 0f;
         yield return new WaitForSeconds(attack.dodgeWindowDuration);
         animator.SetTrigger("Release");
+        switch(attack.attackType)
+        {
+            case LifePointType.normal:
+                GameManager.Instance.sM.PlaySoundPositioned(GameSound.EnemyAttack, transform.position);
+                break;
+            case LifePointType.specialAttack:
+                // specialAttackWaiting--;
+                // enemyFeedback.SpecialAttack = true;
+                GameManager.Instance.sM.PlaySoundPositioned(GameSound.EnemyAttack_up, transform.position);
+                break;
+        }
         Ray ray = new Ray(transform.position, transform.forward);
         yield return new WaitForSeconds(0.05f);
         while (loop && !attackCanceled)
