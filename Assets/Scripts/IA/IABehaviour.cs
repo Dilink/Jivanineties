@@ -68,7 +68,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         if (isTesting && Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(1);
+            TakeDamage(1, null);
             // TakeDamage(2);
         }
         if( isTesting && Input.GetKeyDown(KeyCode.A))
@@ -303,7 +303,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
             ExtDebug.DrawBoxCastBox(attack.offset + ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), transform.rotation, ray.direction, attack.rangeBox.z, Color.green);
             if (!enemyHit && enemies.Length > 0)
             {
-                enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage);
+                enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage, transform);
                 // Debug.Log("HIt heros");
                 enemyHit = true;
             }
@@ -345,7 +345,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount, Transform source)
     {
         if (isInvincible)
         {

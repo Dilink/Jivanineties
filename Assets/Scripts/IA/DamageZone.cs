@@ -16,7 +16,7 @@ public class DamageZone : MonoBehaviour
             if (target !=null)
             {
 
-                target.TakeDamage(damageDealed);
+                target.TakeDamage(damageDealed, null);
             }
 
         }
