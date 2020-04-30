@@ -177,12 +177,12 @@ public class IABehaviour : MonoBehaviour, IDamageable
                 {
                     if (Random.Range(0, 2) > 1)
                     {
-                        enemyFeedback.sM.PlaySoundPositioned(GameSound.Enemy_noise, transform.position);
+                        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_noise, transform.position);
 
                     }
                     else
                     {
-                        enemyFeedback.sM.PlaySoundPositioned(GameSound.Enemy_Noise2, transform.position);
+                        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_Noise2, transform.position);
                     }
                 }
 
@@ -266,13 +266,13 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 case LifePointType.normal:
                     animator.SetTrigger("AttackFront");
-                    enemyFeedback.sM.PlaySoundPositioned(GameSound.EnemyAttack, transform.position);
+                    GameManager.Instance.sM.PlaySoundPositioned(GameSound.EnemyAttack, transform.position);
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
                     // enemyFeedback.SpecialAttack = true;
                     animator.SetTrigger("AttackWide");
-                    enemyFeedback.sM.PlaySoundPositioned(GameSound.EnemyAttack_up, transform.position);
+                    GameManager.Instance.sM.PlaySoundPositioned(GameSound.EnemyAttack_up, transform.position);
                     break;
             }
             switch (attackType)
@@ -375,7 +375,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private void OnDead()
     {
         currentIAState = IAState.dead;
-        enemyFeedback.sM.PlaySoundPositioned(GameSound.Enemy_Death, transform.position);
+        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_Death, transform.position);
         // navA.destination = transform.position;
         // navA.isStopped = true;
         animator.SetBool("Move", false);
@@ -413,7 +413,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
         //print(currentLife);
         StartCoroutine(InvicibilityDuration());
-        enemyFeedback.sM.PlaySoundPositioned(GameSound.Enemy_Death, transform.position);
+        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_Death, transform.position);
 
         for (int i = 0; i < damageAmount; i++)
         {

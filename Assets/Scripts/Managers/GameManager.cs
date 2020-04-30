@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     public UIManager uiManager;
     public InputManager inputManager;
     public CombatController combatController;
+    public Ma_SoundManager sM;
 
     /// <summary>
     /// Gameplay only
@@ -25,6 +26,7 @@ public class GameManager : Singleton<GameManager>
         {
             _tokendoAmount = value;
             uiManager.UpdateTokendoCount(_tokendoAmount);
+            sM.PlaySound(GameSound.Enemy_stun);
         }
     }
 
