@@ -117,5 +117,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92aa8d5de0ab6724d8f60771c8ac2509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objective: {fileID: 0}
-  movementSpeed: 1
+  movementSpeed: 3
+  moveToPlayerAtStart: 1

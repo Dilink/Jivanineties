@@ -174,41 +174,52 @@ MonoBehaviour:
   - id: 4
   - id: 5
   - id: 6
+  - id: 7
+  - id: 8
   currentPhase:
-    id: 7
+    id: 9
   references:
     version: 1
     00000000:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 5
+        time: 2
     00000001:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
+        - {fileID: 11400000, guid: 5ba347c26ba796c4b895d2b3efbef24f, type: 2}
     00000002:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000003:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
         time: 5
-    00000004:
+    00000003:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawnPoints:
         - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000005:
+    00000004:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
+    00000005:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 5
     00000006:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawnPoints:
+        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
+    00000007:
+      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    00000008:
       type: {class: TextPhase, ns: , asm: Assembly-CSharp}
       data:
         text: Victoire!
-    00000007:
+    00000009:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawnPoints:

@@ -18,6 +18,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public IAStats IAStats;
     public GameObject dropItem;
+    public int dropCount = 1;
   //  public EnemyFeedback enemyFeedback;
     public bool isTesting = true;
 
@@ -341,11 +342,17 @@ public class IABehaviour : MonoBehaviour, IDamageable
         navA.destination = transform.position;
         StopAllCoroutines();
 
-        GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
-        Tokendo tokendo = go.GetComponent<Tokendo>();
-        if (!tokendo.moveToPlayerAtStart)
+        if (dropCount > 0)
         {
-            tokendo.MoveToPlayer();
+            for (int i = 0; i < dropCount; i++)
+            {
+                GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+                Tokendo tokendo = go.GetComponent<Tokendo>();
+                if (!tokendo.moveToPlayerAtStart)
+                {
+                    tokendo.MoveToPlayer();
+                }
+            }
         }
     }
 
