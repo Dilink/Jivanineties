@@ -19,6 +19,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Perlin:
+        m_Texture: {fileID: 2800000, guid: 805af41b6e803c748bc9986722ba9df2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RAmp:
+        m_Texture: {fileID: 2800000, guid: 4edf59f9699caef46970d85e32231dd6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture0:
         m_Texture: {fileID: 2800000, guid: 805af41b6e803c748bc9986722ba9df2, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -43,8 +51,10 @@ Material:
     - _Cutoff: 0.5
     - _Float0: 0.01
     - _Float1: 0.01
-    - _Float2: 10
+    - _Float2: 3.1
+    - _MotifValue: 1.23
     - _OpacityStep: 0.2
+    - _OpacitySubstract: 0
     - __dirty: 0
     - _appearValue: 1
     - _desapearValue: 0
