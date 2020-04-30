@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class CombatController : MonoBehaviour
 {
-	[InlineEditor]
-	[SerializeField]
-	[ShowInInspector]
-	[SerializeReference]
-	[ListDrawerSettings(Expanded = true)]
-	public List<ICombatPhase> phases = new List<ICombatPhase>();
+	private List<ICombatPhase> phases;
+
+	public PhaseList phaseList;
 
 	[InlineEditor]
 	[SerializeField]
@@ -17,6 +14,11 @@ public class CombatController : MonoBehaviour
 	[SerializeReference]
 	[ReadOnly]
 	public ICombatPhase currentPhase;
+
+	void Start()
+	{
+		phases = new List<ICombatPhase>(phaseList.phases);
+	}
 
 	private void OnPhaseEnd()
 	{

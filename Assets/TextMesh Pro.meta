@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/TextMesh Pro.meta
 guid: f54d1bd14bd3ca042bd867b519fee8cc
+=======
+guid: 59c7a5a54d98aa14f89c332a7a667288
+>>>>>>> fd1457a3abe486301c939aad60585f02d4addbf7:Assets/Graphics/Animations/Ennemi/State.meta
+=======
+guid: f54d1bd14bd3ca042bd867b519fee8cc
+>>>>>>> fd1457a3abe486301c939aad60585f02d4addbf7
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
