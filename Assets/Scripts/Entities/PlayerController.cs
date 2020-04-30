@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void CheckRestore()
     {
-        if (dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoAmount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.combatController.currentPhase is WaitPhase)
+        if (dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoAmount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.remainingEnemies.Count == 0)
         {
             restoring = StartCoroutine(Restore());
             playerFeedback.inRecover = true;
