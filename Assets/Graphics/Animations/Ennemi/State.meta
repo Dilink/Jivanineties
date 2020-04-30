@@ -1,5 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/TextMesh Pro.meta
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+guid: 20591d4b3b235db49a0e572d02a9f8d8
+=======
+guid: 8cd257c8b314e234283dd4041f613ebb
+>>>>>>> master
+=======
+guid: 706225750efc589459308c38ae61492e
+>>>>>>> Stashed changes
+=======
 guid: 59c7a5a54d98aa14f89c332a7a667288
+>>>>>>> fd1457a3abe486301c939aad60585f02d4addbf7:Assets/Graphics/Animations/Ennemi/State.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

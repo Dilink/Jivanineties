@@ -166,64 +166,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ea618a61192b24cb9a82eac2a4b973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phases:
-  - id: 0
-  - id: 1
-  - id: 2
-  - id: 3
-  - id: 4
-  - id: 5
-  - id: 6
-  - id: 7
-  - id: 8
+  phaseList: {fileID: 11400000, guid: bf63fb1762727c246b39c6e9557cc114, type: 2}
   currentPhase:
-    id: 9
+    id: 0
   references:
     version: 1
     00000000:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 2
-    00000001:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
-        spawnPoints:
-        - {fileID: 11400000, guid: 5ba347c26ba796c4b895d2b3efbef24f, type: 2}
-    00000002:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 5
-    00000003:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000004:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000005:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 5
-    00000006:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000007:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000008:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
-      data:
-        text: Victoire!
-    00000009:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
+        spawners: []
 --- !u!1 &3540033600902942200
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,8 +278,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -551,8 +502,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

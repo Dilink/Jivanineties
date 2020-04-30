@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78da49de2340a184ebcab67f032c9adc, type: 3}
+  m_Name: SmallEnemySpawner_2
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 11400000, guid: c4773e1ea292be24ea925b9280e9c5a1, type: 2}
+  prefab: {fileID: 9147953058656171425, guid: 562c36e7cd52f6e41adb3d4f5df22f21, type: 3}
+  creationCount: 2

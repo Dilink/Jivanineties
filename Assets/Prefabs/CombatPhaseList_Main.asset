@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaa106f37195b7419f1732cb27ef17a, type: 3}
+  m_Name: CombatPhaseList_Main
+  m_EditorClassIdentifier: 
+  phases:
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  - id: 10
+  - id: 11
+  - id: 12
+  - id: 13
+  references:
+    version: 1
+    00000000:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawners:
+        - {fileID: 11400000, guid: 5d6d9f5ad7064894fbc48f1a3ef863e7, type: 2}
+    00000001:
+      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    00000002:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 10
+    00000003:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawners:
+        - {fileID: 11400000, guid: fe96bf6035d11654481888e4b4541bfe, type: 2}
+    00000004:
+      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    00000005:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Victoire!
+    00000006:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawners:
+        - {fileID: 11400000, guid: 08d93979ae3186d40b4f6db16d3324ca, type: 2}
+    00000007:
+      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    00000008:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 0
+    00000009:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawners:
+        - {fileID: 11400000, guid: bc709c410d3ff404a8b183118cad058c, type: 2}
+    0000000A:
+      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    0000000B:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 0
+    0000000C:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawners:
+        - {fileID: 11400000, guid: c5ab42ca2183cc847becba5bfeb24d56, type: 2}
+    0000000D:
+      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
