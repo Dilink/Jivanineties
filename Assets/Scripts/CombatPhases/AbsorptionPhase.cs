@@ -25,25 +25,41 @@ public class AbsorptionPhase : ICombatPhase
 
         if (actionType == AbsorptionType.ABSORB)
         {
-            area.onAbsorptionDelegate += OnAbsorption;
+            AbsorptionArea.onAbsorptionDelegate += OnAbsorption;
         }
 
         else if (actionType == AbsorptionType.RESTORE)
         {
-            area.onRestoreDelegate += OnRestore;
+            AbsorptionArea.onRestoreDelegate += OnRestore;
         }
     }
 
-    private void OnAbsorption()
+    private void OnAbsorption(AbsorptionArea p_area)
     {
-        area.onAbsorptionDelegate -= OnAbsorption;
-        onPhaseEnd();
+        if (area == null)
+        {
+            AbsorptionArea.onAbsorptionDelegate -= OnAbsorption;
+            onPhaseEnd();
+        }
+        else if (area != null && area == p_area)
+        {
+            AbsorptionArea.onAbsorptionDelegate -= OnAbsorption;
+            onPhaseEnd();
+        }
     }
 
-    private void OnRestore()
+    private void OnRestore(AbsorptionArea p_area)
     {
-        area.onRestoreDelegate -= OnRestore;
-        onPhaseEnd();
+        if (area == null)
+        {
+            AbsorptionArea.onRestoreDelegate -= OnRestore;
+            onPhaseEnd();
+        }
+        else if (area != null && area == p_area)
+        {
+            AbsorptionArea.onRestoreDelegate -= OnRestore;
+            onPhaseEnd();
+        }
     }
 
     public CombatPhaseType ReturnType()
