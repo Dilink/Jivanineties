@@ -8,10 +8,4 @@ public class SpawnPoint : ScriptableObject
 
     [SerializeField]
     public float radius = 1.0f;
-
-    [SerializeField]
-    public GameObject prefab;
-
-    [SerializeField]
-    public int creationCount = 1;
 }
