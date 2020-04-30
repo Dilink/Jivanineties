@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpecialEffect : ScriptableObject
 {
     public float effectDuration;
+    public bool priority;
 
     [Header("Camera Rotation")]
     [Curve(0, -50f, 10f, 100f, true)]

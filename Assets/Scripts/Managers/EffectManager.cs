@@ -47,10 +47,11 @@ public class EffectManager : MonoBehaviour
 
     public void TriggerEffect(int index)
     {
-        if(cameraController.PerformEffect || index < 0 || index > effects.Length)
+        if(index < 0 || index > effects.Length || (cameraController.PerformEffect && !effects[index].priority))
         {
             return;
         }
+        StopAllCoroutines();
         StartCoroutine(Evaluate(effects[index]));        
     }
 
