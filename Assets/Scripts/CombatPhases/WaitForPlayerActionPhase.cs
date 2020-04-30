@@ -24,7 +24,10 @@ public class WaitForPlayerActionPhase : ICombatPhase
         yield return null;
 
         onPhaseEnd = onEnd;
+
+
         player = GameManager.Instance.player;
+
 
         if (actionType == PlayerActionType.MOVEMENT)
         {

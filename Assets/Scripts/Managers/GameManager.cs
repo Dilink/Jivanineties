@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     /// <summary>
     /// Editor only
@@ -15,7 +15,23 @@ public class GameManager : Singleton<GameManager>
     public CombatController combatController;
     public Ma_SoundManager sM;
     public GameObject lifeBar;
-    public GameObject VFXSmoke; 
+    public GameObject VFXSmoke;
+
+    public static GameManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+           DestroyImmediate(this);
+        }
+        //DontDestroyOnLoad(Instance);
+        player = FindObjectOfType<PlayerController>();
+    }
 
     /// <summary>
     /// Gameplay only
@@ -44,17 +60,18 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         tokendoAmount = tokendoCount;
-        player = FindObjectOfType<PlayerController>();
+       // player = FindObjectOfType<PlayerController>();
 
         IABehaviour.iaStateChangedDelegate += OnAIStateChanged;
 
         StartCoroutine(OnFirstFrame());
-        
+
     }
 
-    new void OnDestroy()
+    void OnDestroy()
     {
-        base.OnDestroy();
+        //base.OnDestroy();
+        //OnDestroy();
         IABehaviour.iaStateChangedDelegate -= OnAIStateChanged;
     }
 
