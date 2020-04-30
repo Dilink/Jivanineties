@@ -10,11 +10,12 @@ public class TutoTextShowPhase : ICombatPhase
 
     public IEnumerator Execute(Action onEnd, CombatPhaseData data)
     {
+        yield return null;
+
         GameManager.Instance.uiManager.ShowTutoText(text);
 
         onEnd();
 
-        yield return null;
     }
 
     public CombatPhaseType ReturnType()
