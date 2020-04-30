@@ -9028,6 +9028,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1261294958, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261294958, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2, type: 3}
+      propertyPath: lengthInSec
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 112932313886882948, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2,
         type: 3}
       propertyPath: m_Name
@@ -10436,49 +10444,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ea618a61192b24cb9a82eac2a4b973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phases:
-  - id: 0
-  - id: 1
-  - id: 2
-  - id: 3
-  - id: 4
-  - id: 5
-  - id: 6
+  phaseList: {fileID: 0}
   currentPhase:
-    id: 7
+    id: 0
   references:
     version: 1
     00000000:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 10
-    00000001:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000002:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000003:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 10
-    00000004:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000005:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000006:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
-      data:
-        text: Victoire!
-    00000007:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawnPoints:
