@@ -62,7 +62,8 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
         }
 
         areaHasWater = false;
-        onAbsorptionDelegate();
+        if (onAbsorptionDelegate != null)
+            onAbsorptionDelegate();
         UpdateMaterialBasedOnWater();
         return true;
     }
@@ -75,7 +76,8 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
         }
 
         areaHasWater = true;
-        onRestoreDelegate();
+        if (onRestoreDelegate != null)
+            onRestoreDelegate();
         UpdateMaterialBasedOnWater();
         return true;
     }

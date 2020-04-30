@@ -38,7 +38,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
             IAState before = _currentIAState;
             _currentIAState = value;
             ChangeMaterial((int)currentIAState);
-            iaStateChangedDelegate(this, before, value);
+
+            if (iaStateChangedDelegate != null)
+                iaStateChangedDelegate(this, before, value);
         }
     }
 
@@ -355,7 +357,8 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private void OnDead()
     {
         currentIAState = IAState.dead;
-        navA.destination = transform.position;
+        // navA.destination = transform.position;
+        navA.isStopped = true;
         StopAllCoroutines();
 
         if (dropCount > 0)
