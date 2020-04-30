@@ -114,4 +114,11 @@ public class PlayerFeedback : MonoBehaviour
             GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_Attack, transform.position);
         }
     }
+
+    public void SmokeDeath()
+    {
+        GameObject newSmoke = Instantiate(GameManager.Instance.VFXSmoke, transform.position + new Vector3 (0 , 0  , 1 ) , Quaternion.identity , transform);
+        newSmoke.GetComponent<ParticleSystem>().Play();
+        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Death_Smoke, transform.position);
+    }
 }
