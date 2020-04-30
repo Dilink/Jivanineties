@@ -81,7 +81,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _Zone_Highlight: 1.01
+    - _Zone_Highlight: 1.44
     - _Zone_Highlight1: 1.01
     - _Zone_Shadow: 0.14
     - __dirty: 0
