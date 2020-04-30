@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ced20e6f1b598540b97abf4e740f5b1, type: 3}
   m_Name: SpawnPoint_10
   m_EditorClassIdentifier: 
-  location: {x: -2.6082861, y: 0, z: -1.5118847}
+  location: {x: -3.0181482, y: 0, z: -0.82969856}
   radius: 2
