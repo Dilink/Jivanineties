@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void CheckRestore()
     {
-        if (dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoAmount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.remainingEnemies.Count == 0)
+        if (dodging == null && attacking == null && restoring == null && GameManager.Instance.tokendoAmount > 0 && GameManager.Instance.inputManager.POWER_HOLD && GameManager.Instance.remainingEnemies != null && GameManager.Instance.remainingEnemies.Count == 0)
         {
             playerFeedback.inRecover = true;
             restoring = StartCoroutine(Restore());
