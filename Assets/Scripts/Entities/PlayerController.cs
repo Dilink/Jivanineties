@@ -10,6 +10,8 @@ public class PlayerController: MonoBehaviour, IDamageable
     [Range(0, 50)]
     public float moveSpeed = 5f;
     public AnimationCurve dodgeCurve;
+    [Curve(0,0,0.75f,10f,true)]
+    public AnimationCurve dbzKnockBackCurve;
     public float upgradedDodgeDuration;
     public float upgradedDodgeRecoveryDuration;
     public float upgradedDodgeRange;
@@ -26,13 +28,15 @@ public class PlayerController: MonoBehaviour, IDamageable
     public Transform visual;
     public AbsorptionController absorption;
     public Animator animator;
-    
+    public PlayerFeedback playerFeedback;
+
     private Vector3 movement;
     private float speedModifier;
     private float movementModifier;
     private Coroutine dodging;
     private Coroutine attacking;
     private Coroutine restoring;
+    private Coroutine knocked;
 
     private MeshRenderer mesh;
 
@@ -52,10 +56,13 @@ public class PlayerController: MonoBehaviour, IDamageable
     void Update()
     {
         UpdateCooldowns();
-        CheckRestore();
-        CheckAttack();
-        CheckMovement();
-        CheckDodge();
+        if(knocked == null)
+        {
+            CheckRestore();
+            CheckAttack();
+            CheckMovement();
+            CheckDodge();
+        }
         Move();
     }
 
@@ -131,12 +138,14 @@ public class PlayerController: MonoBehaviour, IDamageable
     
     private void CheckDodge()
     {
+        playerFeedback.SpecialDash = false;
         if (dodgeCooldown <= 0 && GameManager.Instance.inputManager.DODGE && dodging == null && attacking == null && restoring == null)
         {
             IAbsorbable area = absorption.GetArea();
             Collider[] enemies = Physics.OverlapSphere(transform.position, upgradedDodgeRange, 1 << LayerMask.NameToLayer("Enemy"));
             if(enemies.Length > 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || area.OnAbsorption()))
             {
+                
                 if(GameManager.Instance.tokendoAmount > 0)
                 {
                     GameManager.Instance.tokendoAmount--;
@@ -146,6 +155,7 @@ public class PlayerController: MonoBehaviour, IDamageable
                 {
                     ia.GetStunned(upgradedDodgeStunDuration);
                 }
+                playerFeedback.SpecialDash = true;
                 dodging = StartCoroutine(Dodge(enemies[0].transform));
             }
             else
@@ -169,7 +179,15 @@ public class PlayerController: MonoBehaviour, IDamageable
 
         if(!movement.Equals(Vector3.zero))
         {
-            visual.rotation = Quaternion.LookRotation(movement, Vector3.up);
+            if(knocked != null)
+            {
+                visual.rotation = Quaternion.LookRotation(-movement, Vector3.up);
+
+            }
+            else
+            {
+                visual.rotation = Quaternion.LookRotation(movement, Vector3.up);
+            }
         }
     }
 
@@ -177,6 +195,8 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         bool loop = true;
         bool enemyHit = false;
+        playerFeedback.AttackTouch = false;
+        playerFeedback.SpecialAttack = false;
         float timer = 0f;
         movement = Vector3.zero;
         animator.SetTrigger("Attack");
@@ -191,16 +211,18 @@ public class PlayerController: MonoBehaviour, IDamageable
             ExtDebug.DrawBoxCastBox(ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), visual.rotation, ray.direction, attack.rangeBox.z, Color.green);
             if(!enemyHit && enemies.Length > 0)
             {
-                enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage);
+                enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage, transform);
                 if(attack.stunDuration > 0)
                 {
                     IABehaviour ia = enemies[0].GetComponent<IABehaviour>();
                     if (ia)
                     {
                         ia.GetStunned(attack.stunDuration);
+                        playerFeedback.SpecialAttack = true;
                     }
                 }
                 Debug.Log("Hit!");
+                playerFeedback.AttackTouch = true;
                 enemyHit = true;
             }
             yield return null;
@@ -214,6 +236,7 @@ public class PlayerController: MonoBehaviour, IDamageable
         float timer = 0f;
         if(destination != null)
         {
+            playerFeedback.dashFeedback();
             movement = Vector3.zero;
             NavMeshHit hit;
             NavMesh.SamplePosition(destination.position + (destination.position - transform.position).normalized * 2, out hit, 10f, 1 << NavMesh.GetAreaFromName("Walkable"));
@@ -274,10 +297,11 @@ public class PlayerController: MonoBehaviour, IDamageable
         restoring = null;
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount, Transform source)
     {
+        playerFeedback.FeedBackTakeDamage();
         IAbsorbable area = absorption.GetArea();
-        if(area != null && area.OnAbsorption())
+        if(area == null || !area.OnAbsorption())
         {
             Debug.Log("Aïe! J'ai mal!");
             hp -= damageAmount;
@@ -286,6 +310,30 @@ public class PlayerController: MonoBehaviour, IDamageable
                 GameOver();
             }
         }
+        else if(source != null)
+        {
+            playerFeedback.PlayWaterShield();
+            StopAllCoroutines();
+            knocked = StartCoroutine(DBZKnockBack(source.forward));
+        }
+    }
+
+    IEnumerator DBZKnockBack(Vector3 direction)
+    {
+        float timer = 0f;
+        movement = direction;
+        animator.SetBool("Run",false);
+        //animator.SetTrigger("Hit");
+        do
+        {
+            speedModifier = dbzKnockBackCurve.Evaluate(timer);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        while(timer < dbzKnockBackCurve.keys[dbzKnockBackCurve.length - 1].time);
+        speedModifier = 1f;
+        movement = Vector3.zero;
+        knocked = null;
     }
 
     private void GameOver()
@@ -298,4 +346,5 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         Gizmos.DrawWireSphere(transform.position, upgradedDodgeRange);
     }
+
 }
