@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public CombatController combatController;
     public Ma_SoundManager sM;
     public GameObject lifeBar;
+    public GameObject VFXSmoke; 
 
     /// <summary>
     /// Gameplay only
