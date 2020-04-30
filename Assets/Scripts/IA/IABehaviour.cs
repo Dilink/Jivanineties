@@ -330,9 +330,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         isInvincible = true;
         enemyFeedback.feedBackInvicibility();
+        enemyFeedback.isInvicible = true;
         yield return new WaitForSeconds(invicibilitéDuration);
         isInvincible = false;
         enemyFeedback.endInvincibility();
+        enemyFeedback.isInvicible= false;
         print("no more  Invincible");
     }
 
@@ -487,6 +489,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         stunned = true;
         enemyFeedback.feedBackStun();
         enemyFeedback.StunFX.Play();
+        enemyFeedback.IsStun = true;
         stunnedDuration += duration;
         while (loop)
         {
@@ -502,6 +505,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         navA.isStopped = false;
         enemyFeedback.StunFX.Stop();
         enemyFeedback.endStun();
+        enemyFeedback.IsStun = false;
         AIPursuit(GameManager.Instance.player.transform);
     }
 
