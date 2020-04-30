@@ -7436,93 +7436,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[0].spawnPoints.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[3].spawnPoints.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[0]
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[0].spawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac,
-        type: 2}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[1]
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[1].fix
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[2]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[2].time
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[3]
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[3].spawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac,
-        type: 2}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[4]
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[4].fix
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[5]
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
-      propertyPath: phases.Array.data[5].text
-      value: Victoire!
-      objectReference: {fileID: 0}
     - target: {fileID: 3522146111231909753, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5640445854362335041, guid: 796f20c270d257349b5e91d04689eb18,
+    - target: {fileID: 5129091755198446365, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 200
-      objectReference: {fileID: 0}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 6644953543441268827, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 411307806}
-    - target: {fileID: 7117395324102259302, guid: 796f20c270d257349b5e91d04689eb18,
+    - target: {fileID: 6994164658133616720, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
-      propertyPath: combatController
+      propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 1740806525}
-    - target: {fileID: 7117395324102259302, guid: 796f20c270d257349b5e91d04689eb18,
-        type: 3}
-      propertyPath: tokendoCount
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 7622959825166770690, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7578,8 +7511,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
 --- !u!23 &789623565 stripped
 MeshRenderer:
@@ -10326,34 +10258,6 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 305199971}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1740806524 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3522146111231909753, guid: 796f20c270d257349b5e91d04689eb18,
-    type: 3}
-  m_PrefabInstance: {fileID: 788584809}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1740806525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740806524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ea618a61192b24cb9a82eac2a4b973, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phaseList: {fileID: 11400000, guid: bf63fb1762727c246b39c6e9557cc114, type: 2}
-  currentPhase:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
 --- !u!23 &1747562414 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1319140133759732117, guid: da890f046bf52054780d1605926fa9f4,

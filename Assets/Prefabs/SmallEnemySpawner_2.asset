@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78da49de2340a184ebcab67f032c9adc, type: 3}
-  m_Name: BigEnemySpawner
+  m_Name: SmallEnemySpawner_2
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 11400000, guid: e4b239e202cb31649a94efc66fea8d2f, type: 2}
-  prefab: {fileID: 7710674430112167491, guid: 8a1c36511da05174ab9c89187f6cd13b, type: 3}
-  creationCount: 1
+  spawnPoint: {fileID: 11400000, guid: c4773e1ea292be24ea925b9280e9c5a1, type: 2}
+  prefab: {fileID: 9147953058656171425, guid: 562c36e7cd52f6e41adb3d4f5df22f21, type: 3}
+  creationCount: 2
