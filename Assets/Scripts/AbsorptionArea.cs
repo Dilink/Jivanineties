@@ -5,6 +5,12 @@ using DG.Tweening;
 
 public class AbsorptionArea : MonoBehaviour, IAbsorbable
 {
+    public delegate void OnAbsorptionDelegate();
+    public delegate void OnRestoreDelegate();
+
+    public OnAbsorptionDelegate onAbsorptionDelegate;
+    public OnRestoreDelegate onRestoreDelegate;
+
     public AbsorptionMaterialChange materials;
 
     [OnValueChanged("OnBoundariesChanged")]
@@ -56,6 +62,7 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
         }
 
         areaHasWater = false;
+        onAbsorptionDelegate();
         UpdateMaterialBasedOnWater();
         return true;
     }
@@ -68,6 +75,7 @@ public class AbsorptionArea : MonoBehaviour, IAbsorbable
         }
 
         areaHasWater = true;
+        onRestoreDelegate();
         UpdateMaterialBasedOnWater();
         return true;
     }
