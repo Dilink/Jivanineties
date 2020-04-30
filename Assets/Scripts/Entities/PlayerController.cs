@@ -88,7 +88,8 @@ public class PlayerController: MonoBehaviour, IDamageable
             IAbsorbable area = absorption.GetArea();
             if(upgradedAttackCooldown <= 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || area.OnAbsorption()))
             {
-                if(GameManager.Instance.tokendoAmount > 0)
+                playerFeedback.PlayWaterAbsorption();
+                if (GameManager.Instance.tokendoAmount > 0)
                 {
                     GameManager.Instance.tokendoAmount--;
                 }
@@ -145,7 +146,7 @@ public class PlayerController: MonoBehaviour, IDamageable
             Collider[] enemies = Physics.OverlapSphere(transform.position, upgradedDodgeRange, 1 << LayerMask.NameToLayer("Enemy"));
             if(enemies.Length > 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || area.OnAbsorption()))
             {
-                
+                playerFeedback.PlayWaterAbsorption();
                 if(GameManager.Instance.tokendoAmount > 0)
                 {
                     GameManager.Instance.tokendoAmount--;
