@@ -18,6 +18,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public IAStats IAStats;
     public GameObject dropItem;
+  //  public EnemyFeedback enemyFeedback;
     public bool isTesting = true;
 
     public Animator animator;
@@ -235,9 +236,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 case LifePointType.normal:
                     animator.SetTrigger("AttackFront");
+
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
+                   // enemyFeedback.SpecialAttack = true;
                     animator.SetTrigger("AttackWide");
                     break;
             }
@@ -305,6 +308,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage, transform);
                 // Debug.Log("HIt heros");
+                //enemyFeedback.AttackTouch = true;
                 enemyHit = true;
             }
             yield return null;
