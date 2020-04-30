@@ -66,7 +66,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnAIStateChanged(IABehaviour entity, IAState oldState, IAState newState)
     {
-        if (oldState == IAState.justSpawned)
+        if (oldState == IAState.justSpawned && newState != IAState.dead)
         {
             remainingEnemies.Add(entity);
             uiManager.OnEnemySpawned(entity);
