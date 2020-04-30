@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         speedModifier = 1f;
         mesh = visual.GetComponentInChildren<MeshRenderer>();
         dead = false;
-        GameOver();
     }
 
     // Update is called once per frame
