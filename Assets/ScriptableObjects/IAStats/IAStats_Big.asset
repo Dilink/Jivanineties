@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8190cc0ac150e84987ef190f131e678, type: 3}
+  m_Name: IAStats_Big
+  m_EditorClassIdentifier: 
+  lifePointTypes: 0000000001000000000000000100000000000000010000000000000001000000
+  Attack:
+  - {fileID: 11400000, guid: f365d071d2d7b394c9ee8ddf73eed8f5, type: 2}
+  - {fileID: 11400000, guid: 9992c9f0c8f115d4cb826457fb450f94, type: 2}

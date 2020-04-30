@@ -11,7 +11,7 @@ public class BattlePhase : ICombatPhase
 	[InlineEditor]
 	[SerializeField]
 	[ListDrawerSettings(Expanded = true)]
-	public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
+	public List<Spawner> spawners = new List<Spawner>();
 
 	private static readonly System.Random random = new System.Random();
 
@@ -39,12 +39,12 @@ public class BattlePhase : ICombatPhase
 	{
 		GameManager.Instance.uiManager.ShowAlertText("Enemy spawned!");
 
-		foreach (var sp in spawnPoints)
+		foreach (var s in spawners)
 		{
-			for (int i = 0; i < sp.creationCount; i++)
+			for (int i = 0; i < s.creationCount; i++)
 			{
-				var pos = FindRandomLocationNearCenter(sp.location, sp.radius);
-				data.Instantiate(sp.prefab, pos, Quaternion.identity);
+				var pos = FindRandomLocationNearCenter(s.spawnPoint.location, s.spawnPoint.radius);
+				data.Instantiate(s.prefab, pos, Quaternion.identity);
 			}
 		}
 

@@ -3406,6 +3406,11 @@ PrefabInstance:
       propertyPath: natureMeshRenderers.Array.data[95]
       value: 
       objectReference: {fileID: 359083044}
+    - target: {fileID: 244917064187352953, guid: da890f046bf52054780d1605926fa9f4,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 244917064188717192, guid: da890f046bf52054780d1605926fa9f4,
         type: 3}
       propertyPath: natureMeshRenderers.Array.size
@@ -10356,18 +10361,18 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 10
+    00000001:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawnPoints:
         - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000001:
+    00000002:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
-    00000002:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 10
     00000003:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8190cc0ac150e84987ef190f131e678, type: 3}
   m_Name: IAStats_Small
   m_EditorClassIdentifier: 
-  lifePointTypes: 0000000000000000000000000000000000000000
+  lifePointTypes: 000000000000000000000000
   Attack:
   - {fileID: 11400000, guid: a067632ae99eacb40bf55d6ddb328f82, type: 2}
   - {fileID: 11400000, guid: a067632ae99eacb40bf55d6ddb328f82, type: 2}
