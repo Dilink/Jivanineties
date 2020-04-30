@@ -6,6 +6,7 @@ public class PlayerFeedback : MonoBehaviour
 {
     public ParticleSystem[] playerHit;
     public ParticleSystem[] playerHit_Up;
+    public ParticleSystem[] EnemyHit;
 
     public ParticleSystem[] dash;
     public ParticleSystem[] dash_Up;
@@ -57,5 +58,15 @@ public class PlayerFeedback : MonoBehaviour
                 dash[i].Play();
             }
         }
+    }
+
+    public void FeedBackTakeDmage()
+    {
+        for (int i = 0; i < EnemyHit.Length; i++)
+        {
+
+            EnemyHit[i].Play();
+        }
+
     }
 }

@@ -11679,6 +11679,11 @@ PrefabInstance:
       objectReference: {fileID: 546651806}
     - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
       propertyPath: upgradedAttack
       value: 
       objectReference: {fileID: 11400000, guid: 64cfd3a05f270a34a8a48464489071bf,
@@ -11727,6 +11732,56 @@ PrefabInstance:
         type: 3}
       propertyPath: upgradedDodgeStunDuration
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].time
+      value: 0.0011398176
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].value
+      value: 3.0136967
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].tangentMode
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].time
+      value: 0.7494301
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].value
+      value: -0.03914134
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].tangentMode
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}

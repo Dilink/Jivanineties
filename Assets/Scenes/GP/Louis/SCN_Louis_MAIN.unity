@@ -589,6 +589,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 743410660}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &146477994
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 339774972}
+    m_Modifications:
+    - target: {fileID: 1094864272564558668, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_Name
+      value: FX_waterShield
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672136508903831594, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_Name
+      value: FX_WaterAbsorption
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.034
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131259, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_Name
+      value: VFX_WaterShield
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ede1a0d836710b41b9b9f85f880ad57, type: 3}
 --- !u!1001 &148653775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1895,6 +1974,12 @@ Transform:
   m_Father: {fileID: 1593663453}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &339774972 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 2308094107536393862}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &345404766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7968911350601601697, guid: 44fb48c15caf20d4c8abefea9056204e,
