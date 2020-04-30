@@ -299,6 +299,7 @@ public class PlayerController: MonoBehaviour, IDamageable
 
     public void TakeDamage(int damageAmount, Transform source)
     {
+        playerFeedback.FeedBackTakeDamage();
         IAbsorbable area = absorption.GetArea();
         if(area == null || !area.OnAbsorption())
         {
@@ -311,6 +312,7 @@ public class PlayerController: MonoBehaviour, IDamageable
         }
         else if(source != null)
         {
+            playerFeedback.PlayWaterShield();
             StopAllCoroutines();
             knocked = StartCoroutine(DBZKnockBack(source.forward));
         }

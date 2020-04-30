@@ -11,6 +11,8 @@ public class PlayerFeedback : MonoBehaviour
     public ParticleSystem[] dash;
     public ParticleSystem[] dash_Up;
 
+    public Animator animWaterShield;
+
 
     public bool SpecialAttack { get; set; }
     public bool SpecialDash { get; set; }
@@ -60,7 +62,7 @@ public class PlayerFeedback : MonoBehaviour
         }
     }
 
-    public void FeedBackTakeDmage()
+    public void FeedBackTakeDamage()
     {
         for (int i = 0; i < EnemyHit.Length; i++)
         {
@@ -68,5 +70,10 @@ public class PlayerFeedback : MonoBehaviour
             EnemyHit[i].Play();
         }
 
+    }
+
+    public void PlayWaterShield()
+    {
+        animWaterShield.Play("WaterShield_Absorption");
     }
 }
