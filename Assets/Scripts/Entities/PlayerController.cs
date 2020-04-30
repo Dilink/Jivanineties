@@ -5,6 +5,12 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
+    public delegate void OnAttackDelegate(bool isPoweredAttack);
+    public delegate void OnDashDelegate(Transform destination);
+
+    public OnAttackDelegate onAttackDelegate;
+    public OnDashDelegate onDashDelegate;
+
     [Header("Tweaking")]
     public int hp = 1;
     [Range(0, 50)]
@@ -104,11 +110,13 @@ public class PlayerController : MonoBehaviour, IDamageable
                 }
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), upgradedAttack));
                 upgradedAttackCooldown = upgradedAttack.attackCoolDownDuration;
+                onAttackDelegate(true);
             }
             else if (standardAttackCooldown <= 0)
             {
                 attacking = StartCoroutine(Attack(new Ray(transform.position + Vector3.up, visual.forward), standardAttack));
                 standardAttackCooldown = standardAttack.attackCoolDownDuration;
+                onAttackDelegate(false);
             }
         }
     }
@@ -170,10 +178,12 @@ public class PlayerController : MonoBehaviour, IDamageable
                 }
                 playerFeedback.SpecialDash = true;
                 dodging = StartCoroutine(Dodge(enemies[0].transform));
+                onDashDelegate(enemies[0].transform);
             }
             else
             {
                 dodging = StartCoroutine(Dodge(null));
+                onDashDelegate(null);
             }
             dodgeCooldown = dodgeCooldownDuration;
         }
