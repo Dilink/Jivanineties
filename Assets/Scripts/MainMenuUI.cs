@@ -90,6 +90,11 @@ public class MainMenuUI : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void PlayTuto()
+    {
+        SceneManager.LoadScene(2);
+    }
+
     public void CloseGame()
     {
 #if UNITY_EDITOR

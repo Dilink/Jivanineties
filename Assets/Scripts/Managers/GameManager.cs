@@ -73,8 +73,14 @@ public class GameManager : Singleton<GameManager>
         {
             remainingEnemies.Remove(entity);
             uiManager.OnEnemyDied(entity);
-            Destroy(entity.gameObject);
+            StartCoroutine(DelayDestroy(entity));
         }
+    }
+
+    IEnumerator DelayDestroy(IABehaviour entity)
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(entity.gameObject);
     }
 
 #if UNITY_EDITOR

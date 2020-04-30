@@ -29,6 +29,7 @@ MonoBehaviour:
   - id: 13
   - id: 14
   - id: 15
+  - id: 16
   references:
     version: 1
     00000000:
@@ -108,3 +109,7 @@ MonoBehaviour:
       data:
         time: 60
         isTextVisible: 0
+    00000010:
+      type: {class: ChangeLevelPhase, ns: , asm: Assembly-CSharp}
+      data:
+        scene: {fileID: 102900000, guid: fb76e56a2ceb35a41b4c7b0b6356dfca, type: 3}
