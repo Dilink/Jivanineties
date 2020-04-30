@@ -4,15 +4,63 @@ using UnityEngine;
 
 public class EnemyFeedback : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Animator stateAnim;
+
+    public ParticleSystem StunFX;
+
+    public bool IsStun { get; set; }
+    public bool isInvicible { get; set; }
+
+    public void feedBackInvicibility()
     {
-        
+        if (IsStun)
+        {
+            feedBackStunInvisibility();
+        }
+        else
+        {
+            stateAnim.Play("Anim_Invincibility_2");
+        }
+
+    }
+    public void feedBackStun()
+    {
+        if (isInvicible)
+        {
+            feedBackStunInvisibility();
+        }
+        else
+        {
+            stateAnim.Play("Anim_Stunned");
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void feedBackStunInvisibility()
     {
-        
+        stateAnim.Play("Anim_Stunned_Invincibility");
+    }
+
+    public void endStun()
+    {
+        if (isInvicible)
+        {
+            stateAnim.Play("Anim_Invincibility_2");
+        }
+        else
+        {
+            stateAnim.Play("New State");
+        }
+    }
+
+    public void endInvincibility()
+    {
+        if (IsStun)
+        {
+            stateAnim.Play("Anim_Stunned");
+        }
+        else
+        {
+            stateAnim.Play("New State");
+        }
     }
 }

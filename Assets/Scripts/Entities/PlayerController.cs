@@ -44,26 +44,32 @@ public class PlayerController : MonoBehaviour, IDamageable
     private float standardAttackCooldown;
     private float upgradedAttackCooldown;
 
+    private bool dead;
+
     // Start is called before the first frame update
     void Start()
     {
         movement = Vector3.zero;
         speedModifier = 1f;
         mesh = visual.GetComponentInChildren<MeshRenderer>();
+        dead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateCooldowns();
-        if (knocked == null)
+        if(!dead)
         {
-            CheckRestore();
-            CheckAttack();
-            CheckMovement();
-            CheckDodge();
+            UpdateCooldowns();
+            if(knocked == null)
+            {
+                CheckRestore();
+                CheckAttack();
+                CheckMovement();
+                CheckDodge();
+            }
+            Move();
         }
-        Move();
     }
 
     private void UpdateCooldowns()
@@ -237,7 +243,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(attack.attackRecoveryDuration);
         attacking = null;
     }
-
+    
     IEnumerator Dodge(Transform destination)
     {
         float timer = 0f;
@@ -284,6 +290,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (area != null && area.CanRestore())
         {
             movement = Vector3.zero;
+            animator.SetBool("Run", false);
+            animator.SetTrigger("Restore");
             while (loop && GameManager.Instance.inputManager.POWER_HOLD)
             {
                 if (timer >= restoreDelay)
@@ -300,6 +308,8 @@ public class PlayerController : MonoBehaviour, IDamageable
                     GameManager.Instance.tokendoAmount--;
                 }
             }
+            animator.SetTrigger("Recover");
+            yield return new WaitForSeconds(0.2f);
         }
         restoring = null;
     }
@@ -312,7 +322,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             Debug.Log("Aïe! J'ai mal!");
             hp -= damageAmount;
-            if (hp <= 0)
+            if (hp <= 0 && !dead)
             {
                 GameOver();
             }
@@ -349,7 +359,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         float timer = 0f;
         movement = direction;
         animator.SetBool("Run", false);
-        //animator.SetTrigger("Hit");
+        animator.SetTrigger("Hit");
         do
         {
             speedModifier = dbzKnockBackCurve.Evaluate(timer);
@@ -357,6 +367,8 @@ public class PlayerController : MonoBehaviour, IDamageable
             yield return null;
         }
         while (timer < dbzKnockBackCurve.keys[dbzKnockBackCurve.length - 1].time);
+        animator.SetTrigger("Recover");
+        yield return new WaitForSeconds(0.2f);
         speedModifier = 1f;
         movement = Vector3.zero;
         knocked = null;
@@ -364,6 +376,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void GameOver()
     {
+        animator.SetBool("Run", false);
+        animator.SetTrigger("Death");
+        dead = true;
         Debug.Log("Je suis mort!");
 
     }

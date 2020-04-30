@@ -7436,6 +7436,68 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[0].spawnPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[3].spawnPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[0].spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac,
+        type: 2}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[1]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[1].fix
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[2].time
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[3]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[3].spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac,
+        type: 2}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[4]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[4].fix
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[5]
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[5].text
+      value: Victoire!
+      objectReference: {fileID: 0}
     - target: {fileID: 3522146111231909753, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: m_Name
@@ -7516,7 +7578,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
 --- !u!23 &789623565 stripped
 MeshRenderer:
@@ -10281,49 +10344,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ea618a61192b24cb9a82eac2a4b973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phases:
-  - id: 0
-  - id: 1
-  - id: 2
-  - id: 3
-  - id: 4
-  - id: 5
-  - id: 6
+  phaseList: {fileID: 11400000, guid: bf63fb1762727c246b39c6e9557cc114, type: 2}
   currentPhase:
-    id: 7
+    id: 0
   references:
     version: 1
     00000000:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 10
-    00000001:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000002:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000003:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 10
-    00000004:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000005:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000006:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
-      data:
-        text: Victoire!
-    00000007:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawnPoints:
@@ -11621,6 +11647,11 @@ PrefabInstance:
       objectReference: {fileID: 546651806}
     - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
       propertyPath: upgradedAttack
       value: 
       objectReference: {fileID: 11400000, guid: 64cfd3a05f270a34a8a48464489071bf,
@@ -11669,6 +11700,56 @@ PrefabInstance:
         type: 3}
       propertyPath: upgradedDodgeStunDuration
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].time
+      value: 0.0011398176
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].value
+      value: 3.0136967
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].tangentMode
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].time
+      value: 0.7494301
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].value
+      value: -0.03914134
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].tangentMode
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2308094108566311390, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: dbzKnockBackCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
