@@ -355,6 +355,7 @@ MonoBehaviour:
   inputManager: {fileID: 5730781452694321852}
   combatController: {fileID: 6095146719636931722}
   sM: {fileID: 136905909}
+  lifeBar: {fileID: 7741174592402736581, guid: 7967720e4e04ad9419b5e45e296cd092, type: 3}
   player: {fileID: 0}
   remainingEnemies: []
 --- !u!114 &5730781452694321852

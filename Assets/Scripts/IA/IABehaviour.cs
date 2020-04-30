@@ -58,11 +58,22 @@ public class IABehaviour : MonoBehaviour, IDamageable
     public bool isInvincible { get; private set; }
     public float invicibilitéDuration;
 
+    private Material barMaterial;
+    private int maxLife;
+
 
     private void Awake()
     {
         currentLife = IAStats.lifePointTypes.Length - 1;
+        maxLife = currentLife;
+        GameObject newBar = Instantiate(GameManager.Instance.lifeBar, transform.position + new Vector3(0, transform.localScale.y*2.2f, 0), Quaternion.identity, transform);
+        barMaterial = newBar.GetComponent<MeshRenderer>().material;
+        float ratio = (float)currentLife / (float)maxLife;
+        barMaterial.SetFloat("_Vie", (1f - ratio));
+        print(ratio);
+
         print(currentLife);
+
     }
 
     void Start()
@@ -412,6 +423,10 @@ public class IABehaviour : MonoBehaviour, IDamageable
             return;
         }
         //print(currentLife);
+
+        float ratio = (float)currentLife / (float)maxLife;
+        barMaterial.SetFloat("_Vie", (1f - ratio));
+        print(ratio);
         StartCoroutine(InvicibilityDuration());
         GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_Death, transform.position);
 

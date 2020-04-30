@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     public InputManager inputManager;
     public CombatController combatController;
     public Ma_SoundManager sM;
+    public GameObject lifeBar;
 
     /// <summary>
     /// Gameplay only
