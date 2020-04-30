@@ -10304,6 +10304,8 @@ MonoBehaviour:
         - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
     00000002:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
     00000003:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
@@ -10315,6 +10317,8 @@ MonoBehaviour:
         - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
     00000005:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
     00000006:
       type: {class: TextPhase, ns: , asm: Assembly-CSharp}
       data:
