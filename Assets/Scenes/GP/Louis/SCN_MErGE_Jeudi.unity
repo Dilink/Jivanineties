@@ -505,6 +505,173 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 305199971}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &136905908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136905910}
+  - component: {fileID: 136905909}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &136905909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136905908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af4023c52e7ff248b8fed5a4f743151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialPoolSize: 10
+  _canGrowPool: 1
+  _loggingType: 1
+  _checkUnassignedSounds: 1
+  _soundList:
+  - Name: Payer_Attack
+    soundType: 1
+    audioClip: {fileID: 8300000, guid: a314a544d027beb419421ed34c22e212, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_Attack_Up
+    soundType: 2
+    audioClip: {fileID: 8300000, guid: 00c35176599c2e34db4727307c90c552, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_Dash
+    soundType: 3
+    audioClip: {fileID: 8300000, guid: 3e2e227949835064bbe77ba0fd193f6b, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_Dash_Up
+    soundType: 4
+    audioClip: {fileID: 8300000, guid: 2786bca098f711a469fc9bc209518993, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_Death
+    soundType: 5
+    audioClip: {fileID: 8300000, guid: b0856861cbe2f674d8a8b4d196058cce, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_TakeDamage
+    soundType: 6
+    audioClip: {fileID: 8300000, guid: 1c51e9550c2abc54f8038be3efa8e72b, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: WaterShied
+    soundType: 7
+    audioClip: {fileID: 8300000, guid: 5eea4a968a216c342a2f139bb3f01d4d, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: WaterIn
+    soundType: 8
+    audioClip: {fileID: 8300000, guid: 9b51ef873a864c343ad60542949dcb68, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: WaterOout
+    soundType: 9
+    audioClip: {fileID: 8300000, guid: 3cc11c1219d76984588a937d7d5737b6, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Pickup_Tokkendo
+    soundType: 10
+    audioClip: {fileID: 8300000, guid: 41f70d80c59a6d54f95d2c1776128c35, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: EnemyAttack
+    soundType: 11
+    audioClip: {fileID: 8300000, guid: ddfe3ea584578404aa0ffd05fe25ff37, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: EnemyAttack_up
+    soundType: 12
+    audioClip: {fileID: 8300000, guid: 76bb76c897e65c14aa1552a0fac495af, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Enemy_takeDamage
+    soundType: 15
+    audioClip: {fileID: 8300000, guid: a6eef2ca9462a314c9e2250472bb0101, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Enemy_stun
+    soundType: 13
+    audioClip: {fileID: 8300000, guid: 0b08862705a4e754eb46491f202975a9, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Enemy_noise
+    soundType: 14
+    audioClip: {fileID: 8300000, guid: 58e08fd55dc0c7642951b89039f7c10f, type: 3}
+    volumeLow: 0.693
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Enemy_Death
+    soundType: 16
+    audioClip: {fileID: 8300000, guid: d124c7a017e52c9458e27c8b8d30e1b0, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: None
+    soundType: 17
+    audioClip: {fileID: 8300000, guid: 1a860d11ee48e5b418dce41a2e1b63a0, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+--- !u!4 &136905910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136905908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.4161797, y: 1.4797661, z: -0.65805364}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &138649210 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2629098317092915152, guid: da890f046bf52054780d1605926fa9f4,

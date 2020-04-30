@@ -16,6 +16,8 @@ public class PlayerFeedback : MonoBehaviour
     public Animator animWaterShield;
     public Animator animWaterAbsorption;
 
+    //public Ma_SoundManager sM;
+
 
     public bool SpecialAttack { get; set; }
     public bool SpecialDash { get; set; }
@@ -52,7 +54,7 @@ public class PlayerFeedback : MonoBehaviour
         {
             for (int i = 0; i < dash_Up.Length; i++)
             {
-
+               GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_Dash_Up , transform.position);
                 dash_Up[i].Play();
             }
         }
@@ -60,7 +62,7 @@ public class PlayerFeedback : MonoBehaviour
         {
             for (int i = 0; i < dash.Length; i++)
             {
-
+                GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_Dash, transform.position);
                 dash[i].Play();
             }
         }
@@ -70,7 +72,7 @@ public class PlayerFeedback : MonoBehaviour
     {
         for (int i = 0; i < EnemyHit.Length; i++)
         {
-
+            GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_TakeDamage, transform.position);
             EnemyHit[i].Play();
         }
 
@@ -83,6 +85,7 @@ public class PlayerFeedback : MonoBehaviour
             for (int i = 0; i < Recover.Length; i++)
             {
                 Recover[i].Play();
+                GameManager.Instance.sM.PlaySoundPositioned(GameSound.WaterOut, transform.position);
             }
         }
         inRecover = false;
@@ -96,6 +99,7 @@ public class PlayerFeedback : MonoBehaviour
 
     public void PlayWaterAbsorption()
     {
+        GameManager.Instance.sM.PlaySoundPositioned(GameSound.WaterIn, transform.position);
         animWaterAbsorption.Play("WaterShield_Absorption");
     }
 }

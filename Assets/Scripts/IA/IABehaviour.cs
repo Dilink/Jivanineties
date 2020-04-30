@@ -52,7 +52,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private bool attackCanceled;
     private int currentLife;
     private float stunnedDuration;
-    
+
     public bool isAIDisabled = false;
 
     public bool isInvincible { get; private set; }
@@ -171,6 +171,21 @@ public class IABehaviour : MonoBehaviour, IDamageable
                 currentIAState = IAState.mooving;
                 animator.SetBool("Move", true);
                 float distance = Vector3.Distance(transform.position, pos.position);
+
+                int NoiseMonsterLuck = Random.Range(0, 10);
+                if (NoiseMonsterLuck > 7)
+                {
+                    if (Random.Range(0, 2) > 1)
+                    {
+                        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_noise, transform.position);
+
+                    }
+                    else
+                    {
+                        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_Noise2, transform.position);
+                    }
+                }
+
                 AiMoveTo(pos.position);
                 //print(distance);
                 if (distance < attackRange && !attackInCooldown)
@@ -251,11 +266,13 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 case LifePointType.normal:
                     animator.SetTrigger("AttackFront");
+                    GameManager.Instance.sM.PlaySoundPositioned(GameSound.EnemyAttack, transform.position);
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
                     // enemyFeedback.SpecialAttack = true;
                     animator.SetTrigger("AttackWide");
+                    GameManager.Instance.sM.PlaySoundPositioned(GameSound.EnemyAttack_up, transform.position);
                     break;
             }
             switch (attackType)
@@ -349,7 +366,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(invicibilitéDuration);
         isInvincible = false;
         enemyFeedback.endInvincibility();
-        enemyFeedback.isInvicible= false;
+        enemyFeedback.isInvicible = false;
         print("no more  Invincible");
     }
 
@@ -358,6 +375,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private void OnDead()
     {
         currentIAState = IAState.dead;
+        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_Death, transform.position);
         // navA.destination = transform.position;
         // navA.isStopped = true;
         animator.SetBool("Move", false);
@@ -395,7 +413,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
         //print(currentLife);
         StartCoroutine(InvicibilityDuration());
-
+        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_Death, transform.position);
 
         for (int i = 0; i < damageAmount; i++)
         {
@@ -497,6 +515,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
         animator.SetBool("Move", false);
         StopAllCoroutines();
+        isInvincible = false;
+        enemyFeedback.endInvincibility();
+        enemyFeedback.isInvicible = false;
         StartCoroutine(StunnedTimer(duration));
 
     }
