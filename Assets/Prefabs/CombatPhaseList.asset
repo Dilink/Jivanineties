@@ -15,35 +15,14 @@ MonoBehaviour:
   phases:
   - id: 0
   - id: 1
-  - id: 2
-  - id: 3
-  - id: 4
-  - id: 5
   references:
     version: 1
     00000000:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
+        spawners:
+        - {fileID: 11400000, guid: c5ab42ca2183cc847becba5bfeb24d56, type: 2}
     00000001:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
-    00000002:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
-      data:
-        time: 10
-    00000003:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000004:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000005:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
-      data:
-        text: Victoire!
