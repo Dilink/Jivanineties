@@ -314,7 +314,6 @@ GameObject:
   - component: {fileID: 7117395324102259302}
   - component: {fileID: 5730781452694321852}
   - component: {fileID: 1740806525}
-  - component: {fileID: 6095146719636931722}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -350,10 +349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a4f4153c9403c4cbcca87124f2b88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tokendoCount: 1
+  tokendoCount: 0
   uiManager: {fileID: 6644953543441268827}
   inputManager: {fileID: 5730781452694321852}
-  combatController: {fileID: 6095146719636931722}
+  combatController: {fileID: 1740806525}
   sM: {fileID: 136905909}
   lifeBar: {fileID: 7741174592402736581, guid: 7967720e4e04ad9419b5e45e296cd092, type: 3}
   player: {fileID: 0}
@@ -383,27 +382,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phaseList: {fileID: 11400000, guid: bf63fb1762727c246b39c6e9557cc114, type: 2}
-  currentPhase:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawners: []
---- !u!114 &6095146719636931722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3522146111231909753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ea618a61192b24cb9a82eac2a4b973, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phaseList: {fileID: 0}
   currentPhase:
     id: 0
   references:

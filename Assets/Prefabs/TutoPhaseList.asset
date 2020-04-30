@@ -42,6 +42,16 @@ MonoBehaviour:
   - id: 26
   - id: 27
   - id: 28
+  - id: 29
+  - id: 30
+  - id: 31
+  - id: 32
+  - id: 33
+  - id: 34
+  - id: 35
+  - id: 36
+  - id: 37
+  - id: 38
   references:
     version: 1
     00000000:
@@ -57,6 +67,7 @@ MonoBehaviour:
       type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
       data:
         actionType: 2
+        triggerOnSpecialAction: 0
     00000003:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
@@ -78,6 +89,7 @@ MonoBehaviour:
       type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
       data:
         actionType: 0
+        triggerOnSpecialAction: 0
     00000008:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
@@ -99,6 +111,7 @@ MonoBehaviour:
       type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
       data:
         actionType: 1
+        triggerOnSpecialAction: 0
     0000000D:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
@@ -115,55 +128,57 @@ MonoBehaviour:
     00000010:
       type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
       data:
-        text: Utilisez "clic gauche souris + barre d'espace" pour effectuer une attaque
-          puissante (Absorbe l'eau de la zone) et tuer l'ennemi !
+        text: "Utilisez \"clic gauche souris + barre d'espace\" pour effectuer une
+          attaque puissante sur une zone gorg\xE9e d'eau (Absorbe l'eau de la zone)
+          !"
     00000011:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
       data:
-        spawners:
-        - {fileID: 11400000, guid: 00af71ba92250f64ca0e54b61d94c1aa, type: 2}
+        actionType: 0
+        triggerOnSpecialAction: 1
     00000012:
-      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
-      data:
-        fix: 0
-    00000013:
       type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
+    00000013:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Bravo !
     00000014:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
-      data:
-        text: Bravo !
-    00000015:
-      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
-      data:
-        text: "Entre deux phases de combat vous pouvez restaurer une zone gr\xE2ce
-          aux tokendos r\xE9colt\xE9s sur les ennemis ! Restaurez la zone que vous
-          avez d\xE9truit o\xF9 se tenait l'ennemi !"
-    00000016:
-      type: {class: AbsorptionPhase, ns: , asm: Assembly-CSharp}
-      data:
-        actionType: 1
-        area: {fileID: 0}
-    00000017:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
-      data:
-        text: Bravo !
-    00000018:
       type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
       data:
         text: "Utilisez \"clic droit souris + barre d'espace\" vers un ennemi pour
           vous t\xE9l\xE9porter derri\xE8re lui et l'\xE9tourdir (Absorbe l'eau de
-          la zone) !"
-    00000019:
+          la zone) ! Etourdissez votre ennemi et \xE9liminez le !"
+    00000015:
+      type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
+      data:
+        actionType: 1
+        triggerOnSpecialAction: 1
+    00000016:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawners:
-        - {fileID: 11400000, guid: d070a5f356177a040aa4a91afb4c8bb7, type: 2}
-    0000001A:
+        - {fileID: 11400000, guid: 00af71ba92250f64ca0e54b61d94c1aa, type: 2}
+    00000017:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
+    00000018:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Bravo !
+    00000019:
+      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: "Entre deux phases de combat vous pouvez restaurer une zone gr\xE2ce
+          aux tokendos r\xE9colt\xE9s sur les ennemis ! Restaurez une zone que vous
+          avez d\xE9truit !"
+    0000001A:
+      type: {class: AbsorptionPhase, ns: , asm: Assembly-CSharp}
+      data:
+        actionType: 1
+        area: {fileID: 0}
     0000001B:
       type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
       data:
@@ -172,3 +187,48 @@ MonoBehaviour:
       type: {class: TextPhase, ns: , asm: Assembly-CSharp}
       data:
         text: Bravo !
+    0000001D:
+      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: "F\xE9licitation votre entrainement touche \xE0 sa fin ! Mais une derni\xE8re
+          \xE9preuve vous attend ! Terrassez votre ennemi !"
+    0000001E:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 2
+        isTextVisible: 1
+    0000001F:
+      type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    00000020:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawners:
+        - {fileID: 11400000, guid: d070a5f356177a040aa4a91afb4c8bb7, type: 2}
+    00000021:
+      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: "Si un ennemi vous porte un coup sur une zone gorg\xE9e d'eau, la nature
+          vous prot\xE9gera !"
+    00000022:
+      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    00000023:
+      type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    00000024:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Bravo !
+    00000025:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 2
+        isTextVisible: 0
+    00000026:
+      type: {class: ChangeLevelPhase, ns: , asm: Assembly-CSharp}
+      data:
+        scene: {fileID: 102900000, guid: fb76e56a2ceb35a41b4c7b0b6356dfca, type: 3}
