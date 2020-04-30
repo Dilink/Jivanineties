@@ -49,6 +49,8 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private int currentLife;
     private float stunnedDuration;
     private bool stunned;
+    
+    public bool isAIDisabled = false;
 
 
     public bool isInvincible { get; private set; }
@@ -63,7 +65,14 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     void Start()
     {
-        AIPursuit(GameManager.Instance.player.transform);
+        if (!isAIDisabled)
+        {
+            AIPursuit(GameManager.Instance.player.transform);
+        }
+        else
+        {
+            currentIAState = IAState.justSpawned;
+        }
     }
 
     private void Update()
@@ -148,27 +157,30 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public bool AIPursuit(Transform pos)
     {
-        if (!isTesting)
+        if (!isAIDisabled)
         {
-            if (navA.isStopped)
+            if (!isTesting)
             {
-                navA.isStopped = false;
-            }
+                if (navA.isStopped)
+                {
+                    navA.isStopped = false;
+                }
 
-            currentIAState = IAState.mooving;
-            animator.SetBool("Move", true);
-            float distance = Vector3.Distance(transform.position, pos.position);
-            AiMoveTo(pos.position);
-            //print(distance);
-            if (distance < attackRange && !attackInCooldown)
-            {
-                //print("A cote de la cible");
-                navA.destination = transform.position;
-                IAAttack(0);
-            }
-            else
-            {
-                StartCoroutine(pursuitCooldown(pos, AIperceptionUpdate));
+                currentIAState = IAState.mooving;
+                animator.SetBool("Move", true);
+                float distance = Vector3.Distance(transform.position, pos.position);
+                AiMoveTo(pos.position);
+                //print(distance);
+                if (distance < attackRange && !attackInCooldown)
+                {
+                    //print("A cote de la cible");
+                    navA.destination = transform.position;
+                    IAAttack(0);
+                }
+                else
+                {
+                    StartCoroutine(pursuitCooldown(pos, AIperceptionUpdate));
+                }
             }
         }
 
