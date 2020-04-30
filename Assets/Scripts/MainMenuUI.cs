@@ -54,11 +54,6 @@ public class MainMenuUI : MonoBehaviour
         PlayButtonsAnimation();
     }
 
-    void Update()
-    {
-        UpdateBackgroundDisplacement();
-    }
-
     private void PlayTitleAnimation()
     {
         titleImage.DOFade(1, titleAnimationSpeed).SetDelay(titleAnimationSpeed / 1.5f);
@@ -72,17 +67,6 @@ public class MainMenuUI : MonoBehaviour
             RectTransform btn = buttonsRects[i];
             btn.DOAnchorPosY( 100 - 100 * (i + 1), buttonsAnimationSpeed, false).SetDelay(titleAnimationSpeed + (buttonsAnimationSpeed / 2.0f) * (i + 1)).SetEase(Ease.OutBounce);
         }
-    }
-
-    private void UpdateBackgroundDisplacement()
-    {
-        backgroundDisplacementX += backgroundDisplacementXSpeed * Time.deltaTime;
-        backgroundDisplacementY += backgroundDisplacementYSpeed * Time.deltaTime;
-
-        var rect = new Rect(backgroundImage.uvRect);
-        rect.x = backgroundDisplacementX;
-        rect.y = backgroundDisplacementY;
-        backgroundImage.uvRect = rect;
     }
 
     public void PlayGame()
