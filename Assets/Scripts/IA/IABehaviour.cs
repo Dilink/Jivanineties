@@ -8,6 +8,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
 {
     public delegate void OnIAStateChangedDelegate(IABehaviour entity, IAState oldState, IAState newState);
 
+    [Header("Tweaking")]
+    public float attackRange;
+
     public NavMeshAgent navA;
     public MeshRenderer mR;
     public Material[] stateMaterials;
@@ -15,6 +18,8 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public IAStats IAStats;
     public GameObject dropItem;
+    public int dropCount = 1;
+    public EnemyFeedback enemyFeedback;
     public bool isTesting = true;
 
     public Animator animator;
@@ -43,6 +48,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private bool attackCanceled;
     private int currentLife;
     private float stunnedDuration;
+    private bool stunned;
 
 
     public bool isInvincible { get; private set; }
@@ -64,8 +70,16 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         if (isTesting && Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(1);
+            TakeDamage(1, null);
             // TakeDamage(2);
+        }
+        if (isTesting && Input.GetKeyDown(KeyCode.A))
+        {
+            IAAttack(0);
+        }
+        if (isTesting && Input.GetKeyDown(KeyCode.E))
+        {
+            IAAttack(1);
         }
     }
 
@@ -134,25 +148,28 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     public bool AIPursuit(Transform pos)
     {
-        if (navA.isStopped)
+        if (!isTesting)
         {
-            navA.isStopped = false;
-        }
+            if (navA.isStopped)
+            {
+                navA.isStopped = false;
+            }
 
-        currentIAState = IAState.mooving;
-        animator.SetBool("Move", true);
-        float distance = Vector3.Distance(transform.position, pos.position);
-        AiMoveTo(pos.position);
-        //print(distance);
-        if (distance < 2 && !attackInCooldown)
-        {
-            //print("A cote de la cible");
-            navA.destination = transform.position;
-            IAAttack(0);
-        }
-        else
-        {
-            StartCoroutine(pursuitCooldown(pos, AIperceptionUpdate));
+            currentIAState = IAState.mooving;
+            animator.SetBool("Move", true);
+            float distance = Vector3.Distance(transform.position, pos.position);
+            AiMoveTo(pos.position);
+            //print(distance);
+            if (distance < attackRange && !attackInCooldown)
+            {
+                //print("A cote de la cible");
+                navA.destination = transform.position;
+                IAAttack(0);
+            }
+            else
+            {
+                StartCoroutine(pursuitCooldown(pos, AIperceptionUpdate));
+            }
         }
 
 
@@ -178,7 +195,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
         animator.SetBool("Move", false);
 
-        if(specialAttackWaiting > 0)
+        if (specialAttackWaiting > 0)
         {
             specialAttackWaiting--;
             indexToTake = 1;
@@ -204,7 +221,6 @@ public class IABehaviour : MonoBehaviour, IDamageable
         //PREP
         currentIAState = IAState.attackPrep;
 
-        hitBoxVisualisation[indexToTake].SetActive(true);
         StartCoroutine(attackDebugCooldown(prepDuration, attackDuration, IAStats.Attack[indexToTake].attackType));
 
 
@@ -217,28 +233,27 @@ public class IABehaviour : MonoBehaviour, IDamageable
         }
         else
         {
-            switch(attackType)
+            switch (attackType)
             {
                 case LifePointType.normal:
                     animator.SetTrigger("AttackFront");
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
+                    // enemyFeedback.SpecialAttack = true;
                     animator.SetTrigger("AttackWide");
                     break;
             }
-            yield return new WaitForSeconds(prepDuration);
-            Ray ray = new Ray(transform.position, transform.forward);
             switch (attackType)
             {
                 case LifePointType.normal:
-                    currentIAState = IAState.attacking;                 
-                    StartCoroutine(Attack(ray, IAStats.Attack[0]));
+                    currentIAState = IAState.attacking;
+                    StartCoroutine(Attack(IAStats.Attack[0], 0));
                     break;
                 case LifePointType.specialAttack:
                     // specialAttackWaiting--;
                     currentIAState = IAState.specialAttack;
-                    StartCoroutine(Attack(ray, IAStats.Attack[1]));
+                    StartCoroutine(Attack(IAStats.Attack[1], 1));
                     break;
             }
             StartCoroutine(AttackCooldown());
@@ -257,11 +272,30 @@ public class IABehaviour : MonoBehaviour, IDamageable
         // AIPursuit(player.transform);
 
     }
-    IEnumerator Attack(Ray ray, Attack attack)
+    IEnumerator Attack(Attack attack, int index)
     {
         bool loop = true;
         bool enemyHit = false;
         float timer = 0f;
+        //yield return new WaitForSeconds(attack.preparationDuration);
+        hitBoxVisualisation[index].SetActive(true);
+        while (loop && !attackCanceled)
+        {
+            Vector3 directionToFace = GameManager.Instance.player.transform.position;
+            directionToFace = new Vector3(directionToFace.x, transform.position.y, directionToFace.z);
+            transform.LookAt(directionToFace);
+            timer += Time.deltaTime;
+            if (timer >= attack.preparationDuration)
+            {
+                loop = false;
+            }
+            yield return null;
+        }
+        loop = true;
+        timer = 0f;
+        yield return new WaitForSeconds(attack.dodgeWindowDuration);
+        animator.SetTrigger("Release");
+        Ray ray = new Ray(transform.position, transform.forward);
         while (loop && !attackCanceled)
         {
             timer += Time.deltaTime;
@@ -269,12 +303,13 @@ public class IABehaviour : MonoBehaviour, IDamageable
             {
                 loop = false;
             }
-            Collider[] enemies = Physics.OverlapBox(ray.origin + ray.direction * attack.rangeBox.z / 2f, attack.rangeBox / 2f, transform.rotation, 1 << LayerMask.NameToLayer("Player"));
-            ExtDebug.DrawBoxCastBox(ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), transform.rotation, ray.direction, attack.rangeBox.z, Color.green);
+            Collider[] enemies = Physics.OverlapBox(attack.offset + ray.origin + ray.direction * attack.rangeBox.z / 2f, attack.rangeBox / 2f, transform.rotation, 1 << LayerMask.NameToLayer("Player"));
+            ExtDebug.DrawBoxCastBox(attack.offset + ray.origin, new Vector3(attack.rangeBox.x / 2f, attack.rangeBox.y / 2f, 0), transform.rotation, ray.direction, attack.rangeBox.z, Color.green);
             if (!enemyHit && enemies.Length > 0)
             {
-                enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage);
+                enemies[0].GetComponent<IDamageable>()?.TakeDamage(attack.damage, transform);
                 // Debug.Log("HIt heros");
+                //enemyFeedback.AttackTouch = true;
                 enemyHit = true;
             }
             yield return null;
@@ -294,8 +329,10 @@ public class IABehaviour : MonoBehaviour, IDamageable
     IEnumerator InvicibilityDuration()
     {
         isInvincible = true;
+        enemyFeedback.feedBackInvicibility();
         yield return new WaitForSeconds(invicibilitéDuration);
         isInvincible = false;
+        enemyFeedback.endInvincibility();
         print("no more  Invincible");
     }
 
@@ -307,15 +344,21 @@ public class IABehaviour : MonoBehaviour, IDamageable
         navA.destination = transform.position;
         StopAllCoroutines();
 
-        GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
-        Tokendo tokendo = go.GetComponent<Tokendo>();
-        if (!tokendo.moveToPlayerAtStart)
+        if (dropCount > 0)
         {
-            tokendo.MoveToPlayer();
+            for (int i = 0; i < dropCount; i++)
+            {
+                GameObject go = Instantiate(dropItem, transform.position + Vector3.up * 1.5f, Quaternion.identity);
+                Tokendo tokendo = go.GetComponent<Tokendo>();
+                if (!tokendo.moveToPlayerAtStart)
+                {
+                    tokendo.MoveToPlayer();
+                }
+            }
         }
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(int damageAmount, Transform source)
     {
         if (isInvincible)
         {
@@ -337,7 +380,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         for (int i = 0; i < damageAmount; i++)
         {
             // print("PV type : " + IAStats.lifePointTypes[lastLife - (1 + i)]);
-            if (IAStats.lifePointTypes[lastLife - (1 + i)] == LifePointType.specialAttack)
+            /*if (IAStats.lifePointTypes[lastLife - (1 + i)] == LifePointType.specialAttack)
             {
                 switch (currentIAState)
                 {
@@ -350,8 +393,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
                         break;
                     case IAState.attackPrep:
                         StopCoroutine("attackDebugCooldown");
-                        IAAttack(1);
+                        StopCoroutine("AttackCooldown");
+                        StopCoroutine("Attack");
                         hitBoxVisualisation[0].SetActive(false);
+                        hitBoxVisualisation[1].SetActive(false);
+                        IAAttack(1);
                         print("Prep Cancel");
                         break;
 
@@ -359,11 +405,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
                         StopCoroutine("attackDebugCooldown");
                         StopCoroutine("AttackCooldown");
                         StopCoroutine("Attack");
-
                         hitBoxVisualisation[0].SetActive(false);
+                        hitBoxVisualisation[1].SetActive(false);
                         print("Attack  Cancel");
-                        attackCanceled = true;
-                        animator.SetTrigger("Cancel");
                         IAAttack(1);
                         break;
 
@@ -373,46 +417,51 @@ public class IABehaviour : MonoBehaviour, IDamageable
                         //    break;
 
                 }
-            }
+            }*/
+
+            specialAttackWaiting = 1;
         }
 
     }
 
     public void GetStunned(float duration)
     {
-        if(duration <= 0)
+        if (duration <= 0)
         {
             return;
         }
 
+        navA.isStopped = true;
+
         animator.SetTrigger("Cancel");
 
-        for(int i = 0; i < hitBoxVisualisation.Length; i++)
+        for (int i = 0; i < hitBoxVisualisation.Length; i++)
         {
             hitBoxVisualisation[i].SetActive(false);
-        } 
-        
-        switch (currentIAState)
+        }
+
+        /*switch (currentIAState)
         {
             case IAState.mooving:
                 StopCoroutine("AIPursuit");
                 StopCoroutine("pursuitCooldown");
-                navA.isStopped = true;
-
                 break;
             case IAState.attackPrep:
                 StopCoroutine("attackDebugCooldown");
+                attackCanceled = true;
                 break;
 
             case IAState.attacking:
                 StopCoroutine("attackDebugCooldown");
                 StopCoroutine("AttackCooldown");
+                StopCoroutine("Attack");
                 attackCanceled = true;
                 break;
 
             case IAState.specialAttack:
                 StopCoroutine("attackDebugCooldown");
                 StopCoroutine("AttackCooldown");
+                StopCoroutine("Attack");
                 specialAttackWaiting++;
                 attackCanceled = true;
                 break;
@@ -420,14 +469,24 @@ public class IABehaviour : MonoBehaviour, IDamageable
             case IAState.stunned:
                 stunnedDuration += duration;
                 return;
+        }*/
+        if (currentIAState == IAState.stunned)
+        {
+            stunnedDuration += duration;
+            return;
         }
-        StunnedTimer(duration);
+        animator.SetBool("Move", false);
+        StopAllCoroutines();
+        StartCoroutine(StunnedTimer(duration));
 
     }
 
     IEnumerator StunnedTimer(float duration)
     {
         bool loop = true;
+        stunned = true;
+        enemyFeedback.feedBackStun();
+        enemyFeedback.StunFX.Play();
         stunnedDuration += duration;
         while (loop)
         {
@@ -439,7 +498,11 @@ public class IABehaviour : MonoBehaviour, IDamageable
             yield return null;
         }
         stunnedDuration = 0;
-        AIPursuit(GameManager.Instance.player.transform);    
+        stunned = false;
+        navA.isStopped = false;
+        enemyFeedback.StunFX.Stop();
+        enemyFeedback.endStun();
+        AIPursuit(GameManager.Instance.player.transform);
     }
 
     #region EDITOR

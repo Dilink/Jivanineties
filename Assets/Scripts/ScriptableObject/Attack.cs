@@ -9,8 +9,10 @@ public class Attack : ScriptableObject
     public float attackRecoveryDuration;
     public float attackCoolDownDuration;
     public float preparationDuration;
+    public float dodgeWindowDuration;
     public float stunDuration;
     public Vector3 rangeBox;
+    public Vector3 offset;
 
     public LifePointType attackType;
 
