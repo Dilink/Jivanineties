@@ -12,12 +12,13 @@ public class GameManager : Singleton<GameManager>
 
     public UIManager uiManager;
     public InputManager inputManager;
+    public CombatController combatController;
 
     /// <summary>
     /// Gameplay only
     /// </summary>
     private int _tokendoAmount = 0;
-    private int tokendoAmount
+    public int tokendoAmount
     {
         get => _tokendoAmount;
         set
@@ -30,7 +31,6 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector]
     public PlayerController player;
 
-    [HideInInspector]
     public List<IABehaviour> remainingEnemies = new List<IABehaviour>();
 
     void Start()
@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
         IABehaviour.iaStateChangedDelegate += OnAIStateChanged;
 
         StartCoroutine(OnFirstFrame());
+        
     }
 
     new void OnDestroy()
@@ -58,6 +59,7 @@ public class GameManager : Singleton<GameManager>
     {
         IABehaviour[] allAI = GameObject.FindObjectsOfType<IABehaviour>();
         remainingEnemies.AddRange(allAI);
+        combatController.MoveToNextPhase();
         yield return null;
     }
 
@@ -70,6 +72,7 @@ public class GameManager : Singleton<GameManager>
         else if (newState == IAState.dead)
         {
             remainingEnemies.Remove(entity);
+            Destroy(entity.gameObject);
         }
     }
 
@@ -81,6 +84,7 @@ public class GameManager : Singleton<GameManager>
         uiManager.Populate();
 
         inputManager = transform.GetComponentInChildren<InputManager>();
+        combatController = transform.GetComponentInChildren<CombatController>();
     }
 #endif
 }

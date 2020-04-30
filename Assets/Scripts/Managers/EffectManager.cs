@@ -38,7 +38,7 @@ public class EffectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(triggerDebug)
+        if(triggerDebug || Input.GetKeyDown(KeyCode.G))
         {
             triggerDebug = false;
             TriggerEffect(debugIndex);
@@ -58,32 +58,28 @@ public class EffectManager : MonoBehaviour
     {
         float timer = 0f;
         cameraController.PerformEffect = true;
-        cameraController.FollowPlayer = effect.followPlayer;
-        Vector3 cameraPosition = cameraController.playerCamera.transform.position;
-        Quaternion cameraRotation = cameraController.playerCamera.transform.rotation;
+        Quaternion cameraRotation = cameraController.playerCamera.transform.localRotation;
         float cameraFOV = cameraController.playerCamera.fieldOfView;
-        while(cameraController.PerformEffect)
+        bool next = false;
+        while(cameraController.PerformEffect && !next)
         {
             Vector3 newRotation = cameraRotation.eulerAngles;
-            if(effect.followPlayer)
-            {
-                cameraPosition = cameraController.playerCamera.transform.position;
-            }
+            Vector3 newPosition = Vector3.zero;
             if(effect.timeScale.length > 0 && timer <= effect.timeScale[effect.timeScale.length - 1].time)
             {
                 Time.timeScale = effect.timeScale.Evaluate(timer);
             }
             if(effect.camPositionX.length > 0 && timer <= effect.camPositionX[effect.camPositionX.length - 1].time)
             {
-                cameraController.playerCamera.transform.position = cameraPosition + new Vector3(effect.camPositionX.Evaluate(timer), 0, 0);
+                newPosition += new Vector3(effect.camPositionX.Evaluate(timer), 0, 0);
             }
             if(effect.camPositionY.length > 0 && timer <= effect.camPositionY[effect.camPositionY.length - 1].time)
             {
-                cameraController.playerCamera.transform.position = cameraPosition + new Vector3(0, effect.camPositionY.Evaluate(timer), 0);
+                newPosition += new Vector3(0, effect.camPositionY.Evaluate(timer), 0);
             }
             if(effect.camPositionZ.length > 0 && timer <= effect.camPositionZ[effect.camPositionZ.length - 1].time)
             {
-                cameraController.playerCamera.transform.position = cameraPosition + new Vector3(0, 0, effect.camPositionZ.Evaluate(timer));
+                newPosition += new Vector3(0, 0, effect.camPositionZ.Evaluate(timer));
             }
             if(effect.camRotationX.length > 0 && timer <= effect.camRotationX[effect.camRotationX.length - 1].time)
             {
@@ -103,16 +99,27 @@ public class EffectManager : MonoBehaviour
             }
             if(timer >= effect.effectDuration)
             {
-                cameraController.PerformEffect = false;
+                if(effect.nextEffect != null)
+                {
+                    next = true;
+                }
+                else
+                {
+                    cameraController.PerformEffect = false;
+                }
             }
-            cameraController.playerCamera.transform.rotation = Quaternion.Euler(newRotation);
+            cameraController.playerCamera.transform.localRotation = Quaternion.Euler(newRotation);
+            cameraController.playerCamera.transform.localPosition = newPosition;
             timer += Time.unscaledDeltaTime;
             yield return null;
         }
-        cameraController.playerCamera.transform.position = cameraPosition;
-        cameraController.playerCamera.transform.rotation = cameraRotation;
+        cameraController.playerCamera.transform.localPosition = Vector3.zero;
+        cameraController.playerCamera.transform.localRotation = cameraRotation;
         cameraController.playerCamera.fieldOfView = cameraFOV;
         Time.timeScale = 1f;
-
+        if(next)
+        {
+            StartCoroutine(Evaluate(effect.nextEffect));
+        }
     }
 }

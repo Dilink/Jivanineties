@@ -8,11 +8,12 @@ public class AbsorptionController : MonoBehaviour
 	{
 		if (isTesting && Input.GetKeyDown(KeyCode.Space))
 		{
-			TryAbsorption();
+			IAbsorbable area = GetArea();
+			area?.OnAbsorption();
 		}
 	}
 
-	private bool TryProcessUnderneath(bool isAbsorption)
+	public IAbsorbable GetArea()
 	{
 		int layerMask = 1 << LayerMask.NameToLayer("Player");
 		layerMask = ~layerMask;
@@ -21,29 +22,9 @@ public class AbsorptionController : MonoBehaviour
 		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.0f, layerMask))
 		{
 			IAbsorbable area = hit.transform.gameObject.GetComponent<AbsorptionArea>() as IAbsorbable;
-			if (area != null)
-			{
-				if (isAbsorption)
-				{
-					return area.OnAbsorption();
-				}
-				else
-				{
-					return area.OnRestore();
-				}
-			}
+			return area;
 		}
-		return false;
+		return null;
 	}
 
-	public bool TryAbsorption()
-	{
-		return TryProcessUnderneath(true);
-		
-	}
-
-	public bool TryRestore()
-	{
-		return TryProcessUnderneath(false);
-	}
 }
