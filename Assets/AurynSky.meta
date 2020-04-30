@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/AurynSky.meta
 guid: e11899358c106a2458d896e2ffe4ec16
+========
+guid: f54d1bd14bd3ca042bd867b519fee8cc
+>>>>>>>> 4448cbbecbe9786d511072ef1b10fe7c7e40a7f3:Assets/TextMesh Pro.meta
+=======
+guid: e11899358c106a2458d896e2ffe4ec16
+>>>>>>> 4448cbbecbe9786d511072ef1b10fe7c7e40a7f3
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
