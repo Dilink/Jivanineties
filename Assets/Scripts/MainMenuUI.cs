@@ -70,7 +70,7 @@ public class MainMenuUI : MonoBehaviour
         for (int i = 0; i < buttonsRects.Count; i++)
         {
             RectTransform btn = buttonsRects[i];
-            btn.DOAnchorPosY(-100 * (i + 1), buttonsAnimationSpeed, false).SetDelay(titleAnimationSpeed + (buttonsAnimationSpeed / 2.0f) * (i + 1)).SetEase(Ease.OutBounce);
+            btn.DOAnchorPosY( 50 - 100 * (i + 1), buttonsAnimationSpeed, false).SetDelay(titleAnimationSpeed + (buttonsAnimationSpeed / 2.0f) * (i + 1)).SetEase(Ease.OutBounce);
         }
     }
 
