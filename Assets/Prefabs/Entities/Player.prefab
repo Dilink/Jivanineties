@@ -14639,7 +14639,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 6
+      value: 10
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -14648,9 +14648,9 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.35
-      value: 5.5
-      inSlope: -5
-      outSlope: -5
+      value: 8.511228
+      inSlope: -14.887723
+      outSlope: -14.887723
       tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
@@ -14658,11 +14658,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.4
       value: 0
-      inSlope: -109.99998
-      outSlope: 55.000004
-      tangentMode: 69
+      inSlope: -156.84961
+      outSlope: -156.84961
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.09876547
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -14674,7 +14674,7 @@ MonoBehaviour:
   dodgeCooldownDuration: 0.5
   restoreDelay: 1
   standardAttack: {fileID: 11400000, guid: 486b79489af08e949aee99d039191e10, type: 2}
-  upgradedAttack: {fileID: 11400000, guid: 64cfd3a05f270a34a8a48464489071bf, type: 2}
+  upgradedAttack: {fileID: 11400000, guid: 486b79489af08e949aee99d039191e10, type: 2}
   visual: {fileID: 2308094108594354172}
   absorption: {fileID: 3617632262605767277}
   animator: {fileID: 6892776228416887051}
