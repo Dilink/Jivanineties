@@ -23,6 +23,7 @@ MonoBehaviour:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
         time: 2
+        isTextVisible: 0
     00000001:
       type: {class: TextPhase, ns: , asm: Assembly-CSharp}
       data:
@@ -30,7 +31,7 @@ MonoBehaviour:
     00000002:
       type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
       data:
-        actionType: 2
+        actionType: 0
     00000003:
       type: {class: TextPhase, ns: , asm: Assembly-CSharp}
       data:
