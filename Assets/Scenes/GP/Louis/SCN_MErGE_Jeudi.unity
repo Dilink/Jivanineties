@@ -6724,10 +6724,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21cb97917c4ce904e9c8cd29a1c9fbef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateAnim: {fileID: 0}
-  StunFX: {fileID: 0}
-  isStun: 0
-  isInvicible: 0
+  stateAnim: {fileID: 1792432739}
+  StunFX: {fileID: 1261294958}
 --- !u!4 &499689674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2597852439328488486, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2,
@@ -9167,9 +9165,9 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -14022,6 +14020,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 112932313886882950, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2,
+        type: 3}
+      propertyPath: enemyFeedback
+      value: 
+      objectReference: {fileID: 499689673}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2, type: 3}
 --- !u!23 &1291934860 stripped
