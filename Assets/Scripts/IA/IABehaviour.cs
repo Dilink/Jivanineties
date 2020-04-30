@@ -357,7 +357,8 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private void OnDead()
     {
         currentIAState = IAState.dead;
-        navA.destination = transform.position;
+        // navA.destination = transform.position;
+        navA.isStopped = true;
         StopAllCoroutines();
 
         if (dropCount > 0)
