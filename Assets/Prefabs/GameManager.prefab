@@ -1,5 +1,179 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &136905908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 136905910}
+  - component: {fileID: 136905909}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &136905910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136905908}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.4161797, y: 1.4797661, z: -0.65805364}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7622959825166770690}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &136905909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136905908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af4023c52e7ff248b8fed5a4f743151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialPoolSize: 10
+  _canGrowPool: 1
+  _loggingType: 1
+  _checkUnassignedSounds: 1
+  _soundList:
+  - Name: Payer_Attack
+    soundType: 1
+    audioClip: {fileID: 8300000, guid: a314a544d027beb419421ed34c22e212, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_Attack_Up
+    soundType: 2
+    audioClip: {fileID: 8300000, guid: 00c35176599c2e34db4727307c90c552, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_Dash
+    soundType: 3
+    audioClip: {fileID: 8300000, guid: 3e2e227949835064bbe77ba0fd193f6b, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_Dash_Up
+    soundType: 4
+    audioClip: {fileID: 8300000, guid: 2786bca098f711a469fc9bc209518993, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_Death
+    soundType: 5
+    audioClip: {fileID: 8300000, guid: b0856861cbe2f674d8a8b4d196058cce, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Payer_TakeDamage
+    soundType: 6
+    audioClip: {fileID: 8300000, guid: 1c51e9550c2abc54f8038be3efa8e72b, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: WaterShied
+    soundType: 7
+    audioClip: {fileID: 8300000, guid: 5eea4a968a216c342a2f139bb3f01d4d, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: WaterIn
+    soundType: 8
+    audioClip: {fileID: 8300000, guid: 9b51ef873a864c343ad60542949dcb68, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: WaterOut
+    soundType: 9
+    audioClip: {fileID: 8300000, guid: 3cc11c1219d76984588a937d7d5737b6, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Pickup_Tokkendo
+    soundType: 10
+    audioClip: {fileID: 8300000, guid: 41f70d80c59a6d54f95d2c1776128c35, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: EnemyAttack
+    soundType: 11
+    audioClip: {fileID: 8300000, guid: ddfe3ea584578404aa0ffd05fe25ff37, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: EnemyAttack_up
+    soundType: 12
+    audioClip: {fileID: 8300000, guid: 76bb76c897e65c14aa1552a0fac495af, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Enemy_takeDamage
+    soundType: 15
+    audioClip: {fileID: 8300000, guid: a6eef2ca9462a314c9e2250472bb0101, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Enemy_stun
+    soundType: 13
+    audioClip: {fileID: 8300000, guid: 0b08862705a4e754eb46491f202975a9, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Enemy_noise
+    soundType: 14
+    audioClip: {fileID: 8300000, guid: 58e08fd55dc0c7642951b89039f7c10f, type: 3}
+    volumeLow: 0.105
+    volumeHigh: 0.278
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Enemy_Death
+    soundType: 16
+    audioClip: {fileID: 8300000, guid: d124c7a017e52c9458e27c8b8d30e1b0, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Death_Smoke
+    soundType: 17
+    audioClip: {fileID: 8300000, guid: 1a860d11ee48e5b418dce41a2e1b63a0, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
+  - Name: Enemy_Noise2
+    soundType: 18
+    audioClip: {fileID: 8300000, guid: d48351ec7debad94f8f805f0a1369105, type: 3}
+    volumeLow: 1
+    volumeHigh: 1
+    pitchLow: 1
+    pitchHigh: 1
 --- !u!1 &105352282246003989
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +314,7 @@ GameObject:
   - component: {fileID: 7117395324102259302}
   - component: {fileID: 5730781452694321852}
   - component: {fileID: 1740806525}
+  - component: {fileID: 6095146719636931722}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -159,6 +334,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3161601575774131985}
+  - {fileID: 136905910}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -177,7 +353,8 @@ MonoBehaviour:
   tokendoCount: 1
   uiManager: {fileID: 6644953543441268827}
   inputManager: {fileID: 5730781452694321852}
-  combatController: {fileID: 1740806525}
+  combatController: {fileID: 6095146719636931722}
+  sM: {fileID: 136905909}
   player: {fileID: 0}
   remainingEnemies: []
 --- !u!114 &5730781452694321852
@@ -205,6 +382,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phaseList: {fileID: 11400000, guid: bf63fb1762727c246b39c6e9557cc114, type: 2}
+  currentPhase:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawners: []
+--- !u!114 &6095146719636931722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3522146111231909753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9ea618a61192b24cb9a82eac2a4b973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phaseList: {fileID: 0}
   currentPhase:
     id: 0
   references:

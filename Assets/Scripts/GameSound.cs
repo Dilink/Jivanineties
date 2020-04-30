@@ -30,6 +30,6 @@ public enum GameSound
 
     Death_Smoke,
 
-    Enemy_Noise2,
+    Enemy_Noise2,//
 
 }

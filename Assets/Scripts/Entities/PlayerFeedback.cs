@@ -16,7 +16,7 @@ public class PlayerFeedback : MonoBehaviour
     public Animator animWaterShield;
     public Animator animWaterAbsorption;
 
-    public Ma_SoundManager sM;
+    //public Ma_SoundManager sM;
 
 
     public bool SpecialAttack { get; set; }
@@ -54,7 +54,7 @@ public class PlayerFeedback : MonoBehaviour
         {
             for (int i = 0; i < dash_Up.Length; i++)
             {
-                sM.PlaySoundPositioned(GameSound.Payer_Dash_Up , transform.position);
+               GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_Dash_Up , transform.position);
                 dash_Up[i].Play();
             }
         }
@@ -62,7 +62,7 @@ public class PlayerFeedback : MonoBehaviour
         {
             for (int i = 0; i < dash.Length; i++)
             {
-                sM.PlaySoundPositioned(GameSound.Payer_Dash, transform.position);
+                GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_Dash, transform.position);
                 dash[i].Play();
             }
         }
@@ -72,7 +72,7 @@ public class PlayerFeedback : MonoBehaviour
     {
         for (int i = 0; i < EnemyHit.Length; i++)
         {
-            sM.PlaySoundPositioned(GameSound.Payer_TakeDamage, transform.position);
+            GameManager.Instance.sM.PlaySoundPositioned(GameSound.Payer_TakeDamage, transform.position);
             EnemyHit[i].Play();
         }
 
@@ -85,7 +85,7 @@ public class PlayerFeedback : MonoBehaviour
             for (int i = 0; i < Recover.Length; i++)
             {
                 Recover[i].Play();
-                sM.PlaySoundPositioned(GameSound.WaterOut, transform.position);
+                GameManager.Instance.sM.PlaySoundPositioned(GameSound.WaterOut, transform.position);
             }
         }
         inRecover = false;
@@ -99,7 +99,7 @@ public class PlayerFeedback : MonoBehaviour
 
     public void PlayWaterAbsorption()
     {
-        sM.PlaySoundPositioned(GameSound.WaterIn, transform.position);
+        GameManager.Instance.sM.PlaySoundPositioned(GameSound.WaterIn, transform.position);
         animWaterAbsorption.Play("WaterShield_Absorption");
     }
 }

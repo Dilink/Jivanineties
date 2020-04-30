@@ -7,7 +7,7 @@ public class EnemyFeedback : MonoBehaviour
     public Animator stateAnim;
 
     public ParticleSystem StunFX;
-    public Ma_SoundManager sM;
+   // public Ma_SoundManager sM;
 
     public bool IsStun { get; set; }
     public bool isInvicible { get; set; }
@@ -28,7 +28,7 @@ public class EnemyFeedback : MonoBehaviour
     public void feedBackStun()
     {
 
-        sM.PlaySoundPositioned(GameSound.Enemy_stun, transform.position);
+        GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_stun, transform.position);
         if (isInvicible)
         {
             feedBackStunInvisibility();
