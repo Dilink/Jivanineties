@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(attack.attackRecoveryDuration);
         attacking = null;
     }
-
+    
     IEnumerator Dodge(Transform destination)
     {
         float timer = 0f;
@@ -290,6 +290,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (area != null && area.CanRestore())
         {
             movement = Vector3.zero;
+            animator.SetBool("Run", false);
+            animator.SetTrigger("Restore");
             while (loop && GameManager.Instance.inputManager.POWER_HOLD)
             {
                 if (timer >= restoreDelay)
@@ -306,6 +308,8 @@ public class PlayerController : MonoBehaviour, IDamageable
                     GameManager.Instance.tokendoAmount--;
                 }
             }
+            animator.SetTrigger("Recover");
+            yield return new WaitForSeconds(0.2f);
         }
         restoring = null;
     }
@@ -364,7 +368,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
         while (timer < dbzKnockBackCurve.keys[dbzKnockBackCurve.length - 1].time);
         animator.SetTrigger("Recover");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         speedModifier = 1f;
         movement = Vector3.zero;
         knocked = null;
