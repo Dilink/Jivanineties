@@ -10,6 +10,8 @@ public class IABehaviour : MonoBehaviour, IDamageable
 
     [Header("Tweaking")]
     public float attackRange;
+    [Curve(0, 0, 1, 10f, true)]
+    public AnimationCurve dbzKnockBackCurve;
 
     public NavMeshAgent navA;
     public MeshRenderer mR;
@@ -52,7 +54,6 @@ public class IABehaviour : MonoBehaviour, IDamageable
     private float stunnedDuration;
     
     public bool isAIDisabled = false;
-
 
     public bool isInvincible { get; private set; }
     public float invicibilitéDuration;
