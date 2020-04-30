@@ -27,6 +27,7 @@ MonoBehaviour:
   - id: 11
   - id: 12
   - id: 13
+  - id: 14
   references:
     version: 1
     00000000:
@@ -41,20 +42,23 @@ MonoBehaviour:
     00000002:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 10
+        time: 5
+        isTextVisible: 1
     00000003:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawners:
         - {fileID: 11400000, guid: fe96bf6035d11654481888e4b4541bfe, type: 2}
+        - {fileID: 11400000, guid: bc709c410d3ff404a8b183118cad058c, type: 2}
     00000004:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
     00000005:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        text: Victoire!
+        time: 8
+        isTextVisible: 1
     00000006:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
@@ -67,12 +71,15 @@ MonoBehaviour:
     00000008:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 0
+        time: 5
+        isTextVisible: 1
     00000009:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawners:
-        - {fileID: 11400000, guid: bc709c410d3ff404a8b183118cad058c, type: 2}
+        - {fileID: 11400000, guid: 95bedd2036c5e8d4aaf7bfc58f150b6c, type: 2}
+        - {fileID: 11400000, guid: 64f223ecdfce26e4f954f5ddf278aa5c, type: 2}
+        - {fileID: 11400000, guid: 1ce6676e157fe6748964521ae6655336, type: 2}
     0000000A:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
@@ -80,7 +87,8 @@ MonoBehaviour:
     0000000B:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 0
+        time: 8
+        isTextVisible: 1
     0000000C:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
@@ -90,3 +98,7 @@ MonoBehaviour:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
+    0000000E:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Victoire!

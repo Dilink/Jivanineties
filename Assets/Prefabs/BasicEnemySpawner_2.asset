@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78da49de2340a184ebcab67f032c9adc, type: 3}
   m_Name: BasicEnemySpawner_2
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 11400000, guid: 7c51231b2de4c6a48a39109be971350d, type: 2}
+  spawnPoint: {fileID: 11400000, guid: c4773e1ea292be24ea925b9280e9c5a1, type: 2}
   prefab: {fileID: 112932313886882948, guid: 6ad9d09f6c9ddef4b8673c2cfc88c4e2, type: 3}
-  creationCount: 2
+  creationCount: 1
