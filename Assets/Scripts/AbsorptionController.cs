@@ -18,13 +18,18 @@ public class AbsorptionController : MonoBehaviour
 		int layerMask = 1 << LayerMask.NameToLayer("Player");
 		layerMask = ~layerMask;
 
-		RaycastHit hit;
-		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.0f, layerMask))
+		RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.TransformDirection(Vector3.down), 10.0f, layerMask);
+
+		for (int i = 0; i < hits.Length; i++)
 		{
+			RaycastHit hit = hits[i];
 			IAbsorbable area = hit.transform.gameObject.GetComponent<AbsorptionArea>() as IAbsorbable;
-			return area;
+
+			if (area != null)
+			{
+				return area;
+			}
 		}
 		return null;
 	}
-
 }
