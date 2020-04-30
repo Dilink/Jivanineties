@@ -17,24 +17,158 @@ MonoBehaviour:
   - id: 1
   - id: 2
   - id: 3
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  - id: 10
+  - id: 11
+  - id: 12
+  - id: 13
+  - id: 14
+  - id: 15
+  - id: 16
+  - id: 17
+  - id: 18
+  - id: 19
+  - id: 20
+  - id: 21
+  - id: 22
+  - id: 23
+  - id: 24
+  - id: 25
+  - id: 26
+  - id: 27
+  - id: 28
   references:
     version: 1
     00000000:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
         time: 2
-        isTextVisible: 1
+        isTextVisible: 0
     00000001:
       type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
       data:
-        text: "D\xE9placez le personnage avec Z,Q,S,D\nD\xE9placez la cam\xE9ra avec
-          Souris"
+        text: "Utilisez  Z, Q, S, D pour vous d\xE9placer !"
     00000002:
+      type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
+      data:
+        actionType: 2
+    00000003:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 4
-        isTextVisible: 1
-    00000003:
+        time: 0
+        isTextVisible: 0
+    00000004:
       type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
+    00000005:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Bravo !
+    00000006:
+      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Utilisez "clic gauche souris" pour frapper !
+    00000007:
+      type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
+      data:
+        actionType: 0
+    00000008:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 0
+        isTextVisible: 0
+    00000009:
+      type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    0000000A:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Bravo !
+    0000000B:
+      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Utilisez "clic droit souris" pour vous ruer vers l'avant !
+    0000000C:
+      type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
+      data:
+        actionType: 1
+    0000000D:
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      data:
+        time: 0
+        isTextVisible: 0
+    0000000E:
+      type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    0000000F:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Bravo !
+    00000010:
+      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Utilisez "clic gauche souris + barre d'espace" pour effectuer une attaque
+          puissante (Absorbe l'eau de la zone) et tuer l'ennemi !
+    00000011:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawners:
+        - {fileID: 11400000, guid: 00af71ba92250f64ca0e54b61d94c1aa, type: 2}
+    00000012:
+      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    00000013:
+      type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    00000014:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Bravo !
+    00000015:
+      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: "Entre deux phases de combat vous pouvez restaurer une zone gr\xE2ce
+          aux tokendos r\xE9colt\xE9s sur les ennemis ! Restaurez la zone que vous
+          avez d\xE9truit o\xF9 se tenait l'ennemi !"
+    00000016:
+      type: {class: AbsorptionPhase, ns: , asm: Assembly-CSharp}
+      data:
+        actionType: 1
+        area: {fileID: 0}
+    00000017:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Bravo !
+    00000018:
+      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: "Utilisez \"clic droit souris + barre d'espace\" vers un ennemi pour
+          vous t\xE9l\xE9porter derri\xE8re lui et l'\xE9tourdir (Absorbe l'eau de
+          la zone) !"
+    00000019:
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
+      data:
+        spawners:
+        - {fileID: 11400000, guid: d070a5f356177a040aa4a91afb4c8bb7, type: 2}
+    0000001A:
+      type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    0000001B:
+      type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
+      data:
+        fix: 0
+    0000001C:
+      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      data:
+        text: Bravo !

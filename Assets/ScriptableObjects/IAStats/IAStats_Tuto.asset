@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ced20e6f1b598540b97abf4e740f5b1, type: 3}
-  m_Name: SpawnPoint_10
+  m_Script: {fileID: 11500000, guid: f8190cc0ac150e84987ef190f131e678, type: 3}
+  m_Name: IAStats_Tuto
   m_EditorClassIdentifier: 
-  location: {x: -2.6082861, y: 0, z: -1.5118847}
-  radius: 2
+  lifePointTypes: 00000000
+  Attack:
+  - {fileID: 11400000, guid: f15790e6f368caa43b4c8b4d272b25d8, type: 2}
+  - {fileID: 11400000, guid: f15790e6f368caa43b4c8b4d272b25d8, type: 2}

@@ -251,6 +251,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 244917064187352953, guid: da890f046bf52054780d1605926fa9f4,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 244917064423756423, guid: da890f046bf52054780d1605926fa9f4,
+        type: 3}
+      propertyPath: areaHasWater
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7662499979157106642, guid: da890f046bf52054780d1605926fa9f4,
         type: 3}
       propertyPath: m_Name
