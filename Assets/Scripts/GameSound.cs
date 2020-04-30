@@ -10,23 +10,26 @@ public enum GameSound
 
     Payer_Attack,
     Payer_Attack_Up,
-    Payer_Dash,
-    Payer_Dash_Up,
+    Payer_Dash,//
+    Payer_Dash_Up,//
     Payer_Death,
-    Payer_TakeDamage,
+    Payer_TakeDamage,//
 
     WaterShied,
-    WaterIn,
-    WaterOout,
+    WaterIn,//
+    WaterOut,//
 
     Pickup_Tokkendo,
 
-    EnemyAttack,
+    EnemyAttack,//
     EnemyAttack_up,
-    Enemy_stun,
-    Enemy_noise,
-    Enemy_takeDamage,
-    Enemy_Death,
+    Enemy_stun,//
+    Enemy_noise,//
+    Enemy_takeDamage,//
+    Enemy_Death,//
+
     Death_Smoke,
+
+    Enemy_Noise2,
 
 }
