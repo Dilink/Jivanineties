@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SCN_Main.unity
     guid: 816d180d762bb3440a0a1c7c6a287f3f
   - enabled: 1
-    path: Assets/Scenes/GP/Flo/ProtoTutorial.unity
-    guid: 15e55503f1e11ac4698c71cb12a2ee91
+    path: Assets/Scenes/SCN_Tutorial.unity
+    guid: 203123b5da74b184e80078995c656b44
   m_configObjects: {}
