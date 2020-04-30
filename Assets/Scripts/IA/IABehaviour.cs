@@ -358,8 +358,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         currentIAState = IAState.dead;
         // navA.destination = transform.position;
-        navA.isStopped = true;
-        navA.destination = transform.position;
+        // navA.isStopped = true;
         animator.SetBool("Move", false);
         animator.SetTrigger("Death");
         StopAllCoroutines();

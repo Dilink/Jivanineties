@@ -869,6 +869,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4728122978472218224, guid: 796f20c270d257349b5e91d04689eb18,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728122978472218224, guid: 796f20c270d257349b5e91d04689eb18,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728122978472218224, guid: 796f20c270d257349b5e91d04689eb18,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728122978472218224, guid: 796f20c270d257349b5e91d04689eb18,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728122978472218224, guid: 796f20c270d257349b5e91d04689eb18,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5129091755198446365, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: m_textInfo.characterCount

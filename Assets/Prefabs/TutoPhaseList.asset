@@ -23,16 +23,18 @@ MonoBehaviour:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
         time: 2
-        isTextVisible: 0
+        isTextVisible: 1
     00000001:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      type: {class: TutoTextShowPhase, ns: , asm: Assembly-CSharp}
       data:
-        text: TUTO
+        text: "D\xE9placez le personnage avec Z,Q,S,D\nD\xE9placez la cam\xE9ra avec
+          Souris"
     00000002:
-      type: {class: WaitForPlayerActionPhase, ns: , asm: Assembly-CSharp}
+      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
-        actionType: 0
+        time: 4
+        isTextVisible: 1
     00000003:
-      type: {class: TextPhase, ns: , asm: Assembly-CSharp}
+      type: {class: TutoTextHidePhase, ns: , asm: Assembly-CSharp}
       data:
-        text: END
+        fix: 0

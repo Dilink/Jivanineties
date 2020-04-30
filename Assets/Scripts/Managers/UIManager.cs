@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
     public RectTransform newPhaseRect;
     public TMP_Text newPhaseText;
     public RectTransform movementLimitAnchor;
+    public Transform tutorialTransform;
+    public TMP_Text tutorialText;
 
     [ShowInInspector]
     [ReadOnly]
@@ -37,6 +39,17 @@ public class UIManager : MonoBehaviour
     {
         Vector3 v = newPhaseRect.position;
         InitialNewPhaseTransform = new Vector3(v.x, v.y, v.z);
+    }
+
+    public void ShowTutoText(string text)
+    {
+        tutorialTransform.gameObject.SetActive(true);
+        tutorialText.SetText(text);
+    }
+
+    public void HideTutoText()
+    {
+        tutorialTransform.gameObject.SetActive(false);
     }
 
     public void UpdateTokendoCount(int count)
@@ -153,6 +166,9 @@ public class UIManager : MonoBehaviour
         movementLimitAnchor = canvasTransform.Find("MovementLimitAnchor").GetComponent<RectTransform>();
 
         cameraController = GameObject.FindObjectOfType<CameraController>();
+
+        tutorialTransform = canvasTransform.Find("Tutorial");
+        tutorialText = tutorialTransform.Find("Image/Text").GetComponent<TMP_Text>();
     }
 #endif
 }
