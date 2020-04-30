@@ -7436,6 +7436,68 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[0].spawnPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[3].spawnPoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[0]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[0].spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac,
+        type: 2}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[1]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[1].fix
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[2].time
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[3]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[3].spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac,
+        type: 2}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[4]
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[4].fix
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[5]
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
+      propertyPath: phases.Array.data[5].text
+      value: Victoire!
+      objectReference: {fileID: 0}
     - target: {fileID: 3522146111231909753, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: m_Name
@@ -7516,7 +7578,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1740806525, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 796f20c270d257349b5e91d04689eb18, type: 3}
 --- !u!23 &789623565 stripped
 MeshRenderer:
@@ -10288,42 +10351,37 @@ MonoBehaviour:
   - id: 3
   - id: 4
   - id: 5
-  - id: 6
   currentPhase:
-    id: 7
+    id: 6
   references:
     version: 1
     00000000:
-      type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
+      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
-        time: 10
+        spawnPoints:
+        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
     00000001:
-      type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
-      data:
-        spawnPoints:
-        - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000002:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
-    00000003:
+    00000002:
       type: {class: WaitPhase, ns: , asm: Assembly-CSharp}
       data:
         time: 10
-    00000004:
+    00000003:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawnPoints:
         - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-    00000005:
+    00000004:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
         fix: 0
-    00000006:
+    00000005:
       type: {class: TextPhase, ns: , asm: Assembly-CSharp}
       data:
         text: Victoire!
-    00000007:
+    00000006:
       type: {class: BattlePhase, ns: , asm: Assembly-CSharp}
       data:
         spawnPoints:
