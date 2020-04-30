@@ -368,6 +368,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                 StopCoroutine(knocked);
                 knocked = null;
             }
+            source.GetComponent<IABehaviour>()?.GetStunned(0.5f);
             knocked = StartCoroutine(DBZKnockBack(source.forward));
         }
     }
