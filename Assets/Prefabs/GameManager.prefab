@@ -355,6 +355,8 @@ MonoBehaviour:
   combatController: {fileID: 1740806525}
   sM: {fileID: 136905909}
   lifeBar: {fileID: 7741174592402736581, guid: 7967720e4e04ad9419b5e45e296cd092, type: 3}
+  VFXSmoke: {fileID: 1053163737866046950, guid: 310f05944e61131438b418340ed37111,
+    type: 3}
   player: {fileID: 0}
   remainingEnemies: []
 --- !u!114 &5730781452694321852
