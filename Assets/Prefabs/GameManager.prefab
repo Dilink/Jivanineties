@@ -186,7 +186,6 @@ MonoBehaviour:
       data:
         spawnPoints:
         - {fileID: 11400000, guid: f1d79427af70d2f468a45ecd134163ac, type: 2}
-        - {fileID: 11400000, guid: cfd54eacb13185f4a8cbb2387d07bf45, type: 2}
     00000002:
       type: {class: WaitForAllEnemiesDeath, ns: , asm: Assembly-CSharp}
       data:
