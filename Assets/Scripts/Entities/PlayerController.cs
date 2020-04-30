@@ -26,7 +26,8 @@ public class PlayerController: MonoBehaviour, IDamageable
     public Transform visual;
     public AbsorptionController absorption;
     public Animator animator;
-    
+    public PlayerFeedback playerFeedback;
+
     private Vector3 movement;
     private float speedModifier;
     private float movementModifier;
@@ -131,12 +132,14 @@ public class PlayerController: MonoBehaviour, IDamageable
     
     private void CheckDodge()
     {
+        playerFeedback.SpecialDash = false;
         if (dodgeCooldown <= 0 && GameManager.Instance.inputManager.DODGE && dodging == null && attacking == null && restoring == null)
         {
             IAbsorbable area = absorption.GetArea();
             Collider[] enemies = Physics.OverlapSphere(transform.position, upgradedDodgeRange, 1 << LayerMask.NameToLayer("Enemy"));
             if(enemies.Length > 0 && GameManager.Instance.inputManager.POWER_HOLD && (GameManager.Instance.tokendoAmount > 0 || area.OnAbsorption()))
             {
+                
                 if(GameManager.Instance.tokendoAmount > 0)
                 {
                     GameManager.Instance.tokendoAmount--;
@@ -146,6 +149,7 @@ public class PlayerController: MonoBehaviour, IDamageable
                 {
                     ia.GetStunned(upgradedDodgeStunDuration);
                 }
+                playerFeedback.SpecialDash = true;
                 dodging = StartCoroutine(Dodge(enemies[0].transform));
             }
             else
@@ -177,6 +181,7 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         bool loop = true;
         bool enemyHit = false;
+        playerFeedback.AttackTouch = false;
         float timer = 0f;
         movement = Vector3.zero;
         animator.SetTrigger("Attack");
@@ -198,9 +203,11 @@ public class PlayerController: MonoBehaviour, IDamageable
                     if (ia)
                     {
                         ia.GetStunned(attack.stunDuration);
+                        playerFeedback.SpecialAttack = true;
                     }
                 }
                 Debug.Log("Hit!");
+                playerFeedback.AttackTouch = true;
                 enemyHit = true;
             }
             yield return null;
@@ -214,6 +221,7 @@ public class PlayerController: MonoBehaviour, IDamageable
         float timer = 0f;
         if(destination != null)
         {
+            playerFeedback.dashFeedback();
             movement = Vector3.zero;
             NavMeshHit hit;
             NavMesh.SamplePosition(destination.position + (destination.position - transform.position).normalized * 2, out hit, 10f, 1 << NavMesh.GetAreaFromName("Walkable"));
@@ -298,4 +306,5 @@ public class PlayerController: MonoBehaviour, IDamageable
     {
         Gizmos.DrawWireSphere(transform.position, upgradedDodgeRange);
     }
+
 }
