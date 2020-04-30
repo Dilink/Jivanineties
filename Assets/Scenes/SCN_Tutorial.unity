@@ -6478,6 +6478,12 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 6095146719636931722, guid: 796f20c270d257349b5e91d04689eb18,
+        type: 3}
+      propertyPath: phaseList
+      value: 
+      objectReference: {fileID: 11400000, guid: 18a9762be789ed44ba291dd7c2e69de4,
+        type: 2}
     - target: {fileID: 6644953543441268827, guid: 796f20c270d257349b5e91d04689eb18,
         type: 3}
       propertyPath: cameraController
@@ -17353,6 +17359,11 @@ PrefabInstance:
     - target: {fileID: 2308094108566311391, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181044221224422500, guid: 7ec60b15c46821847b5cb1d0b00bc7ff,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
