@@ -70,9 +70,9 @@ public class IABehaviour : MonoBehaviour, IDamageable
         barMaterial = newBar.GetComponent<MeshRenderer>().material;
         float ratio = (float)currentLife / (float)maxLife;
         barMaterial.SetFloat("_Vie", (1f - ratio));
-        print(ratio);
+        //print(ratio);
 
-        print(currentLife);
+        //print(currentLife);
 
     }
 
@@ -388,7 +388,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
         isInvincible = true;
         enemyFeedback.feedBackInvicibility();
         enemyFeedback.isInvicible = true;
-        yield return new WaitForSeconds(invicibilitéDuration);
+        yield return new WaitForSeconds(0.3f);
         isInvincible = false;
         enemyFeedback.endInvincibility();
         enemyFeedback.isInvicible = false;
@@ -401,6 +401,7 @@ public class IABehaviour : MonoBehaviour, IDamageable
     {
         currentIAState = IAState.dead;
         GameManager.Instance.sM.PlaySoundPositioned(GameSound.Enemy_Death, transform.position);
+        enemyFeedback.feedBackInvicibility();
         // navA.destination = transform.position;
         // navA.isStopped = true;
         animator.SetBool("Move", false);

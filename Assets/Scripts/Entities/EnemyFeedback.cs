@@ -21,7 +21,8 @@ public class EnemyFeedback : MonoBehaviour
         }
         else
         {
-            stateAnim.Play("Anim_Invincibility_2");
+            
+            stateAnim.Play("Anim_Invincibility_2", -1 , 0);
         }
 
     }
@@ -35,24 +36,24 @@ public class EnemyFeedback : MonoBehaviour
         }
         else
         {
-            stateAnim.Play("Anim_Stunned");
+            stateAnim.Play("Anim_Stunned", -1, 0);
         }
     }
 
     public void feedBackStunInvisibility()
     {
-        stateAnim.Play("Anim_Stunned_Invincibility");
+        stateAnim.Play("Anim_Stunned_Invincibility", -1, 0);
     }
 
     public void endStun()
     {
         if (isInvicible)
         {
-            stateAnim.Play("Anim_Invincibility_2");
+            //stateAnim.Play("Anim_Invincibility_2", -1, 0);
         }
         else
         {
-            stateAnim.Play("New State");
+            stateAnim.Play("New State", -1, 0);
         }
     }
 
@@ -60,11 +61,11 @@ public class EnemyFeedback : MonoBehaviour
     {
         if (IsStun)
         {
-            stateAnim.Play("Anim_Stunned");
+            stateAnim.Play("Anim_Stunned", -1, 0);
         }
         else
         {
-            stateAnim.Play("New State");
+            stateAnim.Play("New State", -1, 0);
         }
     }
 

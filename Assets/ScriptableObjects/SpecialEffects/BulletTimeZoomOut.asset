@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BulletTimeZoomOut
   m_EditorClassIdentifier: 
   effectDuration: 1
-  priority: 0
+  priority: 1
   camRotationX:
     serializedVersion: 2
     m_Curve:

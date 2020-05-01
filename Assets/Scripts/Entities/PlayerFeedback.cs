@@ -12,6 +12,7 @@ public class PlayerFeedback : MonoBehaviour
     public ParticleSystem[] dash_Up;
 
     public ParticleSystem[] Recover;
+    public ParticleSystem[] FullRecover;
 
     public Animator animWaterShield;
     public Animator animWaterAbsorption;
@@ -90,6 +91,15 @@ public class PlayerFeedback : MonoBehaviour
         }
         inRecover = false;
 
+    }
+
+    public void FullRecoverFeedBack()
+    {
+        for(int i = 0; i < FullRecover.Length; i++)
+        {
+            FullRecover[i].Play();
+            GameManager.Instance.sM.PlaySoundPositioned(GameSound.WaterOut, transform.position);
+        }
     }
 
     public void PlayWaterShield()

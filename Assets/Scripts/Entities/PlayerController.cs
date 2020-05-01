@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                         effectManager.TriggerEffect(0);
                     }
                 }
-                Debug.Log("Hit!");
+                //Debug.Log("Hit!");
                 playerFeedback.AttackTouch = true;
                 enemyHit = true;
             }
@@ -346,6 +346,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             {
                 if (area.OnRestore())
                 {
+                    playerFeedback.FullRecoverFeedBack();
                     GameManager.Instance.tokendoAmount--;
                 }
             }
@@ -361,7 +362,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         IAbsorbable area = absorption.GetArea();
         if (area == null || !area.OnAbsorption())
         {
-            Debug.Log("Aïe! J'ai mal!");
+            //Debug.Log("Aïe! J'ai mal!");
             hp -= damageAmount;
             if (hp <= 0 && !Dead)
             {
@@ -449,7 +450,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             effectManager.TriggerEffect(4);
         }
         StartCoroutine(GameOverScreen());
-        Debug.Log("Je suis mort!");
+        //Debug.Log("Je suis mort!");
 
     }
 

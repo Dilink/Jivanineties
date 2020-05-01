@@ -15016,6 +15016,7 @@ MonoBehaviour:
   Recover:
   - {fileID: 1514572792}
   - {fileID: 639584387}
+  FullRecover:
   - {fileID: 1567206617}
   animWaterShield: {fileID: 8517230165999406961}
   animWaterAbsorption: {fileID: 8517230165289249649}
@@ -15654,6 +15655,11 @@ PrefabInstance:
       propertyPath: m_UpdateMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6211793098065131257, guid: 7ede1a0d836710b41b9b9f85f880ad57,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 44861eba09acd7c40a32bbfcc4725b6f, type: 2}
     - target: {fileID: 6211793098065131258, guid: 7ede1a0d836710b41b9b9f85f880ad57,
         type: 3}
       propertyPath: m_LocalPosition.x

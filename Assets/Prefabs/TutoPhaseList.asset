@@ -178,7 +178,7 @@ MonoBehaviour:
       data:
         text: "Entre deux phases de combat vous pouvez restaurer une zone gr\xE2ce
           aux tokendos r\xE9colt\xE9s sur les ennemis ! Restaurez une zone que vous
-          avez d\xE9truit !"
+          avez d\xE9truit en maintenant Espace !"
     0000001B:
       type: {class: AbsorptionPhase, ns: , asm: Assembly-CSharp}
       data:
@@ -236,4 +236,4 @@ MonoBehaviour:
     00000027:
       type: {class: ChangeLevelPhase, ns: , asm: Assembly-CSharp}
       data:
-        scene: {fileID: 102900000, guid: fb76e56a2ceb35a41b4c7b0b6356dfca, type: 3}
+        serializetoi: 0
