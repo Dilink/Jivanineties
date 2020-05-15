@@ -9,4 +9,5 @@ In this repository, you'll see a prototype to test the combat system and nature 
 The goal was to make a game as if it was released in the 90s in order to focus on core mechanics.
 
 An entity attack
+
 <img src="doc/enemy-attack.png" alt="Entity attack" />
